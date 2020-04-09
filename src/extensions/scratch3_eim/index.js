@@ -43,7 +43,7 @@ class EIMBlocks {
         this._rateLimiter = new RateLimiter(SendRateMax);
 
         const url = new URL(window.location.href);
-        var adapterHost = url.searchParams.get("adapter_host"); // 支持树莓派(分布式使用)
+        var adapterHost = url.searchParams.get("adapter_host"); 
         if (!adapterHost) {
             var adapterHost = "codelab-adapter.codelab.club";
         }

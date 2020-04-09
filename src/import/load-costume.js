@@ -2,8 +2,10 @@ const StringUtil = require('../util/string-util');
 const log = require('../util/log');
 
 const loadVector_ = function (costume, runtime, rotationCenter, optVersion) {
+    
     return new Promise(resolve => {
         let svgString = costume.asset.decodeText();
+        console.log("svgString",svgString)
         // SVG Renderer load fixes "quirks" associated with Scratch 2 projects
         if (optVersion && optVersion === 2 && !runtime.v2SvgAdapter) {
             log.error('No V2 SVG adapter present; SVGs may not render correctly.');
@@ -94,6 +96,7 @@ const canvasPool = (function () {
  *     assetMatchesBase is true if the asset matches the base layer; false if it required adjustment
  */
 const fetchBitmapCanvas_ = function (costume, runtime, rotationCenter) {
+    
     if (!costume || !costume.asset) {
         return Promise.reject('Costume load failed. Assets were missing.');
     }
@@ -103,10 +106,12 @@ const fetchBitmapCanvas_ = function (costume, runtime, rotationCenter) {
 
     return Promise.all([costume.asset, costume.textLayerAsset].map(asset => {
         if (!asset) {
+            console.log("!costume",asset)
             return null;
         }
 
         if (typeof createImageBitmap !== 'undefined') {
+            console.log("typeof createImageBitmap !== 'undefined'")
             return createImageBitmap(
                 new Blob([asset.data], {type: asset.assetType.contentType})
             );
@@ -128,6 +133,7 @@ const fetchBitmapCanvas_ = function (costume, runtime, rotationCenter) {
         });
     }))
         .then(([baseImageElement, textImageElement]) => {
+            console.log("[baseImageElement, textImageElement]",[baseImageElement, textImageElement])
             const mergeCanvas = canvasPool.create();
 
             const scale = costume.bitmapResolution === 1 ? 2 : 1;
@@ -181,6 +187,7 @@ const fetchBitmapCanvas_ = function (costume, runtime, rotationCenter) {
 const loadBitmap_ = function (costume, runtime, _rotationCenter) {
     return fetchBitmapCanvas_(costume, runtime, _rotationCenter)
         .then(fetched => {
+            console.log("fetched-------",fetched)
             const updateCostumeAsset = function (dataURI) {
                 if (!runtime.v2BitmapAdapter) {
                     // TODO: This might be a bad practice since the returned
@@ -200,9 +207,11 @@ const loadBitmap_ = function (costume, runtime, _rotationCenter) {
                     null,
                     true // generate md5
                 );
+                
                 costume.dataFormat = storage.DataFormat.PNG;
                 costume.assetId = costume.asset.assetId;
                 costume.md5 = `${costume.assetId}.${costume.dataFormat}`;
+                
             };
 
             if (!fetched.assetMatchesBase) {
@@ -244,6 +253,7 @@ const loadBitmap_ = function (costume, runtime, _rotationCenter) {
  * @returns {?Promise} - a promise which will resolve after skinId is set, or null on error.
  */
 const loadCostumeFromAsset = function (costume, runtime, optVersion) {
+    console.log("loadCostumeFromAsset")
     costume.assetId = costume.asset.assetId;
     const renderer = runtime.renderer;
     if (!renderer) {
@@ -258,6 +268,8 @@ const loadCostumeFromAsset = function (costume, runtime, optVersion) {
             typeof costume.rotationCenterY === 'number' && !isNaN(costume.rotationCenterY)) {
         rotationCenter = [costume.rotationCenterX, costume.rotationCenterY];
     }
+    console.log("costume.asset.assetType.runtimeFormat",costume.asset.assetType.runtimeFormat)
+    console.log("AssetType.ImageVector.runtimeFormat",AssetType.ImageVector.runtimeFormat)
     if (costume.asset.assetType.runtimeFormat === AssetType.ImageVector.runtimeFormat) {
         return loadVector_(costume, runtime, rotationCenter, optVersion)
             .catch(error => {
@@ -287,6 +299,7 @@ const loadCostumeFromAsset = function (costume, runtime, optVersion) {
  * @returns {?Promise} - a promise which will resolve after skinId is set, or null on error.
  */
 const loadCostume = function (md5ext, costume, runtime, optVersion) {
+    console.log("loadCostume",costume)
     const idParts = StringUtil.splitFirst(md5ext, '.');
     const md5 = idParts[0];
     const ext = idParts[1].toLowerCase();
