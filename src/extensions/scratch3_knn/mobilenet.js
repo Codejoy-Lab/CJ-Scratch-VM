@@ -1080,7 +1080,7 @@
         998: 'ear, spike, capitulum',
         999: 'toilet tissue, toilet paper, bathroom tissue'
     };
-    var BASE_PATH = 'https://codejoy.world/static/knn/'
+    var BASE_PATH = 'https://learn.codejoyai.com/static/knn/'
     var IMAGE_SIZE = 224;
     function load(version, alpha) {
         if (version === void 0) { version = 1; }
