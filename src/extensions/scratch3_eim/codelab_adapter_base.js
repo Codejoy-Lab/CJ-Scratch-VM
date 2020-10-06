@@ -52,7 +52,7 @@ class AdapterBaseClient {
                 transports: ["websocket"],
             }
         );
-        console.log("this.socket",this.socket)
+        // console.log("this.socket",this.socket)
         this.connected = false;
 
         this.socket.on("connect", () => {

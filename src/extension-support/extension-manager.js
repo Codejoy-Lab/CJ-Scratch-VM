@@ -28,7 +28,9 @@ const builtinExtensions = {
     cxknn:()=>require('../extensions/scratch3_knn'),
     eim:()=>require('../extensions/scratch3_eim'),
     posenet:()=>require('../extensions/scratch3_posenet'),
-    PitchDetection:()=>require('../extensions/scratch3_PitchDetection')
+    PitchDetection:()=>require('../extensions/scratch3_PitchDetection'),
+    python:()=>require('../extensions/scratch3_python_kernel'),
+    weatherReport:()=>require('../extensions/scratch3_weatherReport')
 };
 
 /**
