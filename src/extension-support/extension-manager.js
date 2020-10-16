@@ -30,6 +30,7 @@ const builtinExtensions = {
     posenet:()=>require('../extensions/scratch3_posenet'),
     PitchDetection:()=>require('../extensions/scratch3_PitchDetection'),
     python:()=>require('../extensions/scratch3_python_kernel'),
+    usbMicrobit:()=>require('../extensions/Scratch3_usbMicrobit')
     // weatherReport:()=>require('../extensions/scratch3_weatherReport')
 };
 
@@ -156,8 +157,11 @@ class ExtensionManager {
             }
 
             const extension = builtinExtensions[extensionURL]();
+            // console.log('extension',extension)
             const extensionInstance = new extension(this.runtime);
             const serviceName = this._registerInternalExtension(extensionInstance);
+            // console.log('extensionInstance',extensionInstance)
+            
             this._loadedExtensions.set(extensionURL, serviceName);
             return Promise.resolve();
         }
