@@ -30,7 +30,8 @@ const builtinExtensions = {
     posenet:()=>require('../extensions/scratch3_posenet'),
     PitchDetection:()=>require('../extensions/scratch3_PitchDetection'),
     python:()=>require('../extensions/scratch3_python_kernel'),
-    usbMicrobit:()=>require('../extensions/Scratch3_usbMicrobit')
+    usbMicrobit:()=>require('../extensions/Scratch3_usbMicrobit'),
+    Yolo:()=>require('../extensions/scratch3_yolo')
     // weatherReport:()=>require('../extensions/scratch3_weatherReport')
 };
 
