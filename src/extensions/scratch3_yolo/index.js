@@ -91,9 +91,9 @@ class YoloBlock {
             // this.detect()
         });
         
-        // this.yolo.detect(video, (err, results) => {
-        //     console.log(results);
-        // });
+        this.yolo.detect(video, (err, results) => {
+            // console.log(results);
+        });
 		// this.runtime.ioDevices.video.setPreviewGhost(5);
 		this.setVideoTransparency({
 			TRANSPARENCY: 50
@@ -140,12 +140,6 @@ class YoloBlock {
 			name: "Yolo",
 			// blockIconURI: blockIconURI,
             blocks: [
-                // {
-                //     opcode: "start",
-                //     blockType: BlockType.COMMAND,
-                //     text: FormHelp[the_locale],
-                //     arguments: {},
-                // },
                 {
 					opcode: "detect",
 					blockType: BlockType.REPORTER,

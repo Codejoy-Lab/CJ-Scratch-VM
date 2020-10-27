@@ -15,6 +15,7 @@ const base = {
         library: 'VirtualMachine',
         filename: '[name].js'
     },
+    
     module: {
         rules: [{
             test: /\.js$/,

@@ -31,7 +31,9 @@ const builtinExtensions = {
     PitchDetection:()=>require('../extensions/scratch3_PitchDetection'),
     python:()=>require('../extensions/scratch3_python_kernel'),
     usbMicrobit:()=>require('../extensions/Scratch3_usbMicrobit'),
-    Yolo:()=>require('../extensions/scratch3_yolo')
+    Yolo:()=>require('../extensions/scratch3_yolo'),
+    imageClassifier:()=>require('../extensions/scratch3_imageClassifier'),
+    FaceAPI:()=>require('../extensions/scratch3_faceAPI')
     // weatherReport:()=>require('../extensions/scratch3_weatherReport')
 };
 
