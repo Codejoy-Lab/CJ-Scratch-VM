@@ -33,7 +33,8 @@ const builtinExtensions = {
     usbMicrobit:()=>require('../extensions/Scratch3_usbMicrobit'),
     Yolo:()=>require('../extensions/scratch3_yolo'),
     imageClassifier:()=>require('../extensions/scratch3_imageClassifier'),
-    FaceAPI:()=>require('../extensions/scratch3_faceAPI')
+    FaceAPI:()=>require('../extensions/scratch3_faceAPI'),
+    cxtello:()=>require('../extensions/scratch3_tello')
     // weatherReport:()=>require('../extensions/scratch3_weatherReport')
 };
 
