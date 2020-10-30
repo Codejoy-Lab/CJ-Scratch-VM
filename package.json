@@ -54,6 +54,7 @@
     "btoa": "1.2.1",
     "canvas": "^2.6.1",
     "canvas-toBlob": "1.0.0",
+    "crypto-js": "^4.0.0",
     "decode-html": "2.0.0",
     "diff-match-patch": "1.0.4",
     "encoding": "^0.1.12",
@@ -62,6 +63,7 @@
     "fs": "0.0.1-security",
     "htmlparser2": "3.10.0",
     "immutable": "3.8.1",
+    "js-base64": "^3.5.2",
     "jszip": "^3.1.5",
     "minilog": "3.1.0",
     "ml5": "^0.5.0",
@@ -71,6 +73,7 @@
     "scratch-translate-extension-languages": "0.0.20191118205314",
     "socket.io-client": "^2.3.0",
     "text-encoding": "0.7.0",
+    "websocket": "^1.0.32",
     "worker-loader": "^1.1.1"
   },
   "deprecated": false,

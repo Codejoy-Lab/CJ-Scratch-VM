@@ -9,6 +9,8 @@ const MathUtil = require('../../util/math-util');
 const Clone = require('../../util/clone');
 const log = require('../../util/log');
 
+const textSpeechClient = require("./text2speech_client.js");
+
 /**
  * Icon svg to be displayed in the blocks category menu, encoded as a data URI.
  * @type {string}
@@ -115,6 +117,10 @@ class Scratch3Text2SpeechBlocks {
          */
         this.runtime = runtime;
 
+        // this.client = new textSpeechClient(
+        //     null, // onConnect,
+        //     null, // onDisconnect,
+        //     )
         /**
          * Map of soundPlayers by sound id.
          * @type {Map<string, SoundPlayer>}
