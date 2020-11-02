@@ -35,7 +35,7 @@ const builtinExtensions = {
     imageClassifier:()=>require('../extensions/scratch3_imageClassifier'),
     FaceAPI:()=>require('../extensions/scratch3_faceAPI'),
     cxtello:()=>require('../extensions/scratch3_tello'),
-    speech2text:()=>require('../extensions/scratch3_speech2text'),
+    // speech2text:()=>require('../extensions/scratch3_speech2text'),
     matatabot:()=>require('../extensions/scratch3_matatabot')
     // weatherReport:()=>require('../extensions/scratch3_weatherReport')
 };

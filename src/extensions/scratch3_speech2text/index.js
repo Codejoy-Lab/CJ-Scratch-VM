@@ -4,8 +4,16 @@ const BlockType = require('../../extension-support/block-type');
 const formatMessage = require('format-message');
 const log = require('../../util/log');
 const DiffMatchPatch = require('diff-match-patch');
+// const recorderWorker = new Worker('./transformpcm.worker.js')
+
+const speecchtextClient = require('./speechtext_client.js')
 
 
+let buffer = []
+
+// recorderWorker.onmessage = function (e) {
+//     buffer.push(...e.data.buffer)
+//   }
 /**
  * Url of icon to be displayed at the left edge of each extension block.
  * @type {string}
@@ -52,7 +60,7 @@ class Scratch3Speech2TextBlocks {
          * @type {Runtime}
          */
         this.runtime = runtime;
-
+        // this.client = new speecchtextClient(null,null)
         /**
          * An array of phrases from the [when I hear] hat blocks.
          * The list of phrases in the when I hear hat blocks.  This list is sent
@@ -236,6 +244,8 @@ class Scratch3Speech2TextBlocks {
      */
     _closeWebsocket () {
         if (this._socket && this._socket.readyState === this._socket.OPEN) {
+            console.log("stop")
+            this._socket.send("{\"end\": true}");
             this._socket.close();
         }
     }
@@ -253,6 +263,7 @@ class Scratch3Speech2TextBlocks {
         // This is called on green flag to reset things that may never have existed
         // in the first place. Do a bunch of checks.
         if (this._scriptNode) {
+            console.log("stop scriptNode")
             this._scriptNode.removeEventListener('audioprocess', this._processAudioCallback);
             this._scriptNode.disconnect();
         }
@@ -282,7 +293,8 @@ class Scratch3Speech2TextBlocks {
     _stopTranscription () {
         this._stopListening();
         if (this._socket && this._socket.readyState === this._socket.OPEN) {
-            this._socket.send('stopTranscription');
+            
+            this._socket.close()
         }
         // Give it a couple seconds to response before giving up and assuming nothing else will come back.
         this._speechFinalResponseTimeout = setTimeout(this._resetListening, finalResponseTimeoutDurationMs);
@@ -324,12 +336,15 @@ class Scratch3Speech2TextBlocks {
             log.info(`phrase list ${this._phraseList} includes ${normalizedTranscript}`);
         }
         // TODO: This is for debugging. Remove when this function is finalized.
-        if (result.isFinal) {
-            log.info(`result is final`);
-        }
-
-        if (!result.isFinal && !shouldKeepPhraseListMatch && !shouldKeepFuzzyMatch) {
-            return false;
+        if(result){
+            if (result.isFinal) {
+                log.info(`result is final`);
+            }
+    
+            if (!result.isFinal && !shouldKeepPhraseListMatch && !shouldKeepFuzzyMatch) {
+                return false;
+            }
+            
         }
         return true;
     }
@@ -340,12 +355,36 @@ class Scratch3Speech2TextBlocks {
      * @returns {string} The normalized text.
      * @private
      */
-    _normalizeText (text) {
-        text = Cast.toString(text).toLowerCase();
-        text = text.replace(/[.?!]/g, '');
-        text = text.trim();
-        return text;
-    }
+    // _normalizeText (text) {
+    //     text = Cast.toString(text).toLowerCase();
+    //     text = text.replace(/[.?!]/g, '');
+    //     text = text.trim();
+    //     return text;
+    // }
+    _normalizeText (data) {
+        let rtasrResult = []
+        // var currentText = $('#result_output').html()
+        rtasrResult[data.seg_id] = data
+        rtasrResult.forEach(i => {
+          let str = "实时转写"
+          str += (i.cn.st.type == 0) ? "【最终】识别结果：" : "【中间】识别结果："
+          i.cn.st.rt.forEach(j => {
+            j.ws.forEach(k => {
+              k.cw.forEach(l => {
+                str += l.w
+              })
+            })
+          })
+        //   if (currentText.length == 0) {
+        //     $('#result_output').html(str)
+        //   } else {
+        //     $('#result_output').html(currentText + "<br>" +str)
+        //   }
+        //   var ele = document.getElementById('result_output');
+        //   ele.scrollTop = ele.scrollHeight;
+        console.log(str)
+        })
+      }
 
     /**
      * Call into diff match patch library to compute whether there is a fuzzy match.
@@ -377,14 +416,14 @@ class Scratch3Speech2TextBlocks {
      */
     _processTranscriptionResult (result) {
         log.info(`Got result: ${JSON.stringify(result)}`);
-        const transcriptionResult = this._normalizeText(result.alternatives[0].transcript);
-
+        const transcriptionResult = this._normalizeText(JSON.stringify(result));
+        // result.alternatives[0].transcript
         // Waiting for an exact match is not satisfying.  It makes it hard to catch
         // things like homonyms or things that sound similar "let us" vs "lettuce".  Using the fuzzy matching helps
         // more aggressively match the phrases that are in the "When I hear" hat blocks.
         const phrases = this._phraseList.join(' ');
         const fuzzyMatchIndex = this._computeFuzzyMatch(phrases, transcriptionResult);
-
+        
         // If the result isn't good enough yet, return without saving and resolving the promises.
         if (!this._shouldKeepResult(fuzzyMatchIndex, result, transcriptionResult)) {
             return;
@@ -415,14 +454,18 @@ class Scratch3Speech2TextBlocks {
      */
     _onTranscriptionFromServer (e) {
         let result = null;
+        
         try {
-            result = JSON.parse(e.data);
+            console.log("result",e)
+            console.log("result",this._normalizeText(JSON.parse(e.data)))
+            // result = JSON.parse(e.data);
+            
         } catch (ex) {
             log.error(`Problem parsing json. continuing: ${ex}`);
             // TODO: Question - Should we kill listening and continue?
             return;
         }
-        this._processTranscriptionResult(result);
+        // this._processTranscriptionResult(result);
     }
 
 
@@ -499,7 +542,8 @@ class Scratch3Speech2TextBlocks {
      */
     _initScriptNode () {
         // Create a node that sends raw bytes across the websocket
-        this._scriptNode = this._context.createScriptProcessor(4096, 1, 1);
+        this._scriptNode = this._context.createScriptProcessor(0, 1, 1);
+        console.log('_initScriptNode')
     }
 
     /**
@@ -508,7 +552,7 @@ class Scratch3Speech2TextBlocks {
      * @param {Function} reject - function to call if opening the web socket fails.
      */
     _newSocketCallback (resolve, reject) {
-        this._socket = new WebSocket(serverURL);
+        this._socket = new WebSocket(this.client.url);
         this._socket.addEventListener('open', resolve);
         this._socket.addEventListener('error', reject);
     }
@@ -520,7 +564,16 @@ class Scratch3Speech2TextBlocks {
      * @private
      */
     _socketMessageCallback () {
-        this._socket.addEventListener('message', this._onTranscriptionFromServer);
+        console.log("onmessage")
+        // this._socket.onmessage=function(evt){
+        //         // let res = JSON.parse(evt.data)
+        //         console.log('evt.data.audio',evt)
+        //         // _this.audio = Buffer.from(res.data.audio, 'base64')
+        //         // console.log('audioBuf',audioBuf)
+                
+            
+        // }
+        // this._socket.addEventListener('message', this._onTranscriptionFromServer);
         this._startByteStream();
     }
 
@@ -529,6 +582,26 @@ class Scratch3Speech2TextBlocks {
      * @private
      */
     _newWebsocket () {
+        // let _this = this
+        this.client = new speecchtextClient(null,null)
+        // this.client = new speecchtextClient(()=>{
+        //     console.log("Connected")
+        //     // let vm = _this
+        //     this._setupSocketCallback()
+            // const langCode = _this._getViewerLanguageCode();
+            // _this.client.ws.onmessage=function(evt){
+            //     let res = JSON.parse(evt.data)
+                
+                // console.log('sampleRate',{
+                //     sampleRate: vm._context.sampleRate,
+                //     phrases: vm._phraseList,
+                //     locale: langCode
+                // })
+                // _this.audio = Buffer.from(res.data.audio, 'base64')
+                // console.log('audioBuf',audioBuf)
+                
+            // }
+        // },null)
         const websocketPromise = new Promise(this._newSocketCallback);
         Promise.all([this._audioPromise, websocketPromise]).then(
             this._setupSocketCallback)
@@ -544,6 +617,7 @@ class Scratch3Speech2TextBlocks {
      * @param {Array} values The
      */
     _setupSocketCallback (values) {
+        console.log("values",values)
         this._micStream = values[0];
         this._socket = values[1].target;
 
@@ -554,6 +628,7 @@ class Scratch3Speech2TextBlocks {
         // Send the initial configuration message. When the server acknowledges
         // it, start streaming the audio bytes to the server and listening for
         // transcriptions.
+        this._startByteStream();
         this._socket.addEventListener('message', this._socketMessageCallback, {once: true});
         const langCode = this._getViewerLanguageCode();
         this._socket.send(JSON.stringify(
@@ -584,17 +659,58 @@ class Scratch3Speech2TextBlocks {
      * @private
      */
     _processAudioCallback (e) {
-        if (this._socket.readyState === WebSocket.CLOSED ||
-        this._socket.readyState === WebSocket.CLOSING) {
-            log.error(`Not sending data because not in ready state. State: ${this._socket.readyState}`);
-            // TODO: should we stop trying and reset state so it might work next time?
-            return;
-        }
-        const MAX_INT = Math.pow(2, 16 - 1) - 1;
+        // console.log("e",e)
         const floatSamples = e.inputBuffer.getChannelData(0);
-        // The samples are floats in range [-1, 1]. Convert to 16-bit signed
-        // integer.
-        this._socket.send(Int16Array.from(floatSamples.map(n => n * MAX_INT)));
+        let bufTo16kHz = this.to16kHz(floatSamples)
+        let bufTo16BitPCM = this.to16BitPCM(bufTo16kHz)
+        buffer.push(...bufTo16BitPCM)
+        console.log("buffer.length",buffer.length)
+
+        if(buffer.length>0){
+            // var audioData = buffer.splice(0, 1280)
+            // this._socket.send(new Int8Array(audioData));
+            this._socket.addEventListener('message', this._onTranscriptionFromServer);
+            // this.ws.send() 
+            let _this = this
+            this.handlerInterval = setInterval(() => {
+            // websocket未连接
+            if (_this._socket.readyState === WebSocket.CLOSED ||
+                _this._socket.readyState === WebSocket.CLOSING) {
+                log.error(`Not sending data because not in ready state. State: ${_this._socket.readyState}`);
+                _this._stopTranscription ()
+                _this._stopListening()
+                // _this._resetListening ()
+                clearInterval(_this.handlerInterval)
+                return
+            }
+            // if (buffer.length === 0) {
+            //     if (_this.state === 'end') {
+            //         _this._socket.send("{\"end\": true}")
+            //     console.log("发送结束标识");
+            //     clearInterval(_this.handlerInterval)
+            //     }
+            //     return false
+            // }
+            var audioData = buffer.splice(0, 1280)
+            if(audioData.length > 0){
+                _this._socket.send(new Int8Array(audioData));
+            }
+            }, 1000)
+        }
+
+        // if (this._socket.readyState === WebSocket.CLOSED ||
+        // this._socket.readyState === WebSocket.CLOSING) {
+        //     log.error(`Not sending data because not in ready state. State: ${this._socket.readyState}`);
+        //     this._initListening ()
+        //     // TODO: should we stop trying and reset state so it might work next time?
+        //     return;
+        // }
+        // const MAX_INT = Math.pow(2, 16 - 1) - 1;
+        // const floatSamples = e.inputBuffer.getChannelData(0);
+        // // The samples are floats in range [-1, 1]. Convert to 16-bit signed
+        // // integer.Int16Array.from(floatSamples.map(n => n * MAX_INT))
+        // this._socket.send(floatSamples);
+        // this._socket.addEventListener('message', this._onTranscriptionFromServer);
     }
 
     /**
@@ -674,9 +790,11 @@ class Scratch3Speech2TextBlocks {
             const listeningInProgress = this._speechPromises.length > 0;
             this._speechPromises.push(resolve);
             if (!listeningInProgress) {
+                console.log("listeningInProgress",listeningInProgress)
                 this._startListening();
             }
         });
+        
         return speechPromise;
     }
 
@@ -696,5 +814,36 @@ class Scratch3Speech2TextBlocks {
     getSpeech () {
         return this._currentUtterance;
     }
+
+
+    // helper 
+    to16kHz (buffer) {
+        var data = new Float32Array(buffer)
+        var fitCount = Math.round(data.length * (16000 / 44100))
+        var newData = new Float32Array(fitCount)
+        var springFactor = (data.length - 1) / (fitCount - 1)
+        newData[0] = data[0]
+        for (let i = 1; i < fitCount - 1; i++) {
+          var tmp = i * springFactor
+          var before = Math.floor(tmp).toFixed()
+          var after = Math.ceil(tmp).toFixed()
+          var atPoint = tmp - before
+          newData[i] = data[before] + (data[after] - data[before]) * atPoint
+        }
+        newData[fitCount - 1] = data[data.length - 1]
+        return newData
+      }
+    
+      to16BitPCM (input) {
+        var dataLength = input.length * (16 / 8)
+        var dataBuffer = new ArrayBuffer(dataLength)
+        var dataView = new DataView(dataBuffer)
+        var offset = 0
+        for (var i = 0; i < input.length; i++, offset += 2) {
+          var s = Math.max(-1, Math.min(1, input[i]))
+          dataView.setInt16(offset, s < 0 ? s * 0x8000 : s * 0x7FFF, true)
+        }
+        return Array.from(new Int8Array(dataView.buffer))
+      }
 }
 module.exports = Scratch3Speech2TextBlocks;
