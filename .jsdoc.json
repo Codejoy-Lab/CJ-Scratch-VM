@@ -9,6 +9,9 @@
     "source": {
         "include": ["src"]
     },
+    "tags": {
+        "allowUnknownTags": true
+    },
     "opts": {
         "destination": "playground/docs",
         "pedantic": true,
