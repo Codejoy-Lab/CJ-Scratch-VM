@@ -223,9 +223,10 @@ class Scratch3Speech2TextBlocks {
      * @private.
      */
     _resetListening () {
+        console.log("_resetListening")
         this.runtime.emitMicListening(false);
         this._stopListening();
-        this._closeWebsocket();
+        // this._closeWebsocket();
         this._resolveSpeechPromises();
     }
 
@@ -244,7 +245,7 @@ class Scratch3Speech2TextBlocks {
      */
     _closeWebsocket () {
         if (this._socket && this._socket.readyState === this._socket.OPEN) {
-            console.log("stop")
+            console.log("发送结束标识")
             this._socket.send("{\"end\": true}");
             this._socket.close();
         }
@@ -262,13 +263,17 @@ class Scratch3Speech2TextBlocks {
         }
         // This is called on green flag to reset things that may never have existed
         // in the first place. Do a bunch of checks.
+        
+        
         if (this._scriptNode) {
-            console.log("stop scriptNode")
+            // console.log("stop scriptNode")
+            
             this._scriptNode.removeEventListener('audioprocess', this._processAudioCallback);
             this._scriptNode.disconnect();
         }
         if (this._sourceNode) {
-            this._sourceNode.disconnect();
+            // console.log("this._sourceNode.disconnect()")
+            this._sourceNode.disconnect()
         }
     }
 
@@ -364,17 +369,20 @@ class Scratch3Speech2TextBlocks {
     _normalizeText (data) {
         let rtasrResult = []
         // var currentText = $('#result_output').html()
+        console.log("_normalizeText",data)
         rtasrResult[data.seg_id] = data
         rtasrResult.forEach(i => {
           let str = "实时转写"
-          str += (i.cn.st.type == 0) ? "【最终】识别结果：" : "【中间】识别结果："
-          i.cn.st.rt.forEach(j => {
-            j.ws.forEach(k => {
-              k.cw.forEach(l => {
-                str += l.w
-              })
+          if(i.cn && i.cn.st && i.cn.st.type){
+            str += (i.cn.st.type == 0) ? "【最终】识别结果：" : "【中间】识别结果："
+            i.cn.st.rt.forEach(j => {
+                j.ws.forEach(k => {
+                k.cw.forEach(l => {
+                    str += l.w
+                })
+                })
             })
-          })
+        }
         //   if (currentText.length == 0) {
         //     $('#result_output').html(str)
         //   } else {
@@ -437,14 +445,7 @@ class Scratch3Speech2TextBlocks {
         this._resetListening();
 
         // We got results so clear out the timeouts.
-        if (this._speechTimeoutId) {
-            clearTimeout(this._speechTimeoutId);
-            this._speechTimeoutId = null;
-        }
-        if (this._speechFinalResponseTimeout) {
-            clearTimeout(this._speechFinalResponseTimeout);
-            this._speechFinalResponseTimeout = null;
-        }
+        
     }
 
     /**
@@ -454,18 +455,41 @@ class Scratch3Speech2TextBlocks {
      */
     _onTranscriptionFromServer (e) {
         let result = null;
+        var data = null
+        let _this = this
         
         try {
-            console.log("result",e)
-            console.log("result",this._normalizeText(JSON.parse(e.data)))
-            // result = JSON.parse(e.data);
+            // console.log("result",e)
+            result = JSON.parse(e.data);
+            if(result.data){
+                data = JSON.parse(result.data)
+                console.log("result.data",data)
+            }
+            if (this._speechTimeoutId) {
+                clearTimeout(this._speechTimeoutId);
+                this._speechTimeoutId = null;
+            }
+            if (this._speechFinalResponseTimeout) {
+                clearTimeout(this._speechFinalResponseTimeout);
+                this._speechFinalResponseTimeout = null;
+            }
+            if(data && data.cn && data.cn && data.cn.st.type =="0"){
+                // console.log(data.cn.st.type)
+                // this._socket.send("{\"end\": true}")
+                _this._closeWebsocket ()
+                // console.log("发送结束标识");
+                console.log("_this.handlerInterval",_this.handlerInterval)
+                clearInterval(_this.handlerInterval)
+                _this._resetListening();
+            }
+            
             
         } catch (ex) {
             log.error(`Problem parsing json. continuing: ${ex}`);
             // TODO: Question - Should we kill listening and continue?
             return;
         }
-        // this._processTranscriptionResult(result);
+        this._processTranscriptionResult(data);
     }
 
 
@@ -617,7 +641,7 @@ class Scratch3Speech2TextBlocks {
      * @param {Array} values The
      */
     _setupSocketCallback (values) {
-        console.log("values",values)
+        // console.log("values",values)
         this._micStream = values[0];
         this._socket = values[1].target;
 
@@ -667,8 +691,8 @@ class Scratch3Speech2TextBlocks {
         console.log("buffer.length",buffer.length)
 
         if(buffer.length>0){
-            // var audioData = buffer.splice(0, 1280)
-            // this._socket.send(new Int8Array(audioData));
+            var audioData = buffer.splice(0, 1280)
+            this._socket.send(new Int8Array(audioData));
             this._socket.addEventListener('message', this._onTranscriptionFromServer);
             // this.ws.send() 
             let _this = this
@@ -677,25 +701,23 @@ class Scratch3Speech2TextBlocks {
             if (_this._socket.readyState === WebSocket.CLOSED ||
                 _this._socket.readyState === WebSocket.CLOSING) {
                 log.error(`Not sending data because not in ready state. State: ${_this._socket.readyState}`);
-                _this._stopTranscription ()
-                _this._stopListening()
-                // _this._resetListening ()
+                _this._resetListening ()
                 clearInterval(_this.handlerInterval)
                 return
             }
-            // if (buffer.length === 0) {
-            //     if (_this.state === 'end') {
-            //         _this._socket.send("{\"end\": true}")
-            //     console.log("发送结束标识");
-            //     clearInterval(_this.handlerInterval)
-            //     }
-            //     return false
-            // }
+            if (buffer.length === 0) {
+                if (_this.state === 'end') {
+                    _this._socket.send("{\"end\": true}")
+                console.log("发送结束标识");
+                clearInterval(_this.handlerInterval)
+                }
+                return false
+            }
             var audioData = buffer.splice(0, 1280)
             if(audioData.length > 0){
                 _this._socket.send(new Int8Array(audioData));
             }
-            }, 1000)
+            }, 80)
         }
 
         // if (this._socket.readyState === WebSocket.CLOSED ||
@@ -740,6 +762,16 @@ class Scratch3Speech2TextBlocks {
                     text: formatMessage({
                         id: 'speech.listenAndWait',
                         default: 'listen and wait',
+                        // eslint-disable-next-line max-len
+                        description: 'Start listening to the microphone and wait for a result from the speech recognition system.'
+                    }),
+                    blockType: BlockType.COMMAND
+                },
+                {
+                    opcode: 'stopListen',
+                    text: formatMessage({
+                        id: 'speech.stopListen',
+                        default: 'Stop',
                         // eslint-disable-next-line max-len
                         description: 'Start listening to the microphone and wait for a result from the speech recognition system.'
                     }),
@@ -794,8 +826,13 @@ class Scratch3Speech2TextBlocks {
                 this._startListening();
             }
         });
-        
+        console.log("speechPromise",speechPromise)
         return speechPromise;
+    }
+
+    stopListen(){
+        this._resetListening()
+        clearInterval(this.handlerInterval)
     }
 
     /**
