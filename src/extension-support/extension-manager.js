@@ -36,7 +36,9 @@ const builtinExtensions = {
     FaceAPI:()=>require('../extensions/scratch3_faceAPI'),
     cxtello:()=>require('../extensions/scratch3_tello'),
     speech2text:()=>require('../extensions/scratch3_speech2text'),
-    matatabot:()=>require('../extensions/scratch3_matatabot')
+    matatabot:()=>require('../extensions/scratch3_matatabot'),
+    ml2scratch:()=>require('../extensions/scratch3_ml2scratch'),
+    // facemesh2scratch:()=>require('../extensions/scratch3_facemesh2scratch')
     // weatherReport:()=>require('../extensions/scratch3_weatherReport')
 };
 

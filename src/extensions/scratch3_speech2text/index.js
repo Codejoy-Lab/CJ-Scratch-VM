@@ -245,9 +245,8 @@ class Scratch3Speech2TextBlocks {
      */
     _closeWebsocket () {
         if (this._socket && this._socket.readyState === this._socket.OPEN) {
-            console.log("发送结束标识")
-            this._socket.send("{\"end\": true}");
             this._socket.close();
+            console.log("close Socket")
         }
     }
 
@@ -697,6 +696,13 @@ class Scratch3Speech2TextBlocks {
             this._socket.addEventListener('message', this._onTranscriptionFromServer);
             
             let _this = this
+            if(buffer.length>0){
+                var audioData = buffer.splice(0, 1279)
+                if(audioData.length > 0){
+                    console.log("send")
+                    _this._socket.send(new Int8Array(audioData));
+                }
+            }   
             this.handlerInterval = setInterval(() => {
                 if(buffer.length>0){
        
@@ -715,12 +721,14 @@ class Scratch3Speech2TextBlocks {
                         return
                     }
         
-                    var audioData = buffer.splice(0, 1280)
+                    var audioData = buffer.splice(0, 1024)
                     if(audioData.length > 0){
                         console.log("send")
                         _this._socket.send(new Int8Array(audioData));
                     }
                 }else{
+                    console.log("发送结束标识")
+                    this._socket.send("{\"end\": true}");
                     intervalList.forEach(interval =>{
                         clearInterval(interval)
                         // intervalList.pop(interval)
@@ -728,7 +736,7 @@ class Scratch3Speech2TextBlocks {
                     
                     return
                 }
-            }, 40)
+            }, 70)
             
             if(!intervalList.includes(this.handlerInterval)) {
                 console.log(this.handlerInterval)
