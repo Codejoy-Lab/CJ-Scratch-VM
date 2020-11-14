@@ -91,8 +91,6 @@ builtinExtensions['scratch2maqueen'] = () => require('../extensions/scratch3_scr
 
 builtinExtensions['qrcode'] = () => require('../extensions/scratch3_qrcode');
 
-builtinExtensions['pasorich'] = () => require('../extensions/scratch3_pasorich');
-
 class ExtensionManager {
     constructor (runtime) {
         /**
