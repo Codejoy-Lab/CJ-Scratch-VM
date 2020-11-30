@@ -83,7 +83,7 @@ class YoloBlock {
 		})
 
 		media.then((stream) => {
-			video.srcObject = stream
+			// video.srcObject = stream
         })
         
         this.yolo = ml5.YOLO(video, () => {
