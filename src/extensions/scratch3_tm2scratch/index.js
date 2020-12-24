@@ -11,27 +11,32 @@ const Message = {
     image_classification_model_url: {
         'ja': '画像分類モデルURL[URL]',
         'ja-Hira': 'がぞうぶんるいモデル[URL]',
-        'en': 'image classification model URL [URL]'
+        'en': 'image classification model URL [URL]',
+        'zh-cn': '图片分类模型网址 [URL]'
     },
     sound_classification_model_url: {
         'ja': '音声分類モデルURL[URL]',
         'ja-Hira': 'おんせいぶんるいモデル[URL]',
-        'en': 'sound classification model URL [URL]'
+        'en': 'sound classification model URL [URL]',
+        'zh-cn': '声音分类模型网址 [URL]'
     },
     classify_image: {
         'ja': '画像を分類する',
         'ja-Hira': 'がぞうをぶんるいする',
-        'en': 'classify image'
+        'en': 'classify image',
+        'zh-cn': '识别图片'
     },
     image_label: {
         'ja': '画像ラベル',
         'ja-Hira': 'がぞうラベル',
-        'en': 'image label'
+        'en': 'image label',
+        'zh-cn': '图片标签'
     },
     sound_label: {
         'ja': '音声ラベル',
         'ja-Hira': 'おんせいラベル',
-        'en': 'sound label'
+        'en': 'sound label',
+        'zh-cn': '声音标签'
     },
     when_received_block: {
         'ja': '画像ラベル[LABEL]を受け取ったとき',
@@ -42,22 +47,26 @@ const Message = {
     is_image_label_detected: {
         'ja': '[LABEL]の画像が見つかった',
         'ja-Hira': '[LABEL]のがぞうがみつかった',
-        'en': 'image [LABEL] detected'
+        'en': 'image [LABEL] detected',
+        'zh-cn': '检测到图片 [LABEL]'
     },
     is_sound_label_detected: {
         'ja': '[LABEL]の音声が聞こえた',
         'ja-Hira': '[LABEL]のおんせいがきこえた',
-        'en': 'sound [LABEL] detected'
+        'en': 'sound [LABEL] detected',
+        'zh-cn': '检测到声音 [LABEL]'
     },
     image_label_confidence: {
         'ja': '画像ラベル[LABEL]の確度',
         'ja-Hira': 'がぞうラベル[LABEL]のかくど',
-        'en': 'confidence of image [LABEL]'
+        'en': 'confidence of image [LABEL]',
+        'zh-cn': '图片 [LABEL] 的置信度'
     },
     sound_label_confidence: {
         'ja': '音声ラベル[LABEL]の確度',
         'ja-Hira': 'おんせいラベル[LABEL]のかくど',
-        'en': 'confidence of sound [LABEL]'
+        'en': 'confidence of sound [LABEL]',
+        'zh-cn': '声音 [LABEL] 的置信度'
     },
     when_received_sound_label_block: {
         'ja': '音声ラベル[LABEL]を受け取ったとき',
@@ -98,12 +107,14 @@ const Message = {
     set_confidence_threshold: {
         'ja': '確度のしきい値を[CONFIDENCE_THRESHOLD]にする',
         'ja-Hira': 'かくどのしきいちを[CONFIDENCE_THRESHOLD]にする',
-        'en': 'set confidence threshold [CONFIDENCE_THRESHOLD]'
+        'en': 'set confidence threshold [CONFIDENCE_THRESHOLD]',
+        'zh-cn': '设置信度阈值为[CONFIDENCE_THRESHOLD]'
     },
     get_confidence_threshold: {
         'ja': '確度のしきい値',
         'ja-Hira': 'かくどのしきいち',
-        'en': 'confidence threshold'
+        'en': 'confidence threshold',
+        'zh-cn': '置信度阈值'
     },
     set_classification_interval: {
         'ja': 'ラベル付けを[CLASSIFICATION_INTERVAL]秒間に1回行う',

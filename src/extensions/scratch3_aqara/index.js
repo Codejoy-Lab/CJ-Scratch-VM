@@ -155,7 +155,7 @@ class Scratch3AqaraBlocks {
         }]
         axios({
             method: 'get',
-            url: `http://aqara-gate.codejoyai.com:8080/listScene/${data.TOKEN}`,
+            url: `https://aqara-gate.codejoyai.com/listScene/${data.TOKEN}`,
             // withCredentials: true
           })
             .then(function (response) {
@@ -174,7 +174,7 @@ class Scratch3AqaraBlocks {
         this.currentScene = data.scene
         axios({
             method:"get",
-            url:`http://aqara-gate.codejoyai.com:8080/runScene/${this.TOKEN}/${this.currentScene}`
+            url:`https://aqara-gate.codejoyai.com/runScene/${this.TOKEN}/${this.currentScene}`
         }).then(function (response) {
             console.log('run',response)
         })

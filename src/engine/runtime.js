@@ -177,7 +177,7 @@ let rendererDrawProfilerId = -1;
 class Runtime extends EventEmitter {
     constructor () {
         super();
-
+        
         /**
          * Target management and storage.
          * @type {Array.<!Target>}
@@ -392,6 +392,7 @@ class Runtime extends EventEmitter {
          * @type {function}
          */
         this.removeCloudVariable = this._initializeRemoveCloudVariable(newCloudDataManager);
+        console.log('this',this)
     }
 
     /**

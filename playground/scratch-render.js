@@ -10413,7 +10413,7 @@ var EventEmitter = __webpack_require__(6);
 
 var twgl = __webpack_require__(0);
 
-var RenderConstants = __webpack_require__(3);
+var RenderConstants = __webpack_require__(4);
 var Silhouette = __webpack_require__(23);
 
 var Skin = function (_EventEmitter) {
@@ -10480,17 +10480,33 @@ var Skin = function (_EventEmitter) {
     }
 
     /**
-     * @returns {boolean} true for a raster-style skin (like a BitmapSkin), false for vector-style (like SVGSkin).
+     * @return {int} the unique ID for this Skin.
      */
 
   }, {
-    key: 'calculateRotationCenter',
+    key: 'useNearest',
 
+
+    /**
+     * Should this skin's texture be filtered with nearest-neighbor or linear interpolation at the given scale?
+     * @param {?Array<Number>} scale The screen-space X and Y scaling factors at which this skin's texture will be
+     * displayed, as percentages (100 means 1 "native size" unit is 1 screen pixel; 200 means 2 screen pixels, etc).
+     * @param {Drawable} drawable The drawable that this skin's texture will be applied to.
+     * @return {boolean} True if this skin's texture, as returned by {@link getTexture}, should be filtered with
+     * nearest-neighbor interpolation.
+     */
+    // eslint-disable-next-line no-unused-vars
+    value: function useNearest(scale, drawable) {
+      return true;
+    }
 
     /**
      * Get the center of the current bounding box
      * @return {Array<number>} the center of the current bounding box
      */
+
+  }, {
+    key: 'calculateRotationCenter',
     value: function calculateRotationCenter() {
       return [this.size[0] / 2, this.size[1] / 2];
     }
@@ -10635,16 +10651,6 @@ var Skin = function (_EventEmitter) {
       return this._silhouette.isTouchingLinear(vec);
     }
   }, {
-    key: 'isRaster',
-    get: function get() {
-      return false;
-    }
-
-    /**
-     * @return {int} the unique ID for this Skin.
-     */
-
-  }, {
     key: 'id',
     get: function get() {
       return this._id;
@@ -10698,48 +10704,6 @@ module.exports = Skin;
 "use strict";
 
 
-/** @module RenderConstants */
-
-/**
- * Various constants meant for use throughout the renderer.
- * @enum
- */
-module.exports = {
-  /**
-   * The ID value to use for "no item" or when an object has been disposed.
-   * @const {int}
-   */
-  ID_NONE: -1,
-
-  /**
-   * Optimize for fewer than this number of Drawables sharing the same Skin.
-   * Going above this may cause middleware warnings or a performance penalty but should otherwise behave correctly.
-   * @const {int}
-   */
-  SKIN_SHARE_SOFT_LIMIT: 301,
-
-  /**
-   * @enum {string}
-   */
-  Events: {
-    /**
-     * NativeSizeChanged event
-     *
-     * @event RenderWebGL#event:NativeSizeChanged
-     * @type {object}
-     * @property {Array<int>} newSize - the new size of the renderer
-     */
-    NativeSizeChanged: 'NativeSizeChanged'
-  }
-};
-
-/***/ }),
-/* 4 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
 var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -10763,7 +10727,7 @@ var ShaderManager = function () {
          */
         this._shaderCache = {};
         for (var modeName in ShaderManager.DRAW_MODE) {
-            if (ShaderManager.DRAW_MODE.hasOwnProperty(modeName)) {
+            if (Object.prototype.hasOwnProperty.call(ShaderManager.DRAW_MODE, modeName)) {
                 this._shaderCache[modeName] = [];
             }
         }
@@ -10954,6 +10918,48 @@ ShaderManager.DRAW_MODE = {
 };
 
 module.exports = ShaderManager;
+
+/***/ }),
+/* 4 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+/** @module RenderConstants */
+
+/**
+ * Various constants meant for use throughout the renderer.
+ * @enum
+ */
+module.exports = {
+  /**
+   * The ID value to use for "no item" or when an object has been disposed.
+   * @const {int}
+   */
+  ID_NONE: -1,
+
+  /**
+   * Optimize for fewer than this number of Drawables sharing the same Skin.
+   * Going above this may cause middleware warnings or a performance penalty but should otherwise behave correctly.
+   * @const {int}
+   */
+  SKIN_SHARE_SOFT_LIMIT: 301,
+
+  /**
+   * @enum {string}
+   */
+  Events: {
+    /**
+     * NativeSizeChanged event
+     *
+     * @event RenderWebGL#event:NativeSizeChanged
+     * @type {object}
+     * @property {Array<int>} newSize - the new size of the renderer
+     */
+    NativeSizeChanged: 'NativeSizeChanged'
+  }
+};
 
 /***/ }),
 /* 5 */
@@ -11776,7 +11782,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
 
 var twgl = __webpack_require__(0);
 
-var ShaderManager = __webpack_require__(4);
+var ShaderManager = __webpack_require__(3);
 
 /**
  * A texture coordinate is between 0 and 1. 0.5 is the center position.
@@ -12398,6 +12404,8 @@ var _slicedToArray = function () { function sliceIterator(arr, i) { var _arr = [
 
 var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 
+function _toConsumableArray(arr) { if (Array.isArray(arr)) { for (var i = 0, arr2 = Array(arr.length); i < arr.length; i++) { arr2[i] = arr[i]; } return arr2; } else { return Array.from(arr); } }
+
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
 function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
@@ -12413,8 +12421,8 @@ var BitmapSkin = __webpack_require__(22);
 var Drawable = __webpack_require__(24);
 var Rectangle = __webpack_require__(7);
 var PenSkin = __webpack_require__(36);
-var RenderConstants = __webpack_require__(3);
-var ShaderManager = __webpack_require__(4);
+var RenderConstants = __webpack_require__(4);
+var ShaderManager = __webpack_require__(3);
 var SVGSkin = __webpack_require__(37);
 var TextBubbleSkin = __webpack_require__(55);
 var EffectTransform = __webpack_require__(8);
@@ -12953,7 +12961,7 @@ var RenderWebGL = function (_EventEmitter) {
     }, {
         key: 'createDrawable',
         value: function createDrawable(group) {
-            if (!group || !this._layerGroups.hasOwnProperty(group)) {
+            if (!group || !Object.prototype.hasOwnProperty.call(this._layerGroups, group)) {
                 log.warn('Cannot create a drawable without a known layer group');
                 return;
             }
@@ -13030,7 +13038,7 @@ var RenderWebGL = function (_EventEmitter) {
     }, {
         key: 'destroyDrawable',
         value: function destroyDrawable(drawableID, group) {
-            if (!group || !this._layerGroups.hasOwnProperty(group)) {
+            if (!group || !Object.prototype.hasOwnProperty.call(this._layerGroups, group)) {
                 log.warn('Cannot destroy drawable without known layer group.');
                 return;
             }
@@ -13090,7 +13098,7 @@ var RenderWebGL = function (_EventEmitter) {
     }, {
         key: 'setDrawableOrder',
         value: function setDrawableOrder(drawableID, order, group, optIsRelative, optMin) {
-            if (!group || !this._layerGroups.hasOwnProperty(group)) {
+            if (!group || !Object.prototype.hasOwnProperty.call(this._layerGroups, group)) {
                 log.warn('Cannot set the order of a drawable without a known layer group.');
                 return;
             }
@@ -13147,7 +13155,7 @@ var RenderWebGL = function (_EventEmitter) {
 
             twgl.bindFramebufferInfo(gl, null);
             gl.viewport(0, 0, gl.canvas.width, gl.canvas.height);
-            gl.clearColor.apply(gl, this._backgroundColor4f);
+            gl.clearColor.apply(gl, _toConsumableArray(this._backgroundColor4f));
             gl.clear(gl.COLOR_BUFFER_BIT);
 
             this._drawThese(this._drawList, ShaderManager.DRAW_MODE.default, this._projection);
@@ -13653,7 +13661,7 @@ var RenderWebGL = function (_EventEmitter) {
 
             var hit = RenderConstants.ID_NONE;
             for (var hitID in hits) {
-                if (hits.hasOwnProperty(hitID) && hits[hitID] > hits[hit]) {
+                if (Object.prototype.hasOwnProperty.call(hits, hitID) && hits[hitID] > hits[hit]) {
                     hit = hitID;
                 }
             }
@@ -13894,7 +13902,7 @@ var RenderWebGL = function (_EventEmitter) {
             gl.viewport(0, 0, bounds.width, bounds.height);
             var projection = twgl.m4.ortho(bounds.left, bounds.right, bounds.top, bounds.bottom, -1, 1);
 
-            gl.clearColor.apply(gl, this._backgroundColor4f);
+            gl.clearColor.apply(gl, _toConsumableArray(this._backgroundColor4f));
             gl.clear(gl.COLOR_BUFFER_BIT);
             this._drawThese(this._drawList, ShaderManager.DRAW_MODE.default, projection);
 
@@ -14438,7 +14446,7 @@ var RenderWebGL = function (_EventEmitter) {
                 var uniforms = {};
 
                 var effectBits = drawable.enabledEffects;
-                effectBits &= opts.hasOwnProperty('effectMask') ? opts.effectMask : effectBits;
+                effectBits &= Object.prototype.hasOwnProperty.call(opts, 'effectMask') ? opts.effectMask : effectBits;
                 var newShader = this._shaderManager.getShader(drawMode, effectBits);
 
                 // Manually perform region check. Do not create functions inside a
@@ -14463,7 +14471,9 @@ var RenderWebGL = function (_EventEmitter) {
                 }
 
                 if (uniforms.u_skin) {
-                    twgl.setTextureParameters(gl, uniforms.u_skin, { minMag: drawable.useNearest(drawableScale) ? gl.NEAREST : gl.LINEAR });
+                    twgl.setTextureParameters(gl, uniforms.u_skin, {
+                        minMag: drawable.skin.useNearest(drawableScale, drawable) ? gl.NEAREST : gl.LINEAR
+                    });
                 }
 
                 twgl.setUniforms(currentShader, uniforms);
@@ -15170,7 +15180,7 @@ var BitmapSkin = function (_Skin) {
         }
 
         /**
-         * @returns {boolean} true for a raster-style skin (like a BitmapSkin), false for vector-style (like SVGSkin).
+         * @return {Array<number>} the "native" size, in texels, of this skin.
          */
 
     }, {
@@ -15241,16 +15251,6 @@ var BitmapSkin = function (_Skin) {
          * @param {ImageData|HTMLImageElement|HTMLCanvasElement|HTMLVideoElement} bitmapData - bitmap data to inspect.
          * @returns {Array<int>} the width and height of the bitmap data, in pixels.
          * @private
-         */
-
-    }, {
-        key: 'isRaster',
-        get: function get() {
-            return true;
-        }
-
-        /**
-         * @return {Array<number>} the "native" size, in texels, of this skin.
          */
 
     }, {
@@ -15589,8 +15589,8 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
 var twgl = __webpack_require__(0);
 
 var Rectangle = __webpack_require__(7);
-var RenderConstants = __webpack_require__(3);
-var ShaderManager = __webpack_require__(4);
+var RenderConstants = __webpack_require__(4);
+var ShaderManager = __webpack_require__(3);
 var Skin = __webpack_require__(2);
 var EffectTransform = __webpack_require__(8);
 var log = __webpack_require__(9);
@@ -16107,39 +16107,6 @@ var Drawable = function () {
         }
 
         /**
-         * Should the drawable use NEAREST NEIGHBOR or LINEAR INTERPOLATION mode
-         * @param {?Array<Number>} scale Optionally, the screen-space scale of the drawable.
-         * @return {boolean} True if the drawable should use nearest-neighbor interpolation.
-         */
-
-    }, {
-        key: 'useNearest',
-        value: function useNearest() {
-            var scale = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : this.scale;
-
-            // Raster skins (bitmaps) should always prefer nearest neighbor
-            if (this.skin.isRaster) {
-                return true;
-            }
-
-            // If the effect bits for mosaic, pixelate, whirl, or fisheye are set, use linear
-            if ((this.enabledEffects & (ShaderManager.EFFECT_INFO.fisheye.mask | ShaderManager.EFFECT_INFO.whirl.mask | ShaderManager.EFFECT_INFO.pixelate.mask | ShaderManager.EFFECT_INFO.mosaic.mask)) !== 0) {
-                return false;
-            }
-
-            // We can't use nearest neighbor unless we are a multiple of 90 rotation
-            if (this._direction % 90 !== 0) {
-                return false;
-            }
-
-            // If the scale of the skin is very close to 100 (0.99999 variance is okay I guess)
-            if (Math.abs(scale[0]) > 99 && Math.abs(scale[0]) < 101 && Math.abs(scale[1]) > 99 && Math.abs(scale[1]) < 101) {
-                return true;
-            }
-            return false;
-        }
-
-        /**
          * Get the precise bounds for a Drawable.
          * This function applies the transform matrix to the known convex hull,
          * and then finds the minimum box along the axes.
@@ -16305,7 +16272,7 @@ var Drawable = function () {
             if (this.skin) {
                 this.skin.updateSilhouette(this._scale);
 
-                if (this.useNearest()) {
+                if (this.skin.useNearest(this._scale, this)) {
                     this.isTouching = this._isTouchingNearest;
                 } else {
                     this.isTouching = this._isTouchingLinear;
@@ -16435,7 +16402,7 @@ var Drawable = function () {
 
             var textColor =
             // commenting out to only use nearest for now
-            // drawable.useNearest() ?
+            // drawable.skin.useNearest(drawable._scale, drawable) ?
             drawable.skin._silhouette.colorAtNearest(localPosition, dst);
             // : drawable.skin._silhouette.colorAtLinear(localPosition, dst);
 
@@ -16865,10 +16832,10 @@ function _inherits(subClass, superClass) { if (typeof superClass !== "function" 
 
 var twgl = __webpack_require__(0);
 
-var RenderConstants = __webpack_require__(3);
+var RenderConstants = __webpack_require__(4);
 var Skin = __webpack_require__(2);
 
-var ShaderManager = __webpack_require__(4);
+var ShaderManager = __webpack_require__(3);
 
 /**
  * Attributes to use when drawing with the pen
@@ -16985,18 +16952,25 @@ var PenSkin = function (_Skin) {
         }
 
         /**
-         * @returns {boolean} true for a raster-style skin (like a BitmapSkin), false for vector-style (like SVGSkin).
+         * @return {Array<number>} the "native" size, in texels, of this skin. [width, height]
          */
 
     }, {
-        key: 'getTexture',
-
+        key: 'useNearest',
+        value: function useNearest(scale) {
+            // Use nearest-neighbor interpolation when scaling up the pen skin-- this matches Scratch 2.0.
+            // When scaling it down, use linear interpolation to avoid giving pen lines a "dashed" appearance.
+            return Math.max(scale[0], scale[1]) >= 100;
+        }
 
         /**
          * @param {Array<number>} scale The X and Y scaling factors to be used, as percentages of this skin's "native" size.
          * @return {WebGLTexture} The GL texture representation of this skin when drawing at the given size.
          */
         // eslint-disable-next-line no-unused-vars
+
+    }, {
+        key: 'getTexture',
         value: function getTexture(scale) {
             return this._texture;
         }
@@ -17238,16 +17212,6 @@ var PenSkin = function (_Skin) {
             }
         }
     }, {
-        key: 'isRaster',
-        get: function get() {
-            return true;
-        }
-
-        /**
-         * @return {Array<number>} the "native" size, in texels, of this skin. [width, height]
-         */
-
-    }, {
         key: 'size',
         get: function get() {
             return this._size;
@@ -17280,6 +17244,7 @@ var twgl = __webpack_require__(0);
 
 var Skin = __webpack_require__(2);
 var SvgRenderer = __webpack_require__(38).SVGRenderer;
+var ShaderManager = __webpack_require__(3);
 
 var MAX_TEXTURE_DIMENSION = 2048;
 
@@ -17343,14 +17308,38 @@ var SVGSkin = function (_Skin) {
          */
 
     }, {
-        key: 'createMIP',
+        key: 'useNearest',
+        value: function useNearest(scale, drawable) {
+            // If the effect bits for mosaic, pixelate, whirl, or fisheye are set, use linear
+            if ((drawable.enabledEffects & (ShaderManager.EFFECT_INFO.fisheye.mask | ShaderManager.EFFECT_INFO.whirl.mask | ShaderManager.EFFECT_INFO.pixelate.mask | ShaderManager.EFFECT_INFO.mosaic.mask)) !== 0) {
+                return false;
+            }
 
+            // We can't use nearest neighbor unless we are a multiple of 90 rotation
+            if (drawable._direction % 90 !== 0) {
+                return false;
+            }
+
+            // Because SVG skins' bounding boxes are currently not pixel-aligned, the idea here is to hide blurriness
+            // by using nearest-neighbor scaling if one screen-space pixel is "close enough" to one texture pixel.
+            // If the scale of the skin is very close to 100 (0.99999 variance is okay I guess)
+            // TODO: Make this check more precise. We should use nearest if there's less than one pixel's difference
+            // between the screen-space and texture-space sizes of the skin. Mipmaps make this harder because there are
+            // multiple textures (and hence multiple texture spaces) and we need to know which one to choose.
+            if (Math.abs(scale[0]) > 99 && Math.abs(scale[0]) < 101 && Math.abs(scale[1]) > 99 && Math.abs(scale[1]) < 101) {
+                return true;
+            }
+            return false;
+        }
 
         /**
          * Create a MIP for a given scale.
          * @param {number} scale - The relative size of the MIP
          * @return {SVGMIP} An object that handles creating and updating SVG textures.
          */
+
+    }, {
+        key: 'createMIP',
         value: function createMIP(scale) {
             this._svgRenderer.draw(scale);
 

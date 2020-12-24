@@ -273,7 +273,7 @@ class RenderedTarget extends Target {
             const position = this.renderer.getFencedPositionOfDrawable(this.drawableID, [x, y]);
             this.x = position[0];
             this.y = position[1];
-
+            
             this.renderer.updateDrawablePosition(this.drawableID, position);
             if (this.visible) {
                 this.emit(RenderedTarget.EVENT_TARGET_VISUAL_CHANGE, this);
