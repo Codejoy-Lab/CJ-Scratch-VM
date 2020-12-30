@@ -40,6 +40,8 @@ const builtinExtensions = {
     ml2scratch:()=>require('../extensions/scratch3_ml2scratch'),
     tmpose2scratch:()=>require('../extensions/scratch3_tmpose2scratch'),
     tm2scratch:()=>require('../extensions/scratch3_tm2scratch'),
+    BodyPix:()=>require('../extensions/scratch3_BodyPix'),
+    aqara:()=>require('../extensions/scratch3_aqara')
     // handpose2scratch:()=>require('../extensions/scratch3_handpose2scratch')
     // facemesh2scratch:()=>require('../extensions/scratch3_facemesh2scratch')
     // weatherReport:()=>require('../extensions/scratch3_weatherReport')
@@ -90,6 +92,8 @@ builtinExtensions['speech2scratch'] = () => require('../extensions/scratch3_spee
 builtinExtensions['scratch2maqueen'] = () => require('../extensions/scratch3_scratch2maqueen');
 
 builtinExtensions['qrcode'] = () => require('../extensions/scratch3_qrcode');
+
+builtinExtensions['pasorich'] = () => require('../extensions/scratch3_pasorich');
 
 class ExtensionManager {
     constructor (runtime) {
