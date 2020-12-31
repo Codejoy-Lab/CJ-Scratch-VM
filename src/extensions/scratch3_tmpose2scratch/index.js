@@ -12,32 +12,38 @@ const Message = {
     pose_classification_model_url: {
         'ja': 'ポーズ分類モデルURL[URL]',
         'ja-Hira': 'ポーズぶんるいモデル[URL]',
-        'en': 'pose classification model URL [URL]'
+        'en': 'pose classification model URL [URL]',
+        'zh-cn': '姿势分类模型链接[URL]'
     },
     classify_pose: {
         'ja': 'ポーズを推定する',
         'ja-Hira': 'ポーズをすいていする',
-        'en': 'estimate pose'
+        'en': 'estimate pose',
+        'zh-cn': '检测姿势'
     },
     pose_label: {
         'ja': 'ポーズラベル',
         'ja-Hira': 'ポーズラベル',
-        'en': 'pose label'
+        'en': 'pose label',
+        'zh-cn': '姿势标签'
     },
     is_pose_label_detected: {
         'ja': '[LABEL]のポーズになった',
         'ja-Hira': '[LABEL]のポーズになった',
-        'en': 'pose [LABEL] detected'
+        'en': 'pose [LABEL] detected',
+        'zh-cn': '监测到姿势[LABEL]'
     },
     pose_label_confidence: {
         'ja': 'ポーズラベル[LABEL]の確度',
         'ja-Hira': 'ポーズラベル[LABEL]のかくど',
-        'en': 'confidence of pose [LABEL]'
+        'en': 'confidence of pose [LABEL]',
+        'zh-cn': '[LABEL]的确信度'
     },
     when_received_pose_label_block: {
         'ja': 'ポーズラベル[LABEL]を受け取ったとき',
         'ja-Hira': 'ポーズラベル[LABEL]をうけとったとき',
-        'en': 'when received pose label:[LABEL]'
+        'en': 'when received pose label:[LABEL]',
+        'zh-cn': '当收到姿势:[LABEL]'
     },
     label_block: {
         'ja': 'ラベル',
@@ -72,12 +78,14 @@ const Message = {
     set_confidence_threshold: {
         'ja': '確度のしきい値を[CONFIDENCE_THRESHOLD]にする',
         'ja-Hira': 'かくどのしきいちを[CONFIDENCE_THRESHOLD]にする',
-        'en': 'set confidence threshold [CONFIDENCE_THRESHOLD]'
+        'en': 'set confidence threshold [CONFIDENCE_THRESHOLD]',
+        'zh-cn': '设置确信阈值[CONFIDENCE_THRESHOLD]'
     },
     get_confidence_threshold: {
         'ja': '確度のしきい値',
         'ja-Hira': 'かくどのしきいち',
-        'en': 'confidence threshold'
+        'en': 'confidence threshold',
+        'zh-cn': '确信阈值'
     },
     set_classification_interval: {
         'ja': 'ラベル付けを[CLASSIFICATION_INTERVAL]秒間に1回行う',

@@ -96,43 +96,43 @@ return /******/ (function(modules) { // webpackBootstrap
 /************************************************************************/
 /******/ ({
 
-/***/ "./node_modules/arraybuffer-loader/index.js!./src/builtins/defaultBitmap.png":
-/*!**************************************************************************!*\
-  !*** ./node_modules/arraybuffer-loader!./src/builtins/defaultBitmap.png ***!
-  \**************************************************************************/
+/***/ "../arraybuffer-loader/index.js!./src/builtins/defaultBitmap.png":
+/*!**************************************************************!*\
+  !*** ../arraybuffer-loader!./src/builtins/defaultBitmap.png ***!
+  \**************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__(/*! ../../node_modules/arraybuffer-loader/lib/to-array-buffer.js */ "./node_modules/arraybuffer-loader/lib/to-array-buffer.js")("iVBORw0KGgoAAAANSUhEUgAAAIAAAACACAAAAADmVT4XAAADZElEQVR42u3a70vbQBgH8O/7vOibvsmbFUEEWUGGUhQ25nDuhSKIUFDxlYi0SAd94atRmFiHCH2x4W8iiNtwowXRgd1QipJYY3N/1F4kTQ6XLKS9yyHcvWyO8MnT5y53Tw5EcIMESIAESIAESIAESIAEPFVAq/6l8G4oAQCp4aniwbUVJ6BVzafwqKXy1VZMgNb+CHzbyK4ZB+Bi0nnk0VyhsDiSoAmvvnMHmGUVAF6UG+0ffsxRhsRHky/AyCsAUpumX0wAAIs6T4CxDADDtcdZsal6gjmdH8AsAEC6+s8Fa48SFExeAKusAEju+V367AmUCi9ANQ0AU3pwcOw2cMEH0FwAAKz5X228pRLR5AI4TgIAtIDL24oLUE94AB6W7LsH/cONN14Ilh44AOqD9s2LQR1KHiB9zgGgOSGeuA3ocPrME1Q4ANaceyePAzrcjHmAZYs9IBeW4/fzHiAwTCwAgTle9ACZK44ALDT9e6x7gL4aT0BQCHb4AqgA5/1TTOMLoJ7vZSMM0H/GHnCeDnu+CrU8vGYPcN5FADBYD0vCaYPDy+i0p337GSMsS1Z4vA3t9QgAZTt0IuIxFRPSKicAQHlvhk3FXF5GhBByMa8qo/sBO6BarwuYbYrYnFKDYEvE7phKgcxvEQBqnvhgiQCUOgoAO4C3JOS3L/hv23UXxVldBECfcueAqpAa0WGy/QeULREAY6aTXRFDgBuA13+ElOncAERMAGaA9hBQD4gQQHsIRE1AZoD2xrgQS5nOZyHgFKmWDSIG4GRAVidiAE4GRB6AzAB2AKIPQFaA5myHA5AV4ESNugZhC7BLR50lIBPAebrzBGQCKAFQNSIMcDvRTQIwAHxNApM3RBygGK0uyhxwOwGsPAgEnPWj5ycRCNiJtBHlAChGKQVwANzPY+CXSMDNWISiLA9AfRA5IhJQ68UnoQAt+AtOPIBKhJosF8B6UM0yLkAxQk2WCyDX9SiUh1gkQAIkoCuAvjGuquMbuijAtwG7MPL8yBICOHSPk3W8Ne8KcEUdmBi6FADYos+QleIH0N/ogOxd7AD6uAS6WRU8WcBdlgZMG/EnYUlwEpLLoQ4PjzGbiA5UsRMRsbQ+5ziDJmYqJuR6NaMomdXuFuZyPSABEiABEiABEiABEiAc8Bd6VyvCEKGqcQAAAABJRU5ErkJggg==")
+module.exports = __webpack_require__(/*! ../../../arraybuffer-loader/lib/to-array-buffer.js */ "../arraybuffer-loader/lib/to-array-buffer.js")("iVBORw0KGgoAAAANSUhEUgAAAIAAAACACAAAAADmVT4XAAADZElEQVR42u3a70vbQBgH8O/7vOibvsmbFUEEWUGGUhQ25nDuhSKIUFDxlYi0SAd94atRmFiHCH2x4W8iiNtwowXRgd1QipJYY3N/1F4kTQ6XLKS9yyHcvWyO8MnT5y53Tw5EcIMESIAESIAESIAESIAEPFVAq/6l8G4oAQCp4aniwbUVJ6BVzafwqKXy1VZMgNb+CHzbyK4ZB+Bi0nnk0VyhsDiSoAmvvnMHmGUVAF6UG+0ffsxRhsRHky/AyCsAUpumX0wAAIs6T4CxDADDtcdZsal6gjmdH8AsAEC6+s8Fa48SFExeAKusAEju+V367AmUCi9ANQ0AU3pwcOw2cMEH0FwAAKz5X228pRLR5AI4TgIAtIDL24oLUE94AB6W7LsH/cONN14Ilh44AOqD9s2LQR1KHiB9zgGgOSGeuA3ocPrME1Q4ANaceyePAzrcjHmAZYs9IBeW4/fzHiAwTCwAgTle9ACZK44ALDT9e6x7gL4aT0BQCHb4AqgA5/1TTOMLoJ7vZSMM0H/GHnCeDnu+CrU8vGYPcN5FADBYD0vCaYPDy+i0p337GSMsS1Z4vA3t9QgAZTt0IuIxFRPSKicAQHlvhk3FXF5GhBByMa8qo/sBO6BarwuYbYrYnFKDYEvE7phKgcxvEQBqnvhgiQCUOgoAO4C3JOS3L/hv23UXxVldBECfcueAqpAa0WGy/QeULREAY6aTXRFDgBuA13+ElOncAERMAGaA9hBQD4gQQHsIRE1AZoD2xrgQS5nOZyHgFKmWDSIG4GRAVidiAE4GRB6AzAB2AKIPQFaA5myHA5AV4ESNugZhC7BLR50lIBPAebrzBGQCKAFQNSIMcDvRTQIwAHxNApM3RBygGK0uyhxwOwGsPAgEnPWj5ycRCNiJtBHlAChGKQVwANzPY+CXSMDNWISiLA9AfRA5IhJQ68UnoQAt+AtOPIBKhJosF8B6UM0yLkAxQk2WCyDX9SiUh1gkQAIkoCuAvjGuquMbuijAtwG7MPL8yBICOHSPk3W8Ne8KcEUdmBi6FADYos+QleIH0N/ogOxd7AD6uAS6WRU8WcBdlgZMG/EnYUlwEpLLoQ4PjzGbiA5UsRMRsbQ+5ziDJmYqJuR6NaMomdXuFuZyPSABEiABEiABEiABEiAc8Bd6VyvCEKGqcQAAAABJRU5ErkJggg==")
 
 /***/ }),
 
-/***/ "./node_modules/arraybuffer-loader/index.js!./src/builtins/defaultSound.wav":
-/*!*************************************************************************!*\
-  !*** ./node_modules/arraybuffer-loader!./src/builtins/defaultSound.wav ***!
-  \*************************************************************************/
+/***/ "../arraybuffer-loader/index.js!./src/builtins/defaultSound.wav":
+/*!*************************************************************!*\
+  !*** ../arraybuffer-loader!./src/builtins/defaultSound.wav ***!
+  \*************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__(/*! ../../node_modules/arraybuffer-loader/lib/to-array-buffer.js */ "./node_modules/arraybuffer-loader/lib/to-array-buffer.js")("UklGRiYAAABXQVZFZm10IBAAAAABAAEAIlYAAESsAAACABAAZGF0YQIAAAAAAA==")
+module.exports = __webpack_require__(/*! ../../../arraybuffer-loader/lib/to-array-buffer.js */ "../arraybuffer-loader/lib/to-array-buffer.js")("UklGRiYAAABXQVZFZm10IBAAAAABAAEAIlYAAESsAAACABAAZGF0YQIAAAAAAA==")
 
 /***/ }),
 
-/***/ "./node_modules/arraybuffer-loader/index.js!./src/builtins/defaultVector.svg":
-/*!**************************************************************************!*\
-  !*** ./node_modules/arraybuffer-loader!./src/builtins/defaultVector.svg ***!
-  \**************************************************************************/
+/***/ "../arraybuffer-loader/index.js!./src/builtins/defaultVector.svg":
+/*!**************************************************************!*\
+  !*** ../arraybuffer-loader!./src/builtins/defaultVector.svg ***!
+  \**************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__(/*! ../../node_modules/arraybuffer-loader/lib/to-array-buffer.js */ "./node_modules/arraybuffer-loader/lib/to-array-buffer.js")("PD94bWwgdmVyc2lvbj0iMS4wIj8+Cjxzdmcgd2lkdGg9IjEyOCIgaGVpZ2h0PSIxMjgiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyIgeG1sbnM6c3ZnPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+CiA8Zz4KICA8cmVjdCBmaWxsPSIjQ0NDIiBoZWlnaHQ9IjEyOCIgd2lkdGg9IjEyOCIvPgogIDx0ZXh0IGZpbGw9ImJsYWNrIiB5PSIxMDciIHg9IjM1LjUiIGZvbnQtc2l6ZT0iMTI4Ij4/PC90ZXh0PgogPC9nPgo8L3N2Zz4K")
+module.exports = __webpack_require__(/*! ../../../arraybuffer-loader/lib/to-array-buffer.js */ "../arraybuffer-loader/lib/to-array-buffer.js")("PD94bWwgdmVyc2lvbj0iMS4wIj8+Cjxzdmcgd2lkdGg9IjEyOCIgaGVpZ2h0PSIxMjgiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyIgeG1sbnM6c3ZnPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+CiA8Zz4KICA8cmVjdCBmaWxsPSIjQ0NDIiBoZWlnaHQ9IjEyOCIgd2lkdGg9IjEyOCIvPgogIDx0ZXh0IGZpbGw9ImJsYWNrIiB5PSIxMDciIHg9IjM1LjUiIGZvbnQtc2l6ZT0iMTI4Ij4/PC90ZXh0PgogPC9nPgo8L3N2Zz4K")
 
 /***/ }),
 
-/***/ "./node_modules/arraybuffer-loader/lib/to-array-buffer.js":
-/*!****************************************************************!*\
-  !*** ./node_modules/arraybuffer-loader/lib/to-array-buffer.js ***!
-  \****************************************************************/
+/***/ "../arraybuffer-loader/lib/to-array-buffer.js":
+/*!****************************************************!*\
+  !*** ../arraybuffer-loader/lib/to-array-buffer.js ***!
+  \****************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -151,177 +151,14 @@ module.exports = function (base64Data) {
   return bytes.buffer
 }
 
-/* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./../../buffer/index.js */ "./node_modules/buffer/index.js").Buffer))
+/* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./../../buffer/index.js */ "../buffer/index.js").Buffer))
 
 /***/ }),
 
-/***/ "./node_modules/base64-js/index.js":
-/*!*****************************************!*\
-  !*** ./node_modules/base64-js/index.js ***!
-  \*****************************************/
-/*! no static exports found */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-exports.byteLength = byteLength
-exports.toByteArray = toByteArray
-exports.fromByteArray = fromByteArray
-
-var lookup = []
-var revLookup = []
-var Arr = typeof Uint8Array !== 'undefined' ? Uint8Array : Array
-
-var code = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/'
-for (var i = 0, len = code.length; i < len; ++i) {
-  lookup[i] = code[i]
-  revLookup[code.charCodeAt(i)] = i
-}
-
-// Support decoding URL-safe base64 strings, as Node.js does.
-// See: https://en.wikipedia.org/wiki/Base64#URL_applications
-revLookup['-'.charCodeAt(0)] = 62
-revLookup['_'.charCodeAt(0)] = 63
-
-function getLens (b64) {
-  var len = b64.length
-
-  if (len % 4 > 0) {
-    throw new Error('Invalid string. Length must be a multiple of 4')
-  }
-
-  // Trim off extra bytes after placeholder bytes are found
-  // See: https://github.com/beatgammit/base64-js/issues/42
-  var validLen = b64.indexOf('=')
-  if (validLen === -1) validLen = len
-
-  var placeHoldersLen = validLen === len
-    ? 0
-    : 4 - (validLen % 4)
-
-  return [validLen, placeHoldersLen]
-}
-
-// base64 is 4/3 + up to two characters of the original data
-function byteLength (b64) {
-  var lens = getLens(b64)
-  var validLen = lens[0]
-  var placeHoldersLen = lens[1]
-  return ((validLen + placeHoldersLen) * 3 / 4) - placeHoldersLen
-}
-
-function _byteLength (b64, validLen, placeHoldersLen) {
-  return ((validLen + placeHoldersLen) * 3 / 4) - placeHoldersLen
-}
-
-function toByteArray (b64) {
-  var tmp
-  var lens = getLens(b64)
-  var validLen = lens[0]
-  var placeHoldersLen = lens[1]
-
-  var arr = new Arr(_byteLength(b64, validLen, placeHoldersLen))
-
-  var curByte = 0
-
-  // if there are placeholders, only get up to the last complete 4 chars
-  var len = placeHoldersLen > 0
-    ? validLen - 4
-    : validLen
-
-  for (var i = 0; i < len; i += 4) {
-    tmp =
-      (revLookup[b64.charCodeAt(i)] << 18) |
-      (revLookup[b64.charCodeAt(i + 1)] << 12) |
-      (revLookup[b64.charCodeAt(i + 2)] << 6) |
-      revLookup[b64.charCodeAt(i + 3)]
-    arr[curByte++] = (tmp >> 16) & 0xFF
-    arr[curByte++] = (tmp >> 8) & 0xFF
-    arr[curByte++] = tmp & 0xFF
-  }
-
-  if (placeHoldersLen === 2) {
-    tmp =
-      (revLookup[b64.charCodeAt(i)] << 2) |
-      (revLookup[b64.charCodeAt(i + 1)] >> 4)
-    arr[curByte++] = tmp & 0xFF
-  }
-
-  if (placeHoldersLen === 1) {
-    tmp =
-      (revLookup[b64.charCodeAt(i)] << 10) |
-      (revLookup[b64.charCodeAt(i + 1)] << 4) |
-      (revLookup[b64.charCodeAt(i + 2)] >> 2)
-    arr[curByte++] = (tmp >> 8) & 0xFF
-    arr[curByte++] = tmp & 0xFF
-  }
-
-  return arr
-}
-
-function tripletToBase64 (num) {
-  return lookup[num >> 18 & 0x3F] +
-    lookup[num >> 12 & 0x3F] +
-    lookup[num >> 6 & 0x3F] +
-    lookup[num & 0x3F]
-}
-
-function encodeChunk (uint8, start, end) {
-  var tmp
-  var output = []
-  for (var i = start; i < end; i += 3) {
-    tmp =
-      ((uint8[i] << 16) & 0xFF0000) +
-      ((uint8[i + 1] << 8) & 0xFF00) +
-      (uint8[i + 2] & 0xFF)
-    output.push(tripletToBase64(tmp))
-  }
-  return output.join('')
-}
-
-function fromByteArray (uint8) {
-  var tmp
-  var len = uint8.length
-  var extraBytes = len % 3 // if we have 1 byte left, pad 2 bytes
-  var parts = []
-  var maxChunkLength = 16383 // must be multiple of 3
-
-  // go through the array every three bytes, we'll deal with trailing stuff later
-  for (var i = 0, len2 = len - extraBytes; i < len2; i += maxChunkLength) {
-    parts.push(encodeChunk(
-      uint8, i, (i + maxChunkLength) > len2 ? len2 : (i + maxChunkLength)
-    ))
-  }
-
-  // pad the end with zeros, but make sure to not forget the extra bytes
-  if (extraBytes === 1) {
-    tmp = uint8[len - 1]
-    parts.push(
-      lookup[tmp >> 2] +
-      lookup[(tmp << 4) & 0x3F] +
-      '=='
-    )
-  } else if (extraBytes === 2) {
-    tmp = (uint8[len - 2] << 8) + uint8[len - 1]
-    parts.push(
-      lookup[tmp >> 10] +
-      lookup[(tmp >> 4) & 0x3F] +
-      lookup[(tmp << 2) & 0x3F] +
-      '='
-    )
-  }
-
-  return parts.join('')
-}
-
-
-/***/ }),
-
-/***/ "./node_modules/buffer/index.js":
-/*!**************************************!*\
-  !*** ./node_modules/buffer/index.js ***!
-  \**************************************/
+/***/ "../buffer/index.js":
+/*!**************************!*\
+  !*** ../buffer/index.js ***!
+  \**************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -336,9 +173,9 @@ function fromByteArray (uint8) {
 
 
 
-var base64 = __webpack_require__(/*! base64-js */ "./node_modules/base64-js/index.js")
-var ieee754 = __webpack_require__(/*! ieee754 */ "./node_modules/ieee754/index.js")
-var isArray = __webpack_require__(/*! isarray */ "./node_modules/isarray/index.js")
+var base64 = __webpack_require__(/*! base64-js */ "../buffer/node_modules/base64-js/index.js")
+var ieee754 = __webpack_require__(/*! ieee754 */ "../ieee754/index.js")
+var isArray = __webpack_require__(/*! isarray */ "../isarray/index.js")
 
 exports.Buffer = Buffer
 exports.SlowBuffer = SlowBuffer
@@ -2116,14 +1953,178 @@ function isnan (val) {
   return val !== val // eslint-disable-line no-self-compare
 }
 
-/* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./../webpack/buildin/global.js */ "./node_modules/webpack/buildin/global.js")))
+/* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./../webpack/buildin/global.js */ "../webpack/buildin/global.js")))
 
 /***/ }),
 
-/***/ "./node_modules/global/window.js":
-/*!***************************************!*\
-  !*** ./node_modules/global/window.js ***!
-  \***************************************/
+/***/ "../buffer/node_modules/base64-js/index.js":
+/*!*************************************************!*\
+  !*** ../buffer/node_modules/base64-js/index.js ***!
+  \*************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+exports.byteLength = byteLength
+exports.toByteArray = toByteArray
+exports.fromByteArray = fromByteArray
+
+var lookup = []
+var revLookup = []
+var Arr = typeof Uint8Array !== 'undefined' ? Uint8Array : Array
+
+var code = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/'
+for (var i = 0, len = code.length; i < len; ++i) {
+  lookup[i] = code[i]
+  revLookup[code.charCodeAt(i)] = i
+}
+
+// Support decoding URL-safe base64 strings, as Node.js does.
+// See: https://en.wikipedia.org/wiki/Base64#URL_applications
+revLookup['-'.charCodeAt(0)] = 62
+revLookup['_'.charCodeAt(0)] = 63
+
+function getLens (b64) {
+  var len = b64.length
+
+  if (len % 4 > 0) {
+    throw new Error('Invalid string. Length must be a multiple of 4')
+  }
+
+  // Trim off extra bytes after placeholder bytes are found
+  // See: https://github.com/beatgammit/base64-js/issues/42
+  var validLen = b64.indexOf('=')
+  if (validLen === -1) validLen = len
+
+  var placeHoldersLen = validLen === len
+    ? 0
+    : 4 - (validLen % 4)
+
+  return [validLen, placeHoldersLen]
+}
+
+// base64 is 4/3 + up to two characters of the original data
+function byteLength (b64) {
+  var lens = getLens(b64)
+  var validLen = lens[0]
+  var placeHoldersLen = lens[1]
+  return ((validLen + placeHoldersLen) * 3 / 4) - placeHoldersLen
+}
+
+function _byteLength (b64, validLen, placeHoldersLen) {
+  return ((validLen + placeHoldersLen) * 3 / 4) - placeHoldersLen
+}
+
+function toByteArray (b64) {
+  var tmp
+  var lens = getLens(b64)
+  var validLen = lens[0]
+  var placeHoldersLen = lens[1]
+
+  var arr = new Arr(_byteLength(b64, validLen, placeHoldersLen))
+
+  var curByte = 0
+
+  // if there are placeholders, only get up to the last complete 4 chars
+  var len = placeHoldersLen > 0
+    ? validLen - 4
+    : validLen
+
+  var i
+  for (i = 0; i < len; i += 4) {
+    tmp =
+      (revLookup[b64.charCodeAt(i)] << 18) |
+      (revLookup[b64.charCodeAt(i + 1)] << 12) |
+      (revLookup[b64.charCodeAt(i + 2)] << 6) |
+      revLookup[b64.charCodeAt(i + 3)]
+    arr[curByte++] = (tmp >> 16) & 0xFF
+    arr[curByte++] = (tmp >> 8) & 0xFF
+    arr[curByte++] = tmp & 0xFF
+  }
+
+  if (placeHoldersLen === 2) {
+    tmp =
+      (revLookup[b64.charCodeAt(i)] << 2) |
+      (revLookup[b64.charCodeAt(i + 1)] >> 4)
+    arr[curByte++] = tmp & 0xFF
+  }
+
+  if (placeHoldersLen === 1) {
+    tmp =
+      (revLookup[b64.charCodeAt(i)] << 10) |
+      (revLookup[b64.charCodeAt(i + 1)] << 4) |
+      (revLookup[b64.charCodeAt(i + 2)] >> 2)
+    arr[curByte++] = (tmp >> 8) & 0xFF
+    arr[curByte++] = tmp & 0xFF
+  }
+
+  return arr
+}
+
+function tripletToBase64 (num) {
+  return lookup[num >> 18 & 0x3F] +
+    lookup[num >> 12 & 0x3F] +
+    lookup[num >> 6 & 0x3F] +
+    lookup[num & 0x3F]
+}
+
+function encodeChunk (uint8, start, end) {
+  var tmp
+  var output = []
+  for (var i = start; i < end; i += 3) {
+    tmp =
+      ((uint8[i] << 16) & 0xFF0000) +
+      ((uint8[i + 1] << 8) & 0xFF00) +
+      (uint8[i + 2] & 0xFF)
+    output.push(tripletToBase64(tmp))
+  }
+  return output.join('')
+}
+
+function fromByteArray (uint8) {
+  var tmp
+  var len = uint8.length
+  var extraBytes = len % 3 // if we have 1 byte left, pad 2 bytes
+  var parts = []
+  var maxChunkLength = 16383 // must be multiple of 3
+
+  // go through the array every three bytes, we'll deal with trailing stuff later
+  for (var i = 0, len2 = len - extraBytes; i < len2; i += maxChunkLength) {
+    parts.push(encodeChunk(
+      uint8, i, (i + maxChunkLength) > len2 ? len2 : (i + maxChunkLength)
+    ))
+  }
+
+  // pad the end with zeros, but make sure to not forget the extra bytes
+  if (extraBytes === 1) {
+    tmp = uint8[len - 1]
+    parts.push(
+      lookup[tmp >> 2] +
+      lookup[(tmp << 4) & 0x3F] +
+      '=='
+    )
+  } else if (extraBytes === 2) {
+    tmp = (uint8[len - 2] << 8) + uint8[len - 1]
+    parts.push(
+      lookup[tmp >> 10] +
+      lookup[(tmp >> 4) & 0x3F] +
+      lookup[(tmp << 2) & 0x3F] +
+      '='
+    )
+  }
+
+  return parts.join('')
+}
+
+
+/***/ }),
+
+/***/ "../global/window.js":
+/*!***************************!*\
+  !*** ../global/window.js ***!
+  \***************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -2141,17 +2142,18 @@ if (typeof window !== "undefined") {
 
 module.exports = win;
 
-/* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./../webpack/buildin/global.js */ "./node_modules/webpack/buildin/global.js")))
+/* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./../webpack/buildin/global.js */ "../webpack/buildin/global.js")))
 
 /***/ }),
 
-/***/ "./node_modules/ieee754/index.js":
-/*!***************************************!*\
-  !*** ./node_modules/ieee754/index.js ***!
-  \***************************************/
+/***/ "../ieee754/index.js":
+/*!***************************!*\
+  !*** ../ieee754/index.js ***!
+  \***************************/
 /*! no static exports found */
 /***/ (function(module, exports) {
 
+/*! ieee754. BSD-3-Clause License. Feross Aboukhadijeh <https://feross.org/opensource> */
 exports.read = function (buffer, offset, isLE, mLen, nBytes) {
   var e, m
   var eLen = (nBytes * 8) - mLen - 1
@@ -2240,10 +2242,10 @@ exports.write = function (buffer, value, offset, isLE, mLen, nBytes) {
 
 /***/ }),
 
-/***/ "./node_modules/is-function/index.js":
-/*!*******************************************!*\
-  !*** ./node_modules/is-function/index.js ***!
-  \*******************************************/
+/***/ "../is-function/index.js":
+/*!*******************************!*\
+  !*** ../is-function/index.js ***!
+  \*******************************/
 /*! no static exports found */
 /***/ (function(module, exports) {
 
@@ -2269,10 +2271,10 @@ function isFunction (fn) {
 
 /***/ }),
 
-/***/ "./node_modules/isarray/index.js":
-/*!***************************************!*\
-  !*** ./node_modules/isarray/index.js ***!
-  \***************************************/
+/***/ "../isarray/index.js":
+/*!***************************!*\
+  !*** ../isarray/index.js ***!
+  \***************************/
 /*! no static exports found */
 /***/ (function(module, exports) {
 
@@ -2285,10 +2287,10 @@ module.exports = Array.isArray || function (arr) {
 
 /***/ }),
 
-/***/ "./node_modules/js-md5/src/md5.js":
-/*!****************************************!*\
-  !*** ./node_modules/js-md5/src/md5.js ***!
-  \****************************************/
+/***/ "../js-md5/src/md5.js":
+/*!****************************!*\
+  !*** ../js-md5/src/md5.js ***!
+  \****************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -2318,7 +2320,7 @@ module.exports = Array.isArray || function (arr) {
     root = self;
   }
   var COMMON_JS = !root.JS_MD5_NO_COMMON_JS && typeof module === 'object' && module.exports;
-  var AMD =  true && __webpack_require__(/*! !webpack amd options */ "./node_modules/webpack/buildin/amd-options.js");
+  var AMD =  true && __webpack_require__(/*! !webpack amd options */ "../webpack/buildin/amd-options.js");
   var ARRAY_BUFFER = !root.JS_MD5_NO_ARRAY_BUFFER && typeof ArrayBuffer !== 'undefined';
   var HEX_CHARS = '0123456789abcdef'.split('');
   var EXTRA = [128, 32768, 8388608, -2147483648];
@@ -2977,14 +2979,14 @@ module.exports = Array.isArray || function (arr) {
   }
 })();
 
-/* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./../../node-libs-browser/node_modules/process/browser.js */ "./node_modules/node-libs-browser/node_modules/process/browser.js"), __webpack_require__(/*! ./../../webpack/buildin/global.js */ "./node_modules/webpack/buildin/global.js")))
+/* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./../../node-libs-browser/node_modules/process/browser.js */ "../node-libs-browser/node_modules/process/browser.js"), __webpack_require__(/*! ./../../webpack/buildin/global.js */ "../webpack/buildin/global.js")))
 
 /***/ }),
 
-/***/ "./node_modules/microee/index.js":
-/*!***************************************!*\
-  !*** ./node_modules/microee/index.js ***!
-  \***************************************/
+/***/ "../microee/index.js":
+/*!***************************!*\
+  !*** ../microee/index.js ***!
+  \***************************/
 /*! no static exports found */
 /***/ (function(module, exports) {
 
@@ -3042,15 +3044,15 @@ module.exports = M;
 
 /***/ }),
 
-/***/ "./node_modules/minilog/lib/common/filter.js":
-/*!***************************************************!*\
-  !*** ./node_modules/minilog/lib/common/filter.js ***!
-  \***************************************************/
+/***/ "../minilog/lib/common/filter.js":
+/*!***************************************!*\
+  !*** ../minilog/lib/common/filter.js ***!
+  \***************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
 // default filter
-var Transform = __webpack_require__(/*! ./transform.js */ "./node_modules/minilog/lib/common/transform.js");
+var Transform = __webpack_require__(/*! ./transform.js */ "../minilog/lib/common/transform.js");
 
 var levelMap = { debug: 1, info: 2, warn: 3, error: 4 };
 
@@ -3109,15 +3111,15 @@ module.exports = Filter;
 
 /***/ }),
 
-/***/ "./node_modules/minilog/lib/common/minilog.js":
-/*!****************************************************!*\
-  !*** ./node_modules/minilog/lib/common/minilog.js ***!
-  \****************************************************/
+/***/ "../minilog/lib/common/minilog.js":
+/*!****************************************!*\
+  !*** ../minilog/lib/common/minilog.js ***!
+  \****************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-var Transform = __webpack_require__(/*! ./transform.js */ "./node_modules/minilog/lib/common/transform.js"),
-    Filter = __webpack_require__(/*! ./filter.js */ "./node_modules/minilog/lib/common/filter.js");
+var Transform = __webpack_require__(/*! ./transform.js */ "../minilog/lib/common/transform.js"),
+    Filter = __webpack_require__(/*! ./filter.js */ "../minilog/lib/common/filter.js");
 
 var log = new Transform(),
     slice = Array.prototype.slice;
@@ -3165,14 +3167,14 @@ exports.enable = function() {
 
 /***/ }),
 
-/***/ "./node_modules/minilog/lib/common/transform.js":
-/*!******************************************************!*\
-  !*** ./node_modules/minilog/lib/common/transform.js ***!
-  \******************************************************/
+/***/ "../minilog/lib/common/transform.js":
+/*!******************************************!*\
+  !*** ../minilog/lib/common/transform.js ***!
+  \******************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-var microee = __webpack_require__(/*! microee */ "./node_modules/microee/index.js");
+var microee = __webpack_require__(/*! microee */ "../microee/index.js");
 
 // Implements a subset of Node's stream.Transform - in a cross-platform manner.
 function Transform() {}
@@ -3248,14 +3250,14 @@ module.exports = Transform;
 
 /***/ }),
 
-/***/ "./node_modules/minilog/lib/web/array.js":
-/*!***********************************************!*\
-  !*** ./node_modules/minilog/lib/web/array.js ***!
-  \***********************************************/
+/***/ "../minilog/lib/web/array.js":
+/*!***********************************!*\
+  !*** ../minilog/lib/web/array.js ***!
+  \***********************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-var Transform = __webpack_require__(/*! ../common/transform.js */ "./node_modules/minilog/lib/common/transform.js"),
+var Transform = __webpack_require__(/*! ../common/transform.js */ "../minilog/lib/common/transform.js"),
     cache = [ ];
 
 var logger = new Transform();
@@ -3273,14 +3275,14 @@ module.exports = logger;
 
 /***/ }),
 
-/***/ "./node_modules/minilog/lib/web/console.js":
-/*!*************************************************!*\
-  !*** ./node_modules/minilog/lib/web/console.js ***!
-  \*************************************************/
+/***/ "../minilog/lib/web/console.js":
+/*!*************************************!*\
+  !*** ../minilog/lib/web/console.js ***!
+  \*************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-var Transform = __webpack_require__(/*! ../common/transform.js */ "./node_modules/minilog/lib/common/transform.js");
+var Transform = __webpack_require__(/*! ../common/transform.js */ "../minilog/lib/common/transform.js");
 
 var newlines = /\n+$/,
     logger = new Transform();
@@ -3308,23 +3310,23 @@ logger.write = function(name, level, args) {
 };
 
 logger.formatters = ['color', 'minilog'];
-logger.color = __webpack_require__(/*! ./formatters/color.js */ "./node_modules/minilog/lib/web/formatters/color.js");
-logger.minilog = __webpack_require__(/*! ./formatters/minilog.js */ "./node_modules/minilog/lib/web/formatters/minilog.js");
+logger.color = __webpack_require__(/*! ./formatters/color.js */ "../minilog/lib/web/formatters/color.js");
+logger.minilog = __webpack_require__(/*! ./formatters/minilog.js */ "../minilog/lib/web/formatters/minilog.js");
 
 module.exports = logger;
 
 
 /***/ }),
 
-/***/ "./node_modules/minilog/lib/web/formatters/color.js":
-/*!**********************************************************!*\
-  !*** ./node_modules/minilog/lib/web/formatters/color.js ***!
-  \**********************************************************/
+/***/ "../minilog/lib/web/formatters/color.js":
+/*!**********************************************!*\
+  !*** ../minilog/lib/web/formatters/color.js ***!
+  \**********************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-var Transform = __webpack_require__(/*! ../../common/transform.js */ "./node_modules/minilog/lib/common/transform.js"),
-    color = __webpack_require__(/*! ./util.js */ "./node_modules/minilog/lib/web/formatters/util.js");
+var Transform = __webpack_require__(/*! ../../common/transform.js */ "../minilog/lib/common/transform.js"),
+    color = __webpack_require__(/*! ./util.js */ "../minilog/lib/web/formatters/util.js");
 
 var colors = { debug: ['cyan'], info: ['purple' ], warn: [ 'yellow', true ], error: [ 'red', true ] },
     logger = new Transform();
@@ -3345,15 +3347,15 @@ module.exports = logger;
 
 /***/ }),
 
-/***/ "./node_modules/minilog/lib/web/formatters/minilog.js":
-/*!************************************************************!*\
-  !*** ./node_modules/minilog/lib/web/formatters/minilog.js ***!
-  \************************************************************/
+/***/ "../minilog/lib/web/formatters/minilog.js":
+/*!************************************************!*\
+  !*** ../minilog/lib/web/formatters/minilog.js ***!
+  \************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-var Transform = __webpack_require__(/*! ../../common/transform.js */ "./node_modules/minilog/lib/common/transform.js"),
-    color = __webpack_require__(/*! ./util.js */ "./node_modules/minilog/lib/web/formatters/util.js"),
+var Transform = __webpack_require__(/*! ../../common/transform.js */ "../minilog/lib/common/transform.js"),
+    color = __webpack_require__(/*! ./util.js */ "../minilog/lib/web/formatters/util.js"),
     colors = { debug: ['gray'], info: ['purple' ], warn: [ 'yellow', true ], error: [ 'red', true ] },
     logger = new Transform();
 
@@ -3382,10 +3384,10 @@ module.exports = logger;
 
 /***/ }),
 
-/***/ "./node_modules/minilog/lib/web/formatters/util.js":
-/*!*********************************************************!*\
-  !*** ./node_modules/minilog/lib/web/formatters/util.js ***!
-  \*********************************************************/
+/***/ "../minilog/lib/web/formatters/util.js":
+/*!*********************************************!*\
+  !*** ../minilog/lib/web/formatters/util.js ***!
+  \*********************************************/
 /*! no static exports found */
 /***/ (function(module, exports) {
 
@@ -3413,19 +3415,19 @@ module.exports = color;
 
 /***/ }),
 
-/***/ "./node_modules/minilog/lib/web/index.js":
-/*!***********************************************!*\
-  !*** ./node_modules/minilog/lib/web/index.js ***!
-  \***********************************************/
+/***/ "../minilog/lib/web/index.js":
+/*!***********************************!*\
+  !*** ../minilog/lib/web/index.js ***!
+  \***********************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-var Minilog = __webpack_require__(/*! ../common/minilog.js */ "./node_modules/minilog/lib/common/minilog.js");
+var Minilog = __webpack_require__(/*! ../common/minilog.js */ "../minilog/lib/common/minilog.js");
 
 var oldEnable = Minilog.enable,
     oldDisable = Minilog.disable,
     isChrome = (typeof navigator != 'undefined' && /chrome/i.test(navigator.userAgent)),
-    console = __webpack_require__(/*! ./console.js */ "./node_modules/minilog/lib/web/console.js");
+    console = __webpack_require__(/*! ./console.js */ "../minilog/lib/web/console.js");
 
 // Use a more capable logging backend if on Chrome
 Minilog.defaultBackend = (isChrome ? console.minilog : console);
@@ -3457,23 +3459,23 @@ Minilog.disable = function() {
 exports = module.exports = Minilog;
 
 exports.backends = {
-  array: __webpack_require__(/*! ./array.js */ "./node_modules/minilog/lib/web/array.js"),
+  array: __webpack_require__(/*! ./array.js */ "../minilog/lib/web/array.js"),
   browser: Minilog.defaultBackend,
-  localStorage: __webpack_require__(/*! ./localstorage.js */ "./node_modules/minilog/lib/web/localstorage.js"),
-  jQuery: __webpack_require__(/*! ./jquery_simple.js */ "./node_modules/minilog/lib/web/jquery_simple.js")
+  localStorage: __webpack_require__(/*! ./localstorage.js */ "../minilog/lib/web/localstorage.js"),
+  jQuery: __webpack_require__(/*! ./jquery_simple.js */ "../minilog/lib/web/jquery_simple.js")
 };
 
 
 /***/ }),
 
-/***/ "./node_modules/minilog/lib/web/jquery_simple.js":
-/*!*******************************************************!*\
-  !*** ./node_modules/minilog/lib/web/jquery_simple.js ***!
-  \*******************************************************/
+/***/ "../minilog/lib/web/jquery_simple.js":
+/*!*******************************************!*\
+  !*** ../minilog/lib/web/jquery_simple.js ***!
+  \*******************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-var Transform = __webpack_require__(/*! ../common/transform.js */ "./node_modules/minilog/lib/common/transform.js");
+var Transform = __webpack_require__(/*! ../common/transform.js */ "../minilog/lib/common/transform.js");
 
 var cid = new Date().valueOf().toString(36);
 
@@ -3551,14 +3553,14 @@ module.exports = AjaxLogger;
 
 /***/ }),
 
-/***/ "./node_modules/minilog/lib/web/localstorage.js":
-/*!******************************************************!*\
-  !*** ./node_modules/minilog/lib/web/localstorage.js ***!
-  \******************************************************/
+/***/ "../minilog/lib/web/localstorage.js":
+/*!******************************************!*\
+  !*** ../minilog/lib/web/localstorage.js ***!
+  \******************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-var Transform = __webpack_require__(/*! ../common/transform.js */ "./node_modules/minilog/lib/common/transform.js"),
+var Transform = __webpack_require__(/*! ../common/transform.js */ "../minilog/lib/common/transform.js"),
     cache = false;
 
 var logger = new Transform();
@@ -3576,14 +3578,14 @@ module.exports = logger;
 
 /***/ }),
 
-/***/ "./node_modules/nets/index.js":
-/*!************************************!*\
-  !*** ./node_modules/nets/index.js ***!
-  \************************************/
+/***/ "../nets/index.js":
+/*!************************!*\
+  !*** ../nets/index.js ***!
+  \************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-/* WEBPACK VAR INJECTION */(function(process, Buffer) {var req = __webpack_require__(/*! request */ "./node_modules/xhr/index.js")
+/* WEBPACK VAR INJECTION */(function(process, Buffer) {var req = __webpack_require__(/*! request */ "../xhr/index.js")
 
 module.exports = Nets
 
@@ -3608,14 +3610,14 @@ function Nets (opts, cb) {
   return req(opts, cb)
 }
 
-/* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./../node-libs-browser/node_modules/process/browser.js */ "./node_modules/node-libs-browser/node_modules/process/browser.js"), __webpack_require__(/*! ./../buffer/index.js */ "./node_modules/buffer/index.js").Buffer))
+/* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./../node-libs-browser/node_modules/process/browser.js */ "../node-libs-browser/node_modules/process/browser.js"), __webpack_require__(/*! ./../buffer/index.js */ "../buffer/index.js").Buffer))
 
 /***/ }),
 
-/***/ "./node_modules/node-libs-browser/node_modules/process/browser.js":
-/*!************************************************************************!*\
-  !*** ./node_modules/node-libs-browser/node_modules/process/browser.js ***!
-  \************************************************************************/
+/***/ "../node-libs-browser/node_modules/process/browser.js":
+/*!************************************************************!*\
+  !*** ../node-libs-browser/node_modules/process/browser.js ***!
+  \************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports) {
 
@@ -3807,10 +3809,10 @@ process.umask = function() { return 0; };
 
 /***/ }),
 
-/***/ "./node_modules/parse-headers/parse-headers.js":
-/*!*****************************************************!*\
-  !*** ./node_modules/parse-headers/parse-headers.js ***!
-  \*****************************************************/
+/***/ "../parse-headers/parse-headers.js":
+/*!*****************************************!*\
+  !*** ../parse-headers/parse-headers.js ***!
+  \*****************************************/
 /*! no static exports found */
 /***/ (function(module, exports) {
 
@@ -3850,17 +3852,17 @@ module.exports = function (headers) {
 
 /***/ }),
 
-/***/ "./node_modules/text-encoding/index.js":
-/*!*********************************************!*\
-  !*** ./node_modules/text-encoding/index.js ***!
-  \*********************************************/
+/***/ "../text-encoding/index.js":
+/*!*********************************!*\
+  !*** ../text-encoding/index.js ***!
+  \*********************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
 // This is free and unencumbered software released into the public domain.
 // See LICENSE.md for more information.
 
-var encoding = __webpack_require__(/*! ./lib/encoding.js */ "./node_modules/text-encoding/lib/encoding.js");
+var encoding = __webpack_require__(/*! ./lib/encoding.js */ "../text-encoding/lib/encoding.js");
 
 module.exports = {
   TextEncoder: encoding.TextEncoder,
@@ -3870,10 +3872,10 @@ module.exports = {
 
 /***/ }),
 
-/***/ "./node_modules/text-encoding/lib/encoding-indexes.js":
-/*!************************************************************!*\
-  !*** ./node_modules/text-encoding/lib/encoding-indexes.js ***!
-  \************************************************************/
+/***/ "../text-encoding/lib/encoding-indexes.js":
+/*!************************************************!*\
+  !*** ../text-encoding/lib/encoding-indexes.js ***!
+  \************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -3927,10 +3929,10 @@ module.exports = {
 
 /***/ }),
 
-/***/ "./node_modules/text-encoding/lib/encoding.js":
-/*!****************************************************!*\
-  !*** ./node_modules/text-encoding/lib/encoding.js ***!
-  \****************************************************/
+/***/ "../text-encoding/lib/encoding.js":
+/*!****************************************!*\
+  !*** ../text-encoding/lib/encoding.js ***!
+  \****************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -3948,7 +3950,7 @@ module.exports = {
   if ( true && module.exports &&
     !global["encoding-indexes"]) {
     global["encoding-indexes"] =
-      __webpack_require__(/*! ./encoding-indexes.js */ "./node_modules/text-encoding/lib/encoding-indexes.js")["encoding-indexes"];
+      __webpack_require__(/*! ./encoding-indexes.js */ "../text-encoding/lib/encoding-indexes.js")["encoding-indexes"];
   }
 
   //
@@ -7250,10 +7252,10 @@ module.exports = {
 
 /***/ }),
 
-/***/ "./node_modules/webpack/buildin/amd-options.js":
-/*!****************************************!*\
-  !*** (webpack)/buildin/amd-options.js ***!
-  \****************************************/
+/***/ "../webpack/buildin/amd-options.js":
+/*!*****************************************!*\
+  !*** ../webpack/buildin/amd-options.js ***!
+  \*****************************************/
 /*! no static exports found */
 /***/ (function(module, exports) {
 
@@ -7264,10 +7266,10 @@ module.exports = __webpack_amd_options__;
 
 /***/ }),
 
-/***/ "./node_modules/webpack/buildin/global.js":
-/*!***********************************!*\
-  !*** (webpack)/buildin/global.js ***!
-  \***********************************/
+/***/ "../webpack/buildin/global.js":
+/*!************************************!*\
+  !*** ../webpack/buildin/global.js ***!
+  \************************************/
 /*! no static exports found */
 /***/ (function(module, exports) {
 
@@ -7295,80 +7297,19 @@ module.exports = g;
 
 /***/ }),
 
-/***/ "./node_modules/worker-loader/dist/cjs.js?{\"inline\":true,\"fallback\":true}!./src/FetchWorkerTool.worker.js":
-/*!****************************************************************************************************************!*\
-  !*** ./node_modules/worker-loader/dist/cjs.js?{"inline":true,"fallback":true}!./src/FetchWorkerTool.worker.js ***!
-  \****************************************************************************************************************/
-/*! no static exports found */
-/***/ (function(module, exports, __webpack_require__) {
-
-module.exports = function() {
-  return __webpack_require__(/*! !./node_modules/worker-loader/dist/workers/InlineWorker.js */ "./node_modules/worker-loader/dist/workers/InlineWorker.js")("/******/ (function(modules) { // webpackBootstrap\n/******/ \t// The module cache\n/******/ \tvar installedModules = {};\n/******/\n/******/ \t// The require function\n/******/ \tfunction __webpack_require__(moduleId) {\n/******/\n/******/ \t\t// Check if module is in cache\n/******/ \t\tif(installedModules[moduleId]) {\n/******/ \t\t\treturn installedModules[moduleId].exports;\n/******/ \t\t}\n/******/ \t\t// Create a new module (and put it into the cache)\n/******/ \t\tvar module = installedModules[moduleId] = {\n/******/ \t\t\ti: moduleId,\n/******/ \t\t\tl: false,\n/******/ \t\t\texports: {}\n/******/ \t\t};\n/******/\n/******/ \t\t// Execute the module function\n/******/ \t\tmodules[moduleId].call(module.exports, module, module.exports, __webpack_require__);\n/******/\n/******/ \t\t// Flag the module as loaded\n/******/ \t\tmodule.l = true;\n/******/\n/******/ \t\t// Return the exports of the module\n/******/ \t\treturn module.exports;\n/******/ \t}\n/******/\n/******/\n/******/ \t// expose the modules object (__webpack_modules__)\n/******/ \t__webpack_require__.m = modules;\n/******/\n/******/ \t// expose the module cache\n/******/ \t__webpack_require__.c = installedModules;\n/******/\n/******/ \t// define getter function for harmony exports\n/******/ \t__webpack_require__.d = function(exports, name, getter) {\n/******/ \t\tif(!__webpack_require__.o(exports, name)) {\n/******/ \t\t\tObject.defineProperty(exports, name, { enumerable: true, get: getter });\n/******/ \t\t}\n/******/ \t};\n/******/\n/******/ \t// define __esModule on exports\n/******/ \t__webpack_require__.r = function(exports) {\n/******/ \t\tif(typeof Symbol !== 'undefined' && Symbol.toStringTag) {\n/******/ \t\t\tObject.defineProperty(exports, Symbol.toStringTag, { value: 'Module' });\n/******/ \t\t}\n/******/ \t\tObject.defineProperty(exports, '__esModule', { value: true });\n/******/ \t};\n/******/\n/******/ \t// create a fake namespace object\n/******/ \t// mode & 1: value is a module id, require it\n/******/ \t// mode & 2: merge all properties of value into the ns\n/******/ \t// mode & 4: return value when already ns object\n/******/ \t// mode & 8|1: behave like require\n/******/ \t__webpack_require__.t = function(value, mode) {\n/******/ \t\tif(mode & 1) value = __webpack_require__(value);\n/******/ \t\tif(mode & 8) return value;\n/******/ \t\tif((mode & 4) && typeof value === 'object' && value && value.__esModule) return value;\n/******/ \t\tvar ns = Object.create(null);\n/******/ \t\t__webpack_require__.r(ns);\n/******/ \t\tObject.defineProperty(ns, 'default', { enumerable: true, value: value });\n/******/ \t\tif(mode & 2 && typeof value != 'string') for(var key in value) __webpack_require__.d(ns, key, function(key) { return value[key]; }.bind(null, key));\n/******/ \t\treturn ns;\n/******/ \t};\n/******/\n/******/ \t// getDefaultExport function for compatibility with non-harmony modules\n/******/ \t__webpack_require__.n = function(module) {\n/******/ \t\tvar getter = module && module.__esModule ?\n/******/ \t\t\tfunction getDefault() { return module['default']; } :\n/******/ \t\t\tfunction getModuleExports() { return module; };\n/******/ \t\t__webpack_require__.d(getter, 'a', getter);\n/******/ \t\treturn getter;\n/******/ \t};\n/******/\n/******/ \t// Object.prototype.hasOwnProperty.call\n/******/ \t__webpack_require__.o = function(object, property) { return Object.prototype.hasOwnProperty.call(object, property); };\n/******/\n/******/ \t// __webpack_public_path__\n/******/ \t__webpack_require__.p = \"\";\n/******/\n/******/\n/******/ \t// Load entry module and return exports\n/******/ \treturn __webpack_require__(__webpack_require__.s = \"./node_modules/babel-loader/lib/index.js?!./src/FetchWorkerTool.worker.js\");\n/******/ })\n/************************************************************************/\n/******/ ({\n\n/***/ \"./node_modules/babel-loader/lib/index.js?!./src/FetchWorkerTool.worker.js\":\n/*!*******************************************************************************!*\\\n  !*** ./node_modules/babel-loader/lib??ref--4!./src/FetchWorkerTool.worker.js ***!\n  \\*******************************************************************************/\n/*! no static exports found */\n/***/ (function(module, exports) {\n\n/* eslint-env worker */\nvar jobsActive = 0;\nvar complete = [];\nvar intervalId = null;\n/**\n * Register a step function.\n *\n * Step checks if there are completed jobs and if there are sends them to the\n * parent. Then it checks the jobs count. If there are no further jobs, clear\n * the step.\n */\n\nvar registerStep = function registerStep() {\n  intervalId = setInterval(function () {\n    if (complete.length) {\n      // Send our chunk of completed requests and instruct postMessage to\n      // transfer the buffers instead of copying them.\n      postMessage(complete.slice(), // Instruct postMessage that these buffers in the sent message\n      // should use their Transferable trait. After the postMessage\n      // call the \"buffers\" will still be in complete if you looked,\n      // but they will all be length 0 as the data they reference has\n      // been sent to the window. This lets us send a lot of data\n      // without the normal postMessage behaviour of making a copy of\n      // all of the data for the window.\n      complete.map(function (response) {\n        return response.buffer;\n      }).filter(Boolean));\n      complete.length = 0;\n    }\n\n    if (jobsActive === 0) {\n      clearInterval(intervalId);\n      intervalId = null;\n    }\n  }, 1);\n};\n/**\n * Receive a job from the parent and fetch the requested data.\n * @param {object} options.job A job id, url, and options descriptor to perform.\n */\n\n\nvar onMessage = function onMessage(_ref) {\n  var job = _ref.data;\n\n  if (jobsActive === 0 && !intervalId) {\n    registerStep();\n  }\n\n  jobsActive++;\n  fetch(job.url, job.options).then(function (response) {\n    return response.arrayBuffer();\n  }).then(function (buffer) {\n    return complete.push({\n      id: job.id,\n      buffer: buffer\n    });\n  }).catch(function (error) {\n    return complete.push({\n      id: job.id,\n      error: error\n    });\n  }).then(function () {\n    return jobsActive--;\n  });\n};\n\nif (self.fetch) {\n  postMessage({\n    support: {\n      fetch: true\n    }\n  });\n  self.addEventListener('message', onMessage);\n} else {\n  postMessage({\n    support: {\n      fetch: false\n    }\n  });\n  self.addEventListener('message', function (_ref2) {\n    var job = _ref2.data;\n    postMessage([{\n      id: job.id,\n      error: new Error('fetch is unavailable')\n    }]);\n  });\n}\n\n/***/ })\n\n/******/ });\n//# sourceMappingURL=3325b91e8645157f8dc6.worker.js.map", __webpack_require__.p + "3325b91e8645157f8dc6.worker.js");
-};
-
-/***/ }),
-
-/***/ "./node_modules/worker-loader/dist/workers/InlineWorker.js":
-/*!*****************************************************************!*\
-  !*** ./node_modules/worker-loader/dist/workers/InlineWorker.js ***!
-  \*****************************************************************/
+/***/ "../xhr/index.js":
+/*!***********************!*\
+  !*** ../xhr/index.js ***!
+  \***********************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
-
-// http://stackoverflow.com/questions/10343913/how-to-create-a-web-worker-from-a-string
-
-var URL = window.URL || window.webkitURL;
-
-module.exports = function (content, url) {
-  try {
-    try {
-      var blob;
-
-      try {
-        // BlobBuilder = Deprecated, but widely implemented
-        var BlobBuilder = window.BlobBuilder || window.WebKitBlobBuilder || window.MozBlobBuilder || window.MSBlobBuilder;
-
-        blob = new BlobBuilder();
-
-        blob.append(content);
-
-        blob = blob.getBlob();
-      } catch (e) {
-        // The proposed API
-        blob = new Blob([content]);
-      }
-
-      return new Worker(URL.createObjectURL(blob));
-    } catch (e) {
-      return new Worker('data:application/javascript,' + encodeURIComponent(content));
-    }
-  } catch (e) {
-    if (!url) {
-      throw Error('Inline worker is not supported');
-    }
-
-    return new Worker(url);
-  }
-};
-
-/***/ }),
-
-/***/ "./node_modules/xhr/index.js":
-/*!***********************************!*\
-  !*** ./node_modules/xhr/index.js ***!
-  \***********************************/
-/*! no static exports found */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-var window = __webpack_require__(/*! global/window */ "./node_modules/global/window.js")
-var isFunction = __webpack_require__(/*! is-function */ "./node_modules/is-function/index.js")
-var parseHeaders = __webpack_require__(/*! parse-headers */ "./node_modules/parse-headers/parse-headers.js")
-var xtend = __webpack_require__(/*! xtend */ "./node_modules/xtend/immutable.js")
+var window = __webpack_require__(/*! global/window */ "../global/window.js")
+var isFunction = __webpack_require__(/*! is-function */ "../is-function/index.js")
+var parseHeaders = __webpack_require__(/*! parse-headers */ "../parse-headers/parse-headers.js")
+var xtend = __webpack_require__(/*! xtend */ "../xtend/immutable.js")
 
 module.exports = createXHR
 // Allow use of default import syntax in TypeScript
@@ -7615,10 +7556,10 @@ function noop() {}
 
 /***/ }),
 
-/***/ "./node_modules/xtend/immutable.js":
-/*!*****************************************!*\
-  !*** ./node_modules/xtend/immutable.js ***!
-  \*****************************************/
+/***/ "../xtend/immutable.js":
+/*!*****************************!*\
+  !*** ../xtend/immutable.js ***!
+  \*****************************/
 /*! no static exports found */
 /***/ (function(module, exports) {
 
@@ -7642,6 +7583,230 @@ function extend() {
     return target
 }
 
+
+/***/ }),
+
+/***/ "./node_modules/base64-js/index.js":
+/*!*****************************************!*\
+  !*** ./node_modules/base64-js/index.js ***!
+  \*****************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+exports.byteLength = byteLength
+exports.toByteArray = toByteArray
+exports.fromByteArray = fromByteArray
+
+var lookup = []
+var revLookup = []
+var Arr = typeof Uint8Array !== 'undefined' ? Uint8Array : Array
+
+var code = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/'
+for (var i = 0, len = code.length; i < len; ++i) {
+  lookup[i] = code[i]
+  revLookup[code.charCodeAt(i)] = i
+}
+
+// Support decoding URL-safe base64 strings, as Node.js does.
+// See: https://en.wikipedia.org/wiki/Base64#URL_applications
+revLookup['-'.charCodeAt(0)] = 62
+revLookup['_'.charCodeAt(0)] = 63
+
+function getLens (b64) {
+  var len = b64.length
+
+  if (len % 4 > 0) {
+    throw new Error('Invalid string. Length must be a multiple of 4')
+  }
+
+  // Trim off extra bytes after placeholder bytes are found
+  // See: https://github.com/beatgammit/base64-js/issues/42
+  var validLen = b64.indexOf('=')
+  if (validLen === -1) validLen = len
+
+  var placeHoldersLen = validLen === len
+    ? 0
+    : 4 - (validLen % 4)
+
+  return [validLen, placeHoldersLen]
+}
+
+// base64 is 4/3 + up to two characters of the original data
+function byteLength (b64) {
+  var lens = getLens(b64)
+  var validLen = lens[0]
+  var placeHoldersLen = lens[1]
+  return ((validLen + placeHoldersLen) * 3 / 4) - placeHoldersLen
+}
+
+function _byteLength (b64, validLen, placeHoldersLen) {
+  return ((validLen + placeHoldersLen) * 3 / 4) - placeHoldersLen
+}
+
+function toByteArray (b64) {
+  var tmp
+  var lens = getLens(b64)
+  var validLen = lens[0]
+  var placeHoldersLen = lens[1]
+
+  var arr = new Arr(_byteLength(b64, validLen, placeHoldersLen))
+
+  var curByte = 0
+
+  // if there are placeholders, only get up to the last complete 4 chars
+  var len = placeHoldersLen > 0
+    ? validLen - 4
+    : validLen
+
+  for (var i = 0; i < len; i += 4) {
+    tmp =
+      (revLookup[b64.charCodeAt(i)] << 18) |
+      (revLookup[b64.charCodeAt(i + 1)] << 12) |
+      (revLookup[b64.charCodeAt(i + 2)] << 6) |
+      revLookup[b64.charCodeAt(i + 3)]
+    arr[curByte++] = (tmp >> 16) & 0xFF
+    arr[curByte++] = (tmp >> 8) & 0xFF
+    arr[curByte++] = tmp & 0xFF
+  }
+
+  if (placeHoldersLen === 2) {
+    tmp =
+      (revLookup[b64.charCodeAt(i)] << 2) |
+      (revLookup[b64.charCodeAt(i + 1)] >> 4)
+    arr[curByte++] = tmp & 0xFF
+  }
+
+  if (placeHoldersLen === 1) {
+    tmp =
+      (revLookup[b64.charCodeAt(i)] << 10) |
+      (revLookup[b64.charCodeAt(i + 1)] << 4) |
+      (revLookup[b64.charCodeAt(i + 2)] >> 2)
+    arr[curByte++] = (tmp >> 8) & 0xFF
+    arr[curByte++] = tmp & 0xFF
+  }
+
+  return arr
+}
+
+function tripletToBase64 (num) {
+  return lookup[num >> 18 & 0x3F] +
+    lookup[num >> 12 & 0x3F] +
+    lookup[num >> 6 & 0x3F] +
+    lookup[num & 0x3F]
+}
+
+function encodeChunk (uint8, start, end) {
+  var tmp
+  var output = []
+  for (var i = start; i < end; i += 3) {
+    tmp =
+      ((uint8[i] << 16) & 0xFF0000) +
+      ((uint8[i + 1] << 8) & 0xFF00) +
+      (uint8[i + 2] & 0xFF)
+    output.push(tripletToBase64(tmp))
+  }
+  return output.join('')
+}
+
+function fromByteArray (uint8) {
+  var tmp
+  var len = uint8.length
+  var extraBytes = len % 3 // if we have 1 byte left, pad 2 bytes
+  var parts = []
+  var maxChunkLength = 16383 // must be multiple of 3
+
+  // go through the array every three bytes, we'll deal with trailing stuff later
+  for (var i = 0, len2 = len - extraBytes; i < len2; i += maxChunkLength) {
+    parts.push(encodeChunk(
+      uint8, i, (i + maxChunkLength) > len2 ? len2 : (i + maxChunkLength)
+    ))
+  }
+
+  // pad the end with zeros, but make sure to not forget the extra bytes
+  if (extraBytes === 1) {
+    tmp = uint8[len - 1]
+    parts.push(
+      lookup[tmp >> 2] +
+      lookup[(tmp << 4) & 0x3F] +
+      '=='
+    )
+  } else if (extraBytes === 2) {
+    tmp = (uint8[len - 2] << 8) + uint8[len - 1]
+    parts.push(
+      lookup[tmp >> 10] +
+      lookup[(tmp >> 4) & 0x3F] +
+      lookup[(tmp << 2) & 0x3F] +
+      '='
+    )
+  }
+
+  return parts.join('')
+}
+
+
+/***/ }),
+
+/***/ "./node_modules/worker-loader/dist/cjs.js?{\"inline\":true,\"fallback\":true}!./src/FetchWorkerTool.worker.js":
+/*!****************************************************************************************************************!*\
+  !*** ./node_modules/worker-loader/dist/cjs.js?{"inline":true,"fallback":true}!./src/FetchWorkerTool.worker.js ***!
+  \****************************************************************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+module.exports = function() {
+  return __webpack_require__(/*! !./node_modules/worker-loader/dist/workers/InlineWorker.js */ "./node_modules/worker-loader/dist/workers/InlineWorker.js")("/******/ (function(modules) { // webpackBootstrap\n/******/ \t// The module cache\n/******/ \tvar installedModules = {};\n/******/\n/******/ \t// The require function\n/******/ \tfunction __webpack_require__(moduleId) {\n/******/\n/******/ \t\t// Check if module is in cache\n/******/ \t\tif(installedModules[moduleId]) {\n/******/ \t\t\treturn installedModules[moduleId].exports;\n/******/ \t\t}\n/******/ \t\t// Create a new module (and put it into the cache)\n/******/ \t\tvar module = installedModules[moduleId] = {\n/******/ \t\t\ti: moduleId,\n/******/ \t\t\tl: false,\n/******/ \t\t\texports: {}\n/******/ \t\t};\n/******/\n/******/ \t\t// Execute the module function\n/******/ \t\tmodules[moduleId].call(module.exports, module, module.exports, __webpack_require__);\n/******/\n/******/ \t\t// Flag the module as loaded\n/******/ \t\tmodule.l = true;\n/******/\n/******/ \t\t// Return the exports of the module\n/******/ \t\treturn module.exports;\n/******/ \t}\n/******/\n/******/\n/******/ \t// expose the modules object (__webpack_modules__)\n/******/ \t__webpack_require__.m = modules;\n/******/\n/******/ \t// expose the module cache\n/******/ \t__webpack_require__.c = installedModules;\n/******/\n/******/ \t// define getter function for harmony exports\n/******/ \t__webpack_require__.d = function(exports, name, getter) {\n/******/ \t\tif(!__webpack_require__.o(exports, name)) {\n/******/ \t\t\tObject.defineProperty(exports, name, { enumerable: true, get: getter });\n/******/ \t\t}\n/******/ \t};\n/******/\n/******/ \t// define __esModule on exports\n/******/ \t__webpack_require__.r = function(exports) {\n/******/ \t\tif(typeof Symbol !== 'undefined' && Symbol.toStringTag) {\n/******/ \t\t\tObject.defineProperty(exports, Symbol.toStringTag, { value: 'Module' });\n/******/ \t\t}\n/******/ \t\tObject.defineProperty(exports, '__esModule', { value: true });\n/******/ \t};\n/******/\n/******/ \t// create a fake namespace object\n/******/ \t// mode & 1: value is a module id, require it\n/******/ \t// mode & 2: merge all properties of value into the ns\n/******/ \t// mode & 4: return value when already ns object\n/******/ \t// mode & 8|1: behave like require\n/******/ \t__webpack_require__.t = function(value, mode) {\n/******/ \t\tif(mode & 1) value = __webpack_require__(value);\n/******/ \t\tif(mode & 8) return value;\n/******/ \t\tif((mode & 4) && typeof value === 'object' && value && value.__esModule) return value;\n/******/ \t\tvar ns = Object.create(null);\n/******/ \t\t__webpack_require__.r(ns);\n/******/ \t\tObject.defineProperty(ns, 'default', { enumerable: true, value: value });\n/******/ \t\tif(mode & 2 && typeof value != 'string') for(var key in value) __webpack_require__.d(ns, key, function(key) { return value[key]; }.bind(null, key));\n/******/ \t\treturn ns;\n/******/ \t};\n/******/\n/******/ \t// getDefaultExport function for compatibility with non-harmony modules\n/******/ \t__webpack_require__.n = function(module) {\n/******/ \t\tvar getter = module && module.__esModule ?\n/******/ \t\t\tfunction getDefault() { return module['default']; } :\n/******/ \t\t\tfunction getModuleExports() { return module; };\n/******/ \t\t__webpack_require__.d(getter, 'a', getter);\n/******/ \t\treturn getter;\n/******/ \t};\n/******/\n/******/ \t// Object.prototype.hasOwnProperty.call\n/******/ \t__webpack_require__.o = function(object, property) { return Object.prototype.hasOwnProperty.call(object, property); };\n/******/\n/******/ \t// __webpack_public_path__\n/******/ \t__webpack_require__.p = \"\";\n/******/\n/******/\n/******/ \t// Load entry module and return exports\n/******/ \treturn __webpack_require__(__webpack_require__.s = \"../babel-loader/lib/index.js?!./src/FetchWorkerTool.worker.js\");\n/******/ })\n/************************************************************************/\n/******/ ({\n\n/***/ \"../babel-loader/lib/index.js?!./src/FetchWorkerTool.worker.js\":\n/*!*******************************************************************!*\\\n  !*** ../babel-loader/lib??ref--4!./src/FetchWorkerTool.worker.js ***!\n  \\*******************************************************************/\n/*! no static exports found */\n/***/ (function(module, exports) {\n\n/* eslint-env worker */\nvar jobsActive = 0;\nvar complete = [];\nvar intervalId = null;\n/**\n * Register a step function.\n *\n * Step checks if there are completed jobs and if there are sends them to the\n * parent. Then it checks the jobs count. If there are no further jobs, clear\n * the step.\n */\n\nvar registerStep = function registerStep() {\n  intervalId = setInterval(function () {\n    if (complete.length) {\n      // Send our chunk of completed requests and instruct postMessage to\n      // transfer the buffers instead of copying them.\n      postMessage(complete.slice(), // Instruct postMessage that these buffers in the sent message\n      // should use their Transferable trait. After the postMessage\n      // call the \"buffers\" will still be in complete if you looked,\n      // but they will all be length 0 as the data they reference has\n      // been sent to the window. This lets us send a lot of data\n      // without the normal postMessage behaviour of making a copy of\n      // all of the data for the window.\n      complete.map(function (response) {\n        return response.buffer;\n      }).filter(Boolean));\n      complete.length = 0;\n    }\n\n    if (jobsActive === 0) {\n      clearInterval(intervalId);\n      intervalId = null;\n    }\n  }, 1);\n};\n/**\n * Receive a job from the parent and fetch the requested data.\n * @param {object} options.job A job id, url, and options descriptor to perform.\n */\n\n\nvar onMessage = function onMessage(_ref) {\n  var job = _ref.data;\n\n  if (jobsActive === 0 && !intervalId) {\n    registerStep();\n  }\n\n  jobsActive++;\n  fetch(job.url, job.options).then(function (response) {\n    return response.arrayBuffer();\n  }).then(function (buffer) {\n    return complete.push({\n      id: job.id,\n      buffer: buffer\n    });\n  }).catch(function (error) {\n    return complete.push({\n      id: job.id,\n      error: error\n    });\n  }).then(function () {\n    return jobsActive--;\n  });\n};\n\nif (self.fetch) {\n  postMessage({\n    support: {\n      fetch: true\n    }\n  });\n  self.addEventListener('message', onMessage);\n} else {\n  postMessage({\n    support: {\n      fetch: false\n    }\n  });\n  self.addEventListener('message', function (_ref2) {\n    var job = _ref2.data;\n    postMessage([{\n      id: job.id,\n      error: new Error('fetch is unavailable')\n    }]);\n  });\n}\n\n/***/ })\n\n/******/ });\n//# sourceMappingURL=c03785cfdc467097497c.worker.js.map", __webpack_require__.p + "c03785cfdc467097497c.worker.js");
+};
+
+/***/ }),
+
+/***/ "./node_modules/worker-loader/dist/workers/InlineWorker.js":
+/*!*****************************************************************!*\
+  !*** ./node_modules/worker-loader/dist/workers/InlineWorker.js ***!
+  \*****************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+// http://stackoverflow.com/questions/10343913/how-to-create-a-web-worker-from-a-string
+
+var URL = window.URL || window.webkitURL;
+
+module.exports = function (content, url) {
+  try {
+    try {
+      var blob;
+
+      try {
+        // BlobBuilder = Deprecated, but widely implemented
+        var BlobBuilder = window.BlobBuilder || window.WebKitBlobBuilder || window.MozBlobBuilder || window.MSBlobBuilder;
+
+        blob = new BlobBuilder();
+
+        blob.append(content);
+
+        blob = blob.getBlob();
+      } catch (e) {
+        // The proposed API
+        blob = new Blob([content]);
+      }
+
+      return new Worker(URL.createObjectURL(blob));
+    } catch (e) {
+      return new Worker('data:application/javascript,' + encodeURIComponent(content));
+    }
+  } catch (e) {
+    if (!url) {
+      throw Error('Inline worker is not supported');
+    }
+
+    return new Worker(url);
+  }
+};
 
 /***/ }),
 
@@ -7669,7 +7834,7 @@ if (typeof TextDecoder === 'undefined' || typeof TextEncoder === 'undefined') {
   // evaluating ~500kb of encoding indices that we do not need to evaluate if
   // the browser provides TextDecoder and TextEncoder.
   // eslint-disable-next-line global-require
-  var encoding = __webpack_require__(/*! text-encoding */ "./node_modules/text-encoding/index.js");
+  var encoding = __webpack_require__(/*! text-encoding */ "../text-encoding/index.js");
 
   _TextDecoder = encoding.TextDecoder;
   _TextEncoder = encoding.TextEncoder;
@@ -7679,7 +7844,7 @@ if (typeof TextDecoder === 'undefined' || typeof TextEncoder === 'undefined') {
   _TextEncoder = TextEncoder;
 }
 
-var md5 = __webpack_require__(/*! js-md5 */ "./node_modules/js-md5/src/md5.js");
+var md5 = __webpack_require__(/*! js-md5 */ "../js-md5/src/md5.js");
 
 var memoizedToString = function () {
   /**
@@ -7907,7 +8072,7 @@ function _inherits(subClass, superClass) { if (typeof superClass !== "function" 
 
 function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || function _setPrototypeOf(o, p) { o.__proto__ = p; return o; }; return _setPrototypeOf(o, p); }
 
-function _createSuper(Derived) { var hasNativeReflectConstruct = _isNativeReflectConstruct(); return function () { var Super = _getPrototypeOf(Derived), result; if (hasNativeReflectConstruct) { var NewTarget = _getPrototypeOf(this).constructor; result = Reflect.construct(Super, arguments, NewTarget); } else { result = Super.apply(this, arguments); } return _possibleConstructorReturn(this, result); }; }
+function _createSuper(Derived) { var hasNativeReflectConstruct = _isNativeReflectConstruct(); return function _createSuperInternal() { var Super = _getPrototypeOf(Derived), result; if (hasNativeReflectConstruct) { var NewTarget = _getPrototypeOf(this).constructor; result = Reflect.construct(Super, arguments, NewTarget); } else { result = Super.apply(this, arguments); } return _possibleConstructorReturn(this, result); }; }
 
 function _possibleConstructorReturn(self, call) { if (call && (_typeof(call) === "object" || typeof call === "function")) { return call; } return _assertThisInitialized(self); }
 
@@ -7917,7 +8082,7 @@ function _isNativeReflectConstruct() { if (typeof Reflect === "undefined" || !Re
 
 function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.getPrototypeOf : function _getPrototypeOf(o) { return o.__proto__ || Object.getPrototypeOf(o); }; return _getPrototypeOf(o); }
 
-var md5 = __webpack_require__(/*! js-md5 */ "./node_modules/js-md5/src/md5.js");
+var md5 = __webpack_require__(/*! js-md5 */ "../js-md5/src/md5.js");
 
 var log = __webpack_require__(/*! ./log */ "./src/log.js");
 
@@ -7945,19 +8110,19 @@ var DefaultAssets = [{
   type: AssetType.ImageBitmap,
   format: DataFormat.PNG,
   id: null,
-  data: new Buffer(__webpack_require__(/*! arraybuffer-loader!./builtins/defaultBitmap.png */ "./node_modules/arraybuffer-loader/index.js!./src/builtins/defaultBitmap.png") // eslint-disable-line global-require
+  data: new Buffer(__webpack_require__(/*! arraybuffer-loader!./builtins/defaultBitmap.png */ "../arraybuffer-loader/index.js!./src/builtins/defaultBitmap.png") // eslint-disable-line global-require
   )
 }, {
   type: AssetType.Sound,
   format: DataFormat.WAV,
   id: null,
-  data: new Buffer(__webpack_require__(/*! arraybuffer-loader!./builtins/defaultSound.wav */ "./node_modules/arraybuffer-loader/index.js!./src/builtins/defaultSound.wav") // eslint-disable-line global-require
+  data: new Buffer(__webpack_require__(/*! arraybuffer-loader!./builtins/defaultSound.wav */ "../arraybuffer-loader/index.js!./src/builtins/defaultSound.wav") // eslint-disable-line global-require
   )
 }, {
   type: AssetType.ImageVector,
   format: DataFormat.SVG,
   id: null,
-  data: new Buffer(__webpack_require__(/*! arraybuffer-loader!./builtins/defaultVector.svg */ "./node_modules/arraybuffer-loader/index.js!./src/builtins/defaultVector.svg") // eslint-disable-line global-require
+  data: new Buffer(__webpack_require__(/*! arraybuffer-loader!./builtins/defaultVector.svg */ "../arraybuffer-loader/index.js!./src/builtins/defaultVector.svg") // eslint-disable-line global-require
   )
 }];
 /**
@@ -8109,7 +8274,7 @@ var BuiltinHelper = /*#__PURE__*/function (_Helper) {
 }(Helper);
 
 module.exports = BuiltinHelper;
-/* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./../node_modules/buffer/index.js */ "./node_modules/buffer/index.js").Buffer))
+/* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./../../buffer/index.js */ "../buffer/index.js").Buffer))
 
 /***/ }),
 
@@ -8248,7 +8413,7 @@ function _objectWithoutProperties(source, excluded) { if (source == null) return
 
 function _objectWithoutPropertiesLoose(source, excluded) { if (source == null) return {}; var target = {}; var sourceKeys = Object.keys(source); var key, i; for (i = 0; i < sourceKeys.length; i++) { key = sourceKeys[i]; if (excluded.indexOf(key) >= 0) continue; target[key] = source[key]; } return target; }
 
-function _createForOfIteratorHelper(o) { if (typeof Symbol === "undefined" || o[Symbol.iterator] == null) { if (Array.isArray(o) || (o = _unsupportedIterableToArray(o))) { var i = 0; var F = function F() {}; return { s: F, n: function n() { if (i >= o.length) return { done: true }; return { done: false, value: o[i++] }; }, e: function e(_e) { throw _e; }, f: F }; } throw new TypeError("Invalid attempt to iterate non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); } var it, normalCompletion = true, didErr = false, err; return { s: function s() { it = o[Symbol.iterator](); }, n: function n() { var step = it.next(); normalCompletion = step.done; return step; }, e: function e(_e2) { didErr = true; err = _e2; }, f: function f() { try { if (!normalCompletion && it.return != null) it.return(); } finally { if (didErr) throw err; } } }; }
+function _createForOfIteratorHelper(o, allowArrayLike) { var it; if (typeof Symbol === "undefined" || o[Symbol.iterator] == null) { if (Array.isArray(o) || (it = _unsupportedIterableToArray(o)) || allowArrayLike && o && typeof o.length === "number") { if (it) o = it; var i = 0; var F = function F() {}; return { s: F, n: function n() { if (i >= o.length) return { done: true }; return { done: false, value: o[i++] }; }, e: function e(_e) { throw _e; }, f: F }; } throw new TypeError("Invalid attempt to iterate non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); } var normalCompletion = true, didErr = false, err; return { s: function s() { it = o[Symbol.iterator](); }, n: function n() { var step = it.next(); normalCompletion = step.done; return step; }, e: function e(_e2) { didErr = true; err = _e2; }, f: function f() { try { if (!normalCompletion && it.return != null) it.return(); } finally { if (didErr) throw err; } } }; }
 
 function _unsupportedIterableToArray(o, minLen) { if (!o) return; if (typeof o === "string") return _arrayLikeToArray(o, minLen); var n = Object.prototype.toString.call(o).slice(8, -1); if (n === "Object" && o.constructor) n = o.constructor.name; if (n === "Map" || n === "Set") return Array.from(o); if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _arrayLikeToArray(o, minLen); }
 
@@ -8574,7 +8739,7 @@ var NetsTool = /*#__PURE__*/function () {
         /* eslint global-require:0 */
         // Wait to evaluate nets and its dependencies until we know we need
         // it as NetsTool may never be used if fetch is available.
-        var nets = __webpack_require__(/*! nets */ "./node_modules/nets/index.js");
+        var nets = __webpack_require__(/*! nets */ "../nets/index.js");
 
         nets(Object.assign({
           method: 'get'
@@ -8607,7 +8772,7 @@ var NetsTool = /*#__PURE__*/function () {
         // eslint-disable-next-lint global-require
         // Wait to evaluate nets and its dependencies until we know we need
         // it as NetsTool may never be used if fetch is available.
-        var nets = __webpack_require__(/*! nets */ "./node_modules/nets/index.js");
+        var nets = __webpack_require__(/*! nets */ "../nets/index.js");
 
         nets(Object.assign({
           encoding: undefined // eslint-disable-line no-undefined
@@ -9123,7 +9288,7 @@ function _inherits(subClass, superClass) { if (typeof superClass !== "function" 
 
 function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || function _setPrototypeOf(o, p) { o.__proto__ = p; return o; }; return _setPrototypeOf(o, p); }
 
-function _createSuper(Derived) { var hasNativeReflectConstruct = _isNativeReflectConstruct(); return function () { var Super = _getPrototypeOf(Derived), result; if (hasNativeReflectConstruct) { var NewTarget = _getPrototypeOf(this).constructor; result = Reflect.construct(Super, arguments, NewTarget); } else { result = Super.apply(this, arguments); } return _possibleConstructorReturn(this, result); }; }
+function _createSuper(Derived) { var hasNativeReflectConstruct = _isNativeReflectConstruct(); return function _createSuperInternal() { var Super = _getPrototypeOf(Derived), result; if (hasNativeReflectConstruct) { var NewTarget = _getPrototypeOf(this).constructor; result = Reflect.construct(Super, arguments, NewTarget); } else { result = Super.apply(this, arguments); } return _possibleConstructorReturn(this, result); }; }
 
 function _possibleConstructorReturn(self, call) { if (call && (_typeof(call) === "object" || typeof call === "function")) { return call; } return _assertThisInitialized(self); }
 
@@ -9372,7 +9537,7 @@ module.exports = ScratchStorage;
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-var minilog = __webpack_require__(/*! minilog */ "./node_modules/minilog/lib/web/index.js");
+var minilog = __webpack_require__(/*! minilog */ "../minilog/lib/web/index.js");
 
 minilog.enable();
 module.exports = minilog('storage');
