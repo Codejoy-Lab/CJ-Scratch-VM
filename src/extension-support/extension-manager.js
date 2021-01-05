@@ -23,7 +23,20 @@ const builtinExtensions = {
     ev3: () => require('../extensions/scratch3_ev3'),
     makeymakey: () => require('../extensions/scratch3_makeymakey'),
     boost: () => require('../extensions/scratch3_boost'),
-    gdxfor: () => require('../extensions/scratch3_gdx_for')
+    gdxfor: () => require('../extensions/scratch3_gdx_for'),
+    cxknn:()=>require('../extensions/scratch3_knn'),
+    eim:()=>require('../extensions/scratch3_eim'),
+    posenet:()=>require('../extensions/scratch3_posenet'),
+    PitchDetection:()=>require('../extensions/scratch3_PitchDetection'),
+    python:()=>require('../extensions/scratch3_python_kernel'),
+    usbMicrobit:()=>require('../extensions/Scratch3_usbMicrobit'),
+    Yolo:()=>require('../extensions/scratch3_yolo'),
+    imageClassifier:()=>require('../extensions/scratch3_imageClassifier'),
+    FaceAPI:()=>require('../extensions/scratch3_faceAPI'),
+    cxtello:()=>require('../extensions/scratch3_tello'),
+    speech2text:()=>require('../extensions/scratch3_speech2text'),
+    matatabot:()=>require('../extensions/scratch3_matatabot'),
+    
 };
 
 /**
