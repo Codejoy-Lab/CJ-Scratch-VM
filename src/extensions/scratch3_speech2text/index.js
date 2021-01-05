@@ -11,6 +11,7 @@ const speecchtextClient = require('./speechtext_client.js')
 
 let buffer = []
 
+var intervalList = []
 // recorderWorker.onmessage = function (e) {
 //     buffer.push(...e.data.buffer)
 //   }
@@ -226,7 +227,6 @@ class Scratch3Speech2TextBlocks {
         console.log("_resetListening")
         this.runtime.emitMicListening(false);
         this._stopListening();
-        // this._closeWebsocket();
         this._resolveSpeechPromises();
     }
 
@@ -245,9 +245,8 @@ class Scratch3Speech2TextBlocks {
      */
     _closeWebsocket () {
         if (this._socket && this._socket.readyState === this._socket.OPEN) {
-            console.log("发送结束标识")
-            this._socket.send("{\"end\": true}");
             this._socket.close();
+            console.log("close Socket")
         }
     }
 
@@ -369,20 +368,29 @@ class Scratch3Speech2TextBlocks {
     _normalizeText (data) {
         let rtasrResult = []
         // var currentText = $('#result_output').html()
-        console.log("_normalizeText",data)
-        rtasrResult[data.seg_id] = data
-        rtasrResult.forEach(i => {
-          let str = "实时转写"
-          if(i.cn && i.cn.st && i.cn.st.type){
-            str += (i.cn.st.type == 0) ? "【最终】识别结果：" : "【中间】识别结果："
-            i.cn.st.rt.forEach(j => {
-                j.ws.forEach(k => {
-                k.cw.forEach(l => {
-                    str += l.w
-                })
-                })
+        // console.log("_normalizeText",data)
+        if(data){
+            rtasrResult[data.seg_id] = data
+            var result = ''
+            rtasrResult.forEach(i => {
+                let str = ""
+                if(i.cn && i.cn.st && i.cn.st.type){
+                    // str += (i.cn.st.type == 0) ? "【最终】识别结果：" : "【中间】识别结果："
+                    i.cn.st.rt.forEach(j => {
+                        j.ws.forEach(k => {
+                        k.cw.forEach(l => {
+                            str += l.w
+                        })
+                        })
+                    })
+                }
+                console.log(str)
+                result = str
+                // this._currentUtterance = str
             })
+            return result
         }
+        
         //   if (currentText.length == 0) {
         //     $('#result_output').html(str)
         //   } else {
@@ -390,8 +398,8 @@ class Scratch3Speech2TextBlocks {
         //   }
         //   var ele = document.getElementById('result_output');
         //   ele.scrollTop = ele.scrollHeight;
-        console.log(str)
-        })
+        
+        
       }
 
     /**
@@ -409,6 +417,7 @@ class Scratch3Speech2TextBlocks {
         try {
             // Look for the text in the pattern starting at position 0.
             match = this._dmp.match_main(text, pattern, 0);
+            console.log("match",match)
         } catch (e) {
             // This can happen inf the text or pattern gets too long.  If so just substring match.
             return pattern.indexOf(text);
@@ -424,25 +433,25 @@ class Scratch3Speech2TextBlocks {
      */
     _processTranscriptionResult (result) {
         log.info(`Got result: ${JSON.stringify(result)}`);
-        const transcriptionResult = this._normalizeText(JSON.stringify(result));
-        // result.alternatives[0].transcript
-        // Waiting for an exact match is not satisfying.  It makes it hard to catch
-        // things like homonyms or things that sound similar "let us" vs "lettuce".  Using the fuzzy matching helps
-        // more aggressively match the phrases that are in the "When I hear" hat blocks.
-        const phrases = this._phraseList.join(' ');
-        const fuzzyMatchIndex = this._computeFuzzyMatch(phrases, transcriptionResult);
+        const transcriptionResult = this._normalizeText(result);
+        // // result.alternatives[0].transcript
+        // // Waiting for an exact match is not satisfying.  It makes it hard to catch
+        // // things like homonyms or things that sound similar "let us" vs "lettuce".  Using the fuzzy matching helps
+        // // more aggressively match the phrases that are in the "When I hear" hat blocks.
+        // const phrases = this._phraseList.join(' ');
+        // const fuzzyMatchIndex = this._computeFuzzyMatch(phrases, transcriptionResult);
         
-        // If the result isn't good enough yet, return without saving and resolving the promises.
-        if (!this._shouldKeepResult(fuzzyMatchIndex, result, transcriptionResult)) {
-            return;
-        }
+        // // If the result isn't good enough yet, return without saving and resolving the promises.
+        // if (!this._shouldKeepResult(fuzzyMatchIndex, result, transcriptionResult)) {
+        //     return;
+        // }
 
         this._currentUtterance = transcriptionResult;
         log.info(`Keeing result: ${this._currentUtterance}`);
         this._utteranceForEdgeTrigger = transcriptionResult;
 
         // We're done listening so resolove all the promises and reset everying so we're ready for next time.
-        this._resetListening();
+        // this._resetListening();
 
         // We got results so clear out the timeouts.
         
@@ -465,21 +474,26 @@ class Scratch3Speech2TextBlocks {
                 data = JSON.parse(result.data)
                 console.log("result.data",data)
             }
-            if (this._speechTimeoutId) {
-                clearTimeout(this._speechTimeoutId);
-                this._speechTimeoutId = null;
-            }
+            // if (this._speechTimeoutId) {
+            //     clearTimeout(this._speechTimeoutId);
+            //     this._speechTimeoutId = null;
+            // }
             if (this._speechFinalResponseTimeout) {
                 clearTimeout(this._speechFinalResponseTimeout);
                 this._speechFinalResponseTimeout = null;
             }
-            if(data && data.cn && data.cn && data.cn.st.type =="0"){
+            if((data && data.cn && data.cn && data.cn.st.type =="0")||(result.action==='error')){
                 // console.log(data.cn.st.type)
                 // this._socket.send("{\"end\": true}")
+                if(result.code==='10205') this._currentUtterance = "Internet Error"
                 _this._closeWebsocket ()
                 // console.log("发送结束标识");
                 console.log("_this.handlerInterval",_this.handlerInterval)
-                clearInterval(_this.handlerInterval)
+                intervalList.forEach(interval =>{
+                    clearInterval(interval)
+                    // intervalList.pop(interval)
+                })
+                _this.handlerInterval = null
                 _this._resetListening();
             }
             
@@ -501,8 +515,8 @@ class Scratch3Speech2TextBlocks {
      * @private
      */
     _speechMatches (pattern, text) {
-        pattern = this._normalizeText(pattern);
-        text = this._normalizeText(text);
+        // pattern = this._normalizeText(pattern);
+        // text = this._normalizeText(text);
         const match = this._computeFuzzyMatch(text, pattern);
         return match !== -1;
     }
@@ -515,7 +529,7 @@ class Scratch3Speech2TextBlocks {
         this.runtime.emitMicListening(true);
         this._initListening();
         // Force the block to timeout if we don't get any results back/the user didn't say anything.
-        this._speechTimeoutId = setTimeout(this._stopTranscription, listenAndWaitBlockTimeoutMs);
+        // this._speechTimeoutId = setTimeout(this._stopTranscription, listenAndWaitBlockTimeoutMs);
     }
 
     /**
@@ -673,7 +687,61 @@ class Scratch3Speech2TextBlocks {
         this._sourceNode = this._context.createMediaStreamSource(this._micStream);
         this._sourceNode.connect(this._scriptNode);
         this._scriptNode.addEventListener('audioprocess', this._processAudioCallback);
+        this.startSendFromBuffer();
         this._scriptNode.connect(this._context.destination);
+    }
+
+    startSendFromBuffer(){
+        
+            this._socket.addEventListener('message', this._onTranscriptionFromServer);
+            
+            let _this = this
+            if(buffer.length>0){
+                var audioData = buffer.splice(0, 1279)
+                if(audioData.length > 0){
+                    console.log("send")
+                    _this._socket.send(new Int8Array(audioData));
+                }
+            }   
+            this.handlerInterval = setInterval(() => {
+                if(buffer.length>0){
+       
+                    // this._socket.send(new Int8Array(audioData));
+    
+                    if (_this._socket.readyState === WebSocket.CLOSED ||
+                        _this._socket.readyState === WebSocket.CLOSING) {
+                        log.error(`Not sending data because not in ready state. State: ${_this._socket.readyState}`);
+                        _this._resetListening ()
+                        // clearInterval(_this.handlerInterval)
+                        intervalList.forEach(interval =>{
+                            clearInterval(interval)
+                            // intervalList.pop(interval)
+                        })
+                        _this.handlerInterval = null
+                        return
+                    }
+        
+                    var audioData = buffer.splice(0, 1024)
+                    if(audioData.length > 0){
+                        console.log("send")
+                        _this._socket.send(new Int8Array(audioData));
+                    }
+                }else{
+                    console.log("发送结束标识")
+                    this._socket.send("{\"end\": true}");
+                    intervalList.forEach(interval =>{
+                        clearInterval(interval)
+                        // intervalList.pop(interval)
+                    })
+                    
+                    return
+                }
+            }, 80)
+            
+            if(!intervalList.includes(this.handlerInterval)) {
+                console.log(this.handlerInterval)
+                intervalList.push(this.handlerInterval)
+            }
     }
 
     /**
@@ -688,37 +756,9 @@ class Scratch3Speech2TextBlocks {
         let bufTo16kHz = this.to16kHz(floatSamples)
         let bufTo16BitPCM = this.to16BitPCM(bufTo16kHz)
         buffer.push(...bufTo16BitPCM)
-        console.log("buffer.length",buffer.length)
+        
 
-        if(buffer.length>0){
-            var audioData = buffer.splice(0, 1280)
-            this._socket.send(new Int8Array(audioData));
-            this._socket.addEventListener('message', this._onTranscriptionFromServer);
-            // this.ws.send() 
-            let _this = this
-            this.handlerInterval = setInterval(() => {
-            // websocket未连接
-            if (_this._socket.readyState === WebSocket.CLOSED ||
-                _this._socket.readyState === WebSocket.CLOSING) {
-                log.error(`Not sending data because not in ready state. State: ${_this._socket.readyState}`);
-                _this._resetListening ()
-                clearInterval(_this.handlerInterval)
-                return
-            }
-            if (buffer.length === 0) {
-                if (_this.state === 'end') {
-                    _this._socket.send("{\"end\": true}")
-                console.log("发送结束标识");
-                clearInterval(_this.handlerInterval)
-                }
-                return false
-            }
-            var audioData = buffer.splice(0, 1280)
-            if(audioData.length > 0){
-                _this._socket.send(new Int8Array(audioData));
-            }
-            }, 80)
-        }
+        
 
         // if (this._socket.readyState === WebSocket.CLOSED ||
         // this._socket.readyState === WebSocket.CLOSING) {
@@ -832,7 +872,6 @@ class Scratch3Speech2TextBlocks {
 
     stopListen(){
         this._resetListening()
-        clearInterval(this.handlerInterval)
     }
 
     /**
