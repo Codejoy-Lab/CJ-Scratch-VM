@@ -36,6 +36,27 @@ const builtinExtensions = {
     cxtello:()=>require('../extensions/scratch3_tello'),
     speech2text:()=>require('../extensions/scratch3_speech2text'),
     matatabot:()=>require('../extensions/scratch3_matatabot'),
+    ml2scratch:()=>require('../extensions/scratch3_ml2scratch'),
+    tmpose2scratch:()=>require('../extensions/scratch3_tmpose2scratch'),
+    tm2scratch:()=>require('../extensions/scratch3_tm2scratch'),
+    BodyPix:()=>require('../extensions/scratch3_BodyPix'),
+    aqara:()=>require('../extensions/scratch3_aqara'),
+    // handpose2scratch:()=>require('../extensions/scratch3_handpose2scratch')
+    // facemesh2scratch:()=>require('../extensions/scratch3_facemesh2scratch')
+    // weatherReport:()=>require('../extensions/scratch3_weatherReport')
+    handpose2scratch : () => require('../extensions/scratch3_handpose2scratch'),
+
+facemesh2scratch : () => require('../extensions/scratch3_facemesh2scratch'),
+
+ic2scratch : () => require('../extensions/scratch3_ic2scratch'),
+
+speech2scratch : () => require('../extensions/scratch3_speech2scratch'),
+
+scratch2maqueen : () => require('../extensions/scratch3_scratch2maqueen'),
+
+qrcode : () => require('../extensions/scratch3_qrcode'),
+
+pasorich : () => require('../extensions/scratch3_pasorich'),
     
 };
 
