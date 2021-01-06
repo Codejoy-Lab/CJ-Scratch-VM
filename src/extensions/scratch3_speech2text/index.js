@@ -53,6 +53,20 @@ const finalResponseTimeoutDurationMs = 3000;
  */
 const listenAndWaitBlockTimeoutMs = 10000;
 
+const Message = {
+    stop:{
+        'zh-cn': "停止录音",
+		en: "Stop",
+    },
+    cleanAll:{
+        en:'Clean All',
+        'zh-cn': "清除",
+    },
+    listeningAndWaitThenStop:{
+        en:'Listen the speech and wait [SEC] seconds',
+        'zh-cn': "识别语音[SEC]秒",
+    }
+}
 
 class Scratch3Speech2TextBlocks {
     constructor (runtime) {
@@ -176,6 +190,21 @@ class Scratch3Speech2TextBlocks {
         this.runtime.on('PROJECT_STOP_ALL', this._resetListening.bind(this));
         this.runtime.on('PROJECT_START', this._resetEdgeTriggerUtterance.bind(this));
 
+    }
+    setLocale() {
+        let now_locale = "";
+        switch (formatMessage.setup().locale) {
+            case "en":
+                now_locale = "en";
+                break;
+            case "zh-cn":
+                now_locale = "zh-cn";
+                break;
+            default:
+                now_locale = "zh-cn";
+                break;
+        }
+        return now_locale;
     }
 
     /**
@@ -526,7 +555,11 @@ class Scratch3Speech2TextBlocks {
      * @private
      */
     _startListening () {
-        this.runtime.emitMicListening(true);
+        var _this = this
+        setTimeout(function(){ 
+            _this.runtime.emitMicListening(true);
+        }, 800);
+        
         this._initListening();
         // Force the block to timeout if we don't get any results back/the user didn't say anything.
         // this._speechTimeoutId = setTimeout(this._stopTranscription, listenAndWaitBlockTimeoutMs);
@@ -787,6 +820,7 @@ class Scratch3Speech2TextBlocks {
      * @returns {object} Metadata for this extension and its blocks.
      */
     getInfo () {
+        this._locale = this.setLocale()
         return {
             id: 'speech2text',
             name: formatMessage({
@@ -811,11 +845,27 @@ class Scratch3Speech2TextBlocks {
                     opcode: 'stopListen',
                     text: formatMessage({
                         id: 'speech.stopListen',
-                        default: 'Stop',
+                        default: Message.stop[this._locale],
                         // eslint-disable-next-line max-len
                         description: 'Start listening to the microphone and wait for a result from the speech recognition system.'
                     }),
                     blockType: BlockType.COMMAND
+                },
+                {
+                    opcode: 'listeningAndWaitThenStop',
+                    text: formatMessage({
+                        // id: 'speech.listenAndWait',
+                        default: Message.listeningAndWaitThenStop[this._locale],//'listen and wait',
+                        // eslint-disable-next-line max-len
+                        description: 'Start listening to the microphone and wait for a result from the speech recognition system.'
+                    }),
+                    blockType: BlockType.COMMAND,
+                    arguments:{
+                        SEC:{
+                            type: ArgumentType.NUMBER,
+                            defaultValue:5
+                        }
+                    }
                 },
                 {
                     opcode: 'whenIHearHat',
@@ -845,7 +895,17 @@ class Scratch3Speech2TextBlocks {
                         description: 'Get the text of spoken words transcribed by the speech recognition system.'
                     }),
                     blockType: BlockType.REPORTER
-                }
+                },
+                {
+                    opcode: 'cleanAll',
+                    text: formatMessage({
+                        // id: 'speech.stopListen',
+                        default:  Message.cleanAll[this._locale],
+                        // eslint-disable-next-line max-len
+                        // description: 'Start listening to the microphone and wait for a result from the speech recognition system.'
+                    }),
+                    blockType: BlockType.COMMAND
+                },
             ]
         };
     }
@@ -869,6 +929,16 @@ class Scratch3Speech2TextBlocks {
         console.log("speechPromise",speechPromise)
         return speechPromise;
     }
+    listeningAndWaitThenStop(para){
+        this.listenAndWait ()
+        var _this = this
+        // console.log('para',para.SEC)
+        setTimeout(function(){ 
+            console.log("timeout stop!")
+            _this.stopListen() 
+        }, (para.SEC+0.8)*100);
+        
+    }
 
     stopListen(){
         this._resetListening()
@@ -890,7 +960,10 @@ class Scratch3Speech2TextBlocks {
     getSpeech () {
         return this._currentUtterance;
     }
-
+    cleanAll(){
+        this._currentUtterance = ""
+        // return this._currentUtterance;
+    }
 
     // helper 
     to16kHz (buffer) {
