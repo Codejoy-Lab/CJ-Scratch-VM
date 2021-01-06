@@ -45,6 +45,7 @@ const builtinExtensions = {
     // facemesh2scratch:()=>require('../extensions/scratch3_facemesh2scratch')
     // weatherReport:()=>require('../extensions/scratch3_weatherReport')
     handpose2scratch : () => require('../extensions/scratch3_handpose2scratch'),
+    microbitMore : () => require('../extensions/scratch3_microbitmore'),
 
 facemesh2scratch : () => require('../extensions/scratch3_facemesh2scratch'),
 
