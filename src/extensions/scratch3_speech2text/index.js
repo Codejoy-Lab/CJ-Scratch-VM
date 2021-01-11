@@ -35,7 +35,7 @@ const menuIconURI = 'data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53M
  * The url of the speech server.
  * @type {string}
  */
-const serverURL = 'wss://speech.scratch.mit.edu';
+const serverURL = 'ws://speech.scratch.mit.edu';
 
 /**
  * The amount of time to wait between when we stop sending speech data to the server and when
@@ -52,6 +52,8 @@ const finalResponseTimeoutDurationMs = 3000;
  * @type {int}
  */
 const listenAndWaitBlockTimeoutMs = 10000;
+
+
 
 const Message = {
     stop:{
@@ -75,6 +77,7 @@ class Scratch3Speech2TextBlocks {
          * @type {Runtime}
          */
         this.runtime = runtime;
+        this.isStop = false;
         // this.client = new speecchtextClient(null,null)
         /**
          * An array of phrases from the [when I hear] hat blocks.
@@ -511,19 +514,21 @@ class Scratch3Speech2TextBlocks {
                 clearTimeout(this._speechFinalResponseTimeout);
                 this._speechFinalResponseTimeout = null;
             }
-            if((data && data.cn && data.cn && data.cn.st.type =="0")||(result.action==='error')){
-                // console.log(data.cn.st.type)
-                // this._socket.send("{\"end\": true}")
+            if((this.isStop&&data && data.cn && data.cn && data.cn.st.type =="0")||(result.action==='error')){
+ 
                 if(result.code==='10205') this._currentUtterance = "Internet Error"
-                _this._closeWebsocket ()
-                // console.log("发送结束标识");
-                console.log("_this.handlerInterval",_this.handlerInterval)
-                intervalList.forEach(interval =>{
-                    clearInterval(interval)
-                    // intervalList.pop(interval)
-                })
-                _this.handlerInterval = null
-                _this._resetListening();
+                setTimeout(function(){
+                    _this._closeWebsocket ()
+                    console.log('Close Websocket')
+                    // console.log("_this.handlerInterval",_this.handlerInterval)
+                    intervalList.forEach(interval =>{
+                        clearInterval(interval)
+                        // intervalList.pop(interval)
+                    })
+                    _this.handlerInterval = null
+                    _this._resetListening();
+                },5000)
+                
             }
             
             
@@ -556,9 +561,9 @@ class Scratch3Speech2TextBlocks {
      */
     _startListening () {
         var _this = this
-        setTimeout(function(){ 
+        // setTimeout(function(){ 
             _this.runtime.emitMicListening(true);
-        }, 800);
+        // }, 800);
         
         this._initListening();
         // Force the block to timeout if we don't get any results back/the user didn't say anything.
@@ -754,22 +759,27 @@ class Scratch3Speech2TextBlocks {
                         return
                     }
         
-                    var audioData = buffer.splice(0, 1024)
+                    var audioData = buffer.splice(0, 1280)
                     if(audioData.length > 0){
                         console.log("send")
                         _this._socket.send(new Int8Array(audioData));
                     }
-                }else{
-                    console.log("发送结束标识")
-                    this._socket.send("{\"end\": true}");
-                    intervalList.forEach(interval =>{
-                        clearInterval(interval)
-                        // intervalList.pop(interval)
-                    })
-                    
-                    return
                 }
-            }, 80)
+                // else{
+                //     let _this = this
+                //     setTimeout(function(){ 
+                //         console.log("发送结束标识")
+                //         _this._socket.send("{\"end\": true}"); 
+                //     }, 5000)
+                    
+                //     intervalList.forEach(interval =>{
+                //         clearInterval(interval)
+                //         // intervalList.pop(interval)
+                //     })
+                    
+                //     return
+                // }
+            }, 40)
             
             if(!intervalList.includes(this.handlerInterval)) {
                 console.log(this.handlerInterval)
@@ -926,7 +936,7 @@ class Scratch3Speech2TextBlocks {
                 this._startListening();
             }
         });
-        console.log("speechPromise",speechPromise)
+        // console.log("speechPromise",speechPromise)
         return speechPromise;
     }
     listeningAndWaitThenStop(para){
@@ -936,12 +946,13 @@ class Scratch3Speech2TextBlocks {
         setTimeout(function(){ 
             console.log("timeout stop!")
             _this.stopListen() 
-        }, (para.SEC+0.8)*100);
+        }, para.SEC*100);
         
     }
 
     stopListen(){
         this._resetListening()
+        this.isStop = true
     }
 
     /**

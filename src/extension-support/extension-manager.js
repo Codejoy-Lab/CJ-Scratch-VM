@@ -46,6 +46,7 @@ const builtinExtensions = {
     // weatherReport:()=>require('../extensions/scratch3_weatherReport')
     handpose2scratch : () => require('../extensions/scratch3_handpose2scratch'),
     microbitMore : () => require('../extensions/scratch3_microbitmore'),
+    codejoyLab : () => require('../extensions/scratch3_CodejoyLab'),
 
 facemesh2scratch : () => require('../extensions/scratch3_facemesh2scratch'),
 
