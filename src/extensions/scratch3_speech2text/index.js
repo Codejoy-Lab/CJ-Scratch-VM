@@ -78,6 +78,7 @@ class Scratch3Speech2TextBlocks {
          */
         this.runtime = runtime;
         this.isStop = false;
+        this.tempResult = '';
         // this.client = new speecchtextClient(null,null)
         /**
          * An array of phrases from the [when I hear] hat blocks.
@@ -403,7 +404,7 @@ class Scratch3Speech2TextBlocks {
         // console.log("_normalizeText",data)
         if(data){
             rtasrResult[data.seg_id] = data
-            var result = ''
+            var interResult = ''
             rtasrResult.forEach(i => {
                 let str = ""
                 if(i.cn && i.cn.st && i.cn.st.type){
@@ -417,10 +418,19 @@ class Scratch3Speech2TextBlocks {
                     })
                 }
                 console.log(str)
-                result = str
+                if(i.cn.st.type == 0){
+                    if(!this.tempResult.includes(str)) this.tempResult += str
+                    interResult = ''
+                } else{
+                    // if(this.tempResult ===''){
+                    //     this.tempResult = str
+                    // }
+                    interResult = str
+                    console.log("【中间】识别结果",str)
+                } 
                 // this._currentUtterance = str
             })
-            return result
+            return this.tempResult+interResult
         }
         
         //   if (currentText.length == 0) {
@@ -514,8 +524,9 @@ class Scratch3Speech2TextBlocks {
                 clearTimeout(this._speechFinalResponseTimeout);
                 this._speechFinalResponseTimeout = null;
             }
-            if((this.isStop&&data && data.cn && data.cn && data.cn.st.type =="0")||(result.action==='error')){
- 
+            // if((this.isStop&&data && data.cn && data.cn && data.cn.st.type =="0")||(result.action==='error')){
+            if((this.isStop&&data && data.ls)||(result.action==='error')){
+                
                 if(result.code==='10205') this._currentUtterance = "Internet Error"
                 setTimeout(function(){
                     _this._closeWebsocket ()
@@ -527,6 +538,8 @@ class Scratch3Speech2TextBlocks {
                     })
                     _this.handlerInterval = null
                     _this._resetListening();
+                    _this.isStop = false
+                    _this.tempResult = ''
                 },5000)
                 
             }
@@ -765,20 +778,21 @@ class Scratch3Speech2TextBlocks {
                         _this._socket.send(new Int8Array(audioData));
                     }
                 }
-                // else{
-                //     let _this = this
-                //     setTimeout(function(){ 
-                //         console.log("发送结束标识")
-                //         _this._socket.send("{\"end\": true}"); 
-                //     }, 5000)
+                else if(this.isStop){
+                    // this.isStop = false
+                    let _this = this
+                    setTimeout(function(){ 
+                        console.log("发送结束标识")
+                        _this._socket.send("{\"end\": true}"); 
+                    }, 5000)
                     
-                //     intervalList.forEach(interval =>{
-                //         clearInterval(interval)
-                //         // intervalList.pop(interval)
-                //     })
+                    intervalList.forEach(interval =>{
+                        clearInterval(interval)
+                        // intervalList.pop(interval)
+                    })
                     
-                //     return
-                // }
+                    // return
+                }
             }, 40)
             
             if(!intervalList.includes(this.handlerInterval)) {
@@ -946,7 +960,7 @@ class Scratch3Speech2TextBlocks {
         setTimeout(function(){ 
             console.log("timeout stop!")
             _this.stopListen() 
-        }, para.SEC*100);
+        }, para.SEC*1000);
         
     }
 
