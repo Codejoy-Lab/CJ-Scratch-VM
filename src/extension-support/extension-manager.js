@@ -41,10 +41,10 @@ const builtinExtensions = {
     tm2scratch:()=>require('../extensions/scratch3_tm2scratch'),
     BodyPix:()=>require('../extensions/scratch3_BodyPix'),
     aqara:()=>require('../extensions/scratch3_aqara'),
-    // handpose2scratch:()=>require('../extensions/scratch3_handpose2scratch')
-    // facemesh2scratch:()=>require('../extensions/scratch3_facemesh2scratch')
-    // weatherReport:()=>require('../extensions/scratch3_weatherReport')
-    handpose2scratch : () => require('../extensions/scratch3_handpose2scratch'),
+    handpose2scratch:()=>require('../extensions/scratch3_handpose2scratch'),
+    // facemesh2scratch:()=>require('../extensions/scratch3_facemesh2scratch'),
+    // weatherReport:()=>require('../extensions/scratch3_weatherReport'),
+    // handpose2scratch : () => require('../extensions/scratch3_handpose2scratch'),
     microbitMore : () => require('../extensions/scratch3_microbitmore'),
     codejoyLab : () => require('../extensions/scratch3_CodejoyLab'),
 

@@ -6,7 +6,7 @@ require('@tensorflow/tfjs-core');
 require('@tensorflow/tfjs-converter');
 require('@tensorflow/tfjs-backend-webgl');
 const facemesh = require('@tensorflow-models/facemesh');
-
+ 
 const Message = {
   getX: {
     'ja': '[PERSON_NUMBER] 人目の [KEYPOINT] 番目の部位のx座標',
