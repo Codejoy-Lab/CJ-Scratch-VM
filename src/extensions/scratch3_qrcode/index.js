@@ -14,64 +14,96 @@ const blockIconURI = 'data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNv
 
 const menuIconURI = 'data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0idXRmLTgiPz4KPHN2ZyB2ZXJzaW9uPSIxLjEiIGlkPSJMYXllcl8xIiB4PSIwcHgiIHk9IjBweCIgdmlld0JveD0iMCAwIDIwIDIwIiBzdHlsZT0iZW5hYmxlLWJhY2tncm91bmQ6bmV3IDAgMCA1MTIgNTEyOyIgd2lkdGg9IjIwcHgiIGhlaWdodD0iMjBweCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KICA8Zz4KICAgIDxyZWN0IHdpZHRoPSIyMCIgaGVpZ2h0PSIyMCIgc3R5bGU9InN0cm9rZS13aWR0aDogMHB4OyBmaWxsOiByZ2IoMjU1LCAyNTUsIDI1NSk7Ii8+CiAgICA8ZyB0cmFuc2Zvcm09Im1hdHJpeCgwLjAzNTE1NiwgMCwgMCwgMC4wMzUxNTYsIDEuMDAwMDYzLCAxLjAwMDA2MykiPgogICAgICA8Zz4KICAgICAgICA8Zz4KICAgICAgICAgIDxwYXRoIGQ9Ik0wLDB2MjMzLjczOWgyMzMuNzM5VjBIMHogTTIwMC4zNDgsMjAwLjM0OEgzMy4zOTFWMzMuMzkxaDE2Ni45NTdWMjAwLjM0OHoiIHN0eWxlPSJzdHJva2Utb3BhY2l0eTogMC4xNTsgZmlsbDogcmdiKDc3LCA3NywgNzcpOyBzdHJva2Utd2lkdGg6IDYuODI2NjhweDsiLz4KICAgICAgICA8L2c+CiAgICAgIDwvZz4KICAgICAgPGc+CiAgICAgICAgPGc+CiAgICAgICAgICA8cmVjdCB4PSI2Ni43ODMiIHk9IjY2Ljc4MyIgd2lkdGg9IjEwMC4xNzQiIGhlaWdodD0iMTAwLjE3NCIgc3R5bGU9InN0cm9rZS1vcGFjaXR5OiAwLjE1OyBmaWxsOiByZ2IoNzcsIDc3LCA3Nyk7IHN0cm9rZS13aWR0aDogNi44MjY2OHB4OyIvPgogICAgICAgIDwvZz4KICAgICAgPC9nPgogICAgICA8Zz4KICAgICAgICA8Zz4KICAgICAgICAgIDxwYXRoIGQ9Ik0yNzguMjYxLDB2MjMzLjczOUg1MTJWMEgyNzguMjYxeiBNNDc4LjYwOSwyMDAuMzQ4SDMxMS42NTJWMzMuMzkxaDE2Ni45NTdWMjAwLjM0OHoiIHN0eWxlPSJzdHJva2Utb3BhY2l0eTogMC4xNTsgZmlsbDogcmdiKDc3LCA3NywgNzcpOyBzdHJva2Utd2lkdGg6IDYuODI2NjhweDsiLz4KICAgICAgICA8L2c+CiAgICAgIDwvZz4KICAgICAgPGc+CiAgICAgICAgPGc+CiAgICAgICAgICA8cmVjdCB4PSIzNDUuMDQzIiB5PSI2Ni43ODMiIHdpZHRoPSIxMDAuMTc0IiBoZWlnaHQ9IjEwMC4xNzQiIHN0eWxlPSJzdHJva2Utb3BhY2l0eTogMC4xNTsgZmlsbDogcmdiKDc3LCA3NywgNzcpOyBzdHJva2Utd2lkdGg6IDYuODI2NjhweDsiLz4KICAgICAgICA8L2c+CiAgICAgIDwvZz4KICAgICAgPGc+CiAgICAgICAgPGc+CiAgICAgICAgICA8cGF0aCBkPSJNMCwyNzguMjYxVjUxMmgyMzMuNzM5VjI3OC4yNjFIMHogTTIwMC4zNDgsNDc4LjYwOUgzMy4zOTFWMzExLjY1MmgxNjYuOTU3VjQ3OC42MDl6IiBzdHlsZT0ic3Ryb2tlLW9wYWNpdHk6IDAuMTU7IGZpbGw6IHJnYig3NywgNzcsIDc3KTsgc3Ryb2tlLXdpZHRoOiA2LjgyNjY4cHg7Ii8+CiAgICAgICAgPC9nPgogICAgICA8L2c+CiAgICAgIDxnPgogICAgICAgIDxnPgogICAgICAgICAgPHJlY3QgeD0iNjYuNzgzIiB5PSIzNDUuMDQzIiB3aWR0aD0iMTAwLjE3NCIgaGVpZ2h0PSIxMDAuMTc0IiBzdHlsZT0ic3Ryb2tlLW9wYWNpdHk6IDAuMTU7IGZpbGw6IHJnYig3NywgNzcsIDc3KTsgc3Ryb2tlLXdpZHRoOiA2LjgyNjY4cHg7Ii8+CiAgICAgICAgPC9nPgogICAgICA8L2c+CiAgICAgIDxnPgogICAgICAgIDxnPgogICAgICAgICAgPHBvbHlnb24gcG9pbnRzPSIzNDUuMDQzLDMxMS42NTIgMzQ1LjA0MywyNzguMjYxIDI3OC4yNjEsMjc4LjI2MSAyNzguMjYxLDUxMiAzNDUuMDQzLDUxMiAzNDUuMDQzLDQ3OC42MDkgMzExLjY1Miw0NzguNjA5ICYjMTA7JiM5OyYjOTsmIzk7MzExLjY1Miw0MTEuODI2IDM0NS4wNDMsNDExLjgyNiAzNDUuMDQzLDM3OC40MzUgMzExLjY1MiwzNzguNDM1IDMxMS42NTIsMzExLjY1MiAmIzk7JiM5OyIgc3R5bGU9InN0cm9rZS1vcGFjaXR5OiAwLjE1OyBmaWxsOiByZ2IoNzcsIDc3LCA3Nyk7IHN0cm9rZS13aWR0aDogNi44MjY2OHB4OyIvPgogICAgICAgIDwvZz4KICAgICAgPC9nPgogICAgICA8Zz4KICAgICAgICA8Zz4KICAgICAgICAgIDxyZWN0IHg9IjQ3OC42MDkiIHk9IjI3OC4yNjEiIHdpZHRoPSIzMy4zOTEiIGhlaWdodD0iMzMuMzkxIiBzdHlsZT0ic3Ryb2tlLW9wYWNpdHk6IDAuMTU7IGZpbGw6IHJnYig3NywgNzcsIDc3KTsgc3Ryb2tlLXdpZHRoOiA2LjgyNjY4cHg7Ii8+CiAgICAgICAgPC9nPgogICAgICA8L2c+CiAgICAgIDxnPgogICAgICAgIDxnPgogICAgICAgICAgPHBvbHlnb24gcG9pbnRzPSI0NzguNjA5LDM1Ni4xNzQgNDc4LjYwOSw0NzguNjA5IDQ0NS4yMTcsNDc4LjYwOSA0NDUuMjE3LDUxMiA1MTIsNTEyIDUxMiwzNTYuMTc0ICYjOTsmIzk7IiBzdHlsZT0ic3Ryb2tlLW9wYWNpdHk6IDAuMTU7IGZpbGw6IHJnYig3NywgNzcsIDc3KTsgc3Ryb2tlLXdpZHRoOiA2LjgyNjY4cHg7Ii8+CiAgICAgICAgPC9nPgogICAgICA8L2c+CiAgICAgIDxnPgogICAgICAgIDxnPgogICAgICAgICAgPHJlY3QgeD0iMzc4LjQzNSIgeT0iMjc4LjI2MSIgd2lkdGg9IjY2Ljc4MyIgaGVpZ2h0PSIzMy4zOTEiIHN0eWxlPSJzdHJva2Utb3BhY2l0eTogMC4xNTsgZmlsbDogcmdiKDc3LCA3NywgNzcpOyBzdHJva2Utd2lkdGg6IDYuODI2NjhweDsiLz4KICAgICAgICA8L2c+CiAgICAgIDwvZz4KICAgICAgPGc+CiAgICAgICAgPGc+CiAgICAgICAgICA8cG9seWdvbiBwb2ludHM9IjQ0NS4yMTcsMzc4LjQzNSA0NDUuMjE3LDM0NS4wNDMgMzc4LjQzNSwzNDUuMDQzIDM3OC40MzUsNDQ1LjIxNyA0NDUuMjE3LDQ0NS4yMTcgNDQ1LjIxNyw0MTEuODI2ICYjMTA7JiM5OyYjOTsmIzk7NDExLjgyNiw0MTEuODI2IDQxMS44MjYsMzc4LjQzNSAmIzk7JiM5OyIgc3R5bGU9InN0cm9rZS1vcGFjaXR5OiAwLjE1OyBmaWxsOiByZ2IoNzcsIDc3LCA3Nyk7IHN0cm9rZS13aWR0aDogNi44MjY2OHB4OyIvPgogICAgICAgIDwvZz4KICAgICAgPC9nPgogICAgICA8Zz4KICAgICAgICA8Zz4KICAgICAgICAgIDxyZWN0IHg9IjM3OC40MzUiIHk9IjQ3OC42MDkiIHdpZHRoPSIzMy4zOTEiIGhlaWdodD0iMzMuMzkxIiBzdHlsZT0ic3Ryb2tlLW9wYWNpdHk6IDAuMTU7IGZpbGw6IHJnYig3NywgNzcsIDc3KTsgc3Ryb2tlLXdpZHRoOiA2LjgyNjY4cHg7Ii8+CiAgICAgICAgPC9nPgogICAgICA8L2c+CiAgICAgIDxnLz4KICAgICAgPGcvPgogICAgICA8Zy8+CiAgICAgIDxnLz4KICAgICAgPGcvPgogICAgICA8Zy8+CiAgICAgIDxnLz4KICAgICAgPGcvPgogICAgICA8Zy8+CiAgICAgIDxnLz4KICAgICAgPGcvPgogICAgICA8Zy8+CiAgICAgIDxnLz4KICAgICAgPGcvPgogICAgICA8Zy8+CiAgICA8L2c+CiAgPC9nPgo8L3N2Zz4=';
 
-const Locales = ['ja', 'ja-Hira', 'en'];
+const Locales = ['ja', 'ja-Hira', 'en','zh-cn'];
 
 const Message = {
     qrCode : {
         'ja': 'QRコード',
         'ja-Hira': 'QRコード',
-        'en': 'QR code'
+        'en': 'QR code',
+        'zh-cn':'二维码'
     },
     qrStart : {
         'ja': '[INPUT]の読み取りを始める',
         'ja-Hira': '[INPUT]のよみとりをはじめる',
-        'en': 'Start scanning [INPUT]'
+        'en': 'Start scanning [INPUT]',
+        'zh-cn':'开始扫描 [INPUT]'
     },
     qrCameraInput : {
         'ja': 'カメラ',
         'ja-Hira': 'カメラ',
-        'en': 'camera'
+        'en': 'camera',
+        'zh-cn':'摄像机'
     },
     qrStageInput : {
         'ja': 'ステージ',
         'ja-Hira': 'ステージ',
-        'en': 'stage'
+        'en': 'stage',
+        'zh-cn':'舞台'
     },
     qrStop : {
         'ja': '読み取りを止める',
         'ja-Hira': 'よみとりをとめる',
-        'en': 'Stop scanning'
+        'en': 'Stop scanning',
+        'zh-cn':'停止扫描'
     },
     qrScanning : {
         'ja': '読み取り中',
         'ja-Hira': 'よみとりちゅう',
-        'en': 'scanning?'
+        'en': 'scanning?',
+        'zh-cn':'扫描中？'
     },
     qrSetInterval : {
         'ja': '読み取りの間隔を[INTERVAL]秒にする',
         'ja-Hira': 'よみとりのかんかくを[INTERVAL]びょうにする',
-        'en': 'set scan interval [INTERVAL] sec'
+        'en': 'set scan interval [INTERVAL] sec',
+        'zh-cn':'设置扫描持续[INTERVAL]秒'
     },
     qrData : {
         'ja': '読み取り結果',
         'ja-Hira': 'よみとりけっか',
-        'en': 'data'
+        'en': 'data',
+        'zh-cn':'扫描结果'
     },
     qrASCII : {
         'ja': '読み取り結果の[INDEX]番目の文字のASCIIコード',
         'ja-Hira': 'よみとりけっかの[INDEX]ばんめのもじのASCIIコード',
-        'en': 'letter [INDEX] ASCII code of data'
+        'en': 'letter [INDEX] ASCII code of data',
+        'zh-cn':'标记数据[INDEX] ASCII 码'
     },
     qrReset : {
         'ja': '読み取り結果を消す',
         'ja-Hira': 'よみとりけっかをけす',
-        'en': 'reset data'
+        'en': 'reset data',
+        'zh-cn':'重制结果'
     },
     qrSetCameraTransparency : {
         'ja': 'カメラの透明度を[TRANSPARENCY]にする',
         'ja-Hira': 'カメラのとうめいどを[TRANSPARENCY]にする',
-        'en': 'set camera transparency to [TRANSPARENCY]'
-    }
+        'en': 'set camera transparency to [TRANSPARENCY]',
+        'zh-cn':'设置摄像头的透明度为[TRANSPARENCY]'
+    },
+    QRLocation:{
+
+        'en': 'get QRCode\'s [LOC] \'s [COOR]',
+        'zh-cn':'获取二位码的[LOC]的[COOR]值'
+    },
+    bottomLeftCorner:{
+        'en': 'bottom left corner',
+        'zh-cn':'左下角'
+    }, 
+    bottomRightCorner:{
+        'en': 'bottom right corner',
+        'zh-cn':'右下角'
+    },
+    topLeftCorner:{
+        'en': 'top left corner',
+        'zh-cn':'左上角'
+    },
+    topRightCorner:{
+        'en': 'top right corner',
+        'zh-cn':'右上角'
+    },
 };
 
 const DefaultInterval = 300;
@@ -99,6 +131,7 @@ class Scratch3QRCodeBlocks {
         this._interval = DefaultInterval;
         this._data = '';
         this._binaryData = null;
+        this._loction = {}
 
         this.runtime.on('PROJECT_STOP_ALL', this.qrStop.bind(this));
 
@@ -187,9 +220,36 @@ class Scratch3QRCodeBlocks {
                             defaultValue: 0
                         }
                     }
-                }
+                },
+                {
+                    opcode: 'getQRLocation',
+                    text: Message.QRLocation[this.locale],
+                    blockType: BlockType.REPORTER,
+                    arguments:{
+                        LOC:{
+                            type:ArgumentType.STRING,
+                            menu:'locMenu',
+                            defaultValue: Message.bottomLeftCorner[this.locale]
+                        },
+                        COOR:{
+                            type:ArgumentType.STRING,
+                            menu:'coorMenu',
+                            defaultValue: 'x'
+                        }
+                    }
+                },
+
             ],
             menus: {
+                locMenu:{
+                    items: [ Message.bottomLeftCorner[this.locale], 
+                    Message.bottomRightCorner[this.locale],
+                    Message.topLeftCorner[this.locale],
+                    Message.topRightCorner[this.locale]]
+                },
+                coorMenu:{
+                    items: ['x','y']
+                },
                 inputMenu: {
                     acceptReporters: false,
                     items: [Message.qrCameraInput[this.locale], Message.qrStageInput[this.locale]]
@@ -201,7 +261,35 @@ class Scratch3QRCodeBlocks {
             }
         }
     };
-
+  
+    getQRLocation(args){
+        console.log('args',args)
+        var loc = undefined
+        switch(args.LOC){
+            case 'bottom left corner':
+            case '左下角':
+                loc = 'bottomLeftCorner';
+                break;
+            case 'bottom right corner':
+            case '右下角':
+                loc = 'bottomRightCorner';
+                break;
+            case 'top left corner':
+            case '左上角':
+                loc = 'topLeftCorner';
+                break;
+            case 'top right corner':
+            case '右上角':
+                loc = 'topRightCorner';
+                break;
+            default:
+                var loc = undefined;
+                break;
+        }
+        if(this._loction&&loc){
+            return this._loction[loc][args.COOR]
+        }
+    }
     _getViewerLanguageCode () {
         const locale = formatMessage.setup().locale;
         if (Locales.includes(locale)) {
@@ -252,13 +340,17 @@ class Scratch3QRCodeBlocks {
     }
 
     _drawMark(location, width, height){
+        
+        
         let widthScale = DefaultStageWidth / width;
         let heightScale = DefaultStageHeight / height;
-
+        console.log('width:',widthScale, 'height:',heightScale)
         location.topLeftCorner.x = location.topLeftCorner.x * widthScale - width / 2 * widthScale;
         location.topRightCorner.x = location.topRightCorner.x * widthScale - width / 2 * widthScale;
         location.bottomRightCorner.x = location.bottomRightCorner.x * widthScale - width / 2 * widthScale;
         location.bottomLeftCorner.x = location.bottomLeftCorner.x * widthScale - width / 2 * widthScale;
+        this._loction = location
+        // console.log('location',location)
 
         if(this._mode == Mode.CAMERA){
             location.topLeftCorner.y = height / 2 * heightScale - location.topLeftCorner.y * heightScale;

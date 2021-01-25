@@ -9,134 +9,160 @@ const Message = {
 		ja: "のx座標",
 		"ja-Hira": "のxざひょう",
 		en: " x",
+		'zh-cn':"x坐标"
 	},
 	y: {
 		ja: "のy座標",
 		"ja-Hira": "のyざひょう",
 		en: " y",
+		'zh-cn':"y坐标"
 	},
 	peopleCount: {
 		ja: "人数",
 		"ja-Hira": "にんずう",
 		en: "people count",
+		'zh-cn':"人数"
 	},
 	nose: {
 		ja: "鼻",
 		"ja-Hira": "はな",
 		en: "nose",
+		'zh-cn':"鼻子"
 	},
 	leftEye: {
 		ja: "左目",
 		"ja-Hira": "ひだりめ",
 		en: "left eye",
+		'zh-cn':"左眼"
 	},
 	rightEye: {
 		ja: "右目",
 		"ja-Hira": "みぎめ",
 		en: "right eye",
+		'zh-cn':"右眼"
 	},
 	leftEar: {
 		ja: "左耳",
 		"ja-Hira": "ひだりみみ",
 		en: "left ear",
+		'zh-cn':"左耳"
 	},
 	rightEar: {
 		ja: "右耳",
 		"ja-Hira": "みぎみみ",
 		en: "right ear",
+		'zh-cn':"右耳"
 	},
 	leftShoulder: {
 		ja: "左肩",
 		"ja-Hira": "ひだりかた",
 		en: "left shoulder",
+		'zh-cn':"左肩"
 	},
 	rightShoulder: {
 		ja: "右肩",
 		"ja-Hira": "みぎかた",
 		en: "right shoulder",
+		'zh-cn':"右肩"
 	},
 	leftElbow: {
 		ja: "左ひじ",
 		"ja-Hira": "ひだりひじ",
 		en: "left elbow",
+		'zh-cn':"左手肘"
 	},
 	rightElbow: {
 		ja: "右ひじ",
 		"ja-Hira": "みぎひじ",
 		en: "right elbow",
+		'zh-cn':"右手肘"
 	},
 	leftWrist: {
 		ja: "左手首",
 		"ja-Hira": "ひだりてくび",
 		en: "left wrist",
+		'zh-cn':"左手腕"
 	},
 	rightWrist: {
 		ja: "右手首",
 		"ja-Hira": "みぎてくび",
 		en: "right wrist",
+		'zh-cn':"右手腕"
 	},
 	leftHip: {
 		ja: "左腰",
 		"ja-Hira": "ひだりこし",
 		en: "left hip",
+		'zh-cn':"左腰"
 	},
 	rightHip: {
 		ja: "右腰",
 		"ja-Hira": "みぎこし",
 		en: "right hip",
+		'zh-cn':"右腰"
 	},
 	leftKnee: {
 		ja: "左ひざ",
 		"ja-Hira": "ひだりひざ",
 		en: "left knee",
+		'zh-cn':"左膝盖"
 	},
 	rightKnee: {
 		ja: "右ひざ",
 		"ja-Hira": "みぎひざ",
 		en: "right knee",
+		'zh-cn':"右膝盖"
 	},
 	leftAnkle: {
 		ja: "左足首",
 		"ja-Hira": "ひだりあしくび",
 		en: "left ankle",
+		'zh-cn':"左脚踝"
 	},
 	rightAnkle: {
 		ja: "右足首",
 		"ja-Hira": "みぎあしくび",
 		en: "right ankle",
+		'zh-cn':"右脚踝"
 	},
 	getX: {
 		ja: "[PERSON_NUMBER] 人目の [PART] のx座標",
 		"ja-Hira": "[PERSON_NUMBER] にんめの [PART] のxざひょう",
 		en: "[PART] x of person no. [PERSON_NUMBER]",
+		'zh-cn':"第[PERSON_NUMBER]个人的[PART]部位的坐标x的位置"
 	},
 	getY: {
 		ja: "[PERSON_NUMBER] 人目の [PART] のy座標",
 		"ja-Hira": "[PERSON_NUMBER] にんめの [PART] のyざひょう",
 		en: "[PART] y of person no. [PERSON_NUMBER]",
+		'zh-cn':"第[PERSON_NUMBER]个人的[PART]部位的坐标y的位置"
 	},
 	videoToggle: {
 		ja: "ビデオを[VIDEO_STATE]にする",
 		"ja-Hira": "ビデオを[VIDEO_STATE]にする",
 		en: "turn video [VIDEO_STATE]",
+		'zh-cn':"改变视频状态为[VIDEO_STATE]"
 	},
 	on: {
 		ja: "入",
 		"ja-Hira": "いり",
 		en: "on",
+		'zh-cn':"打开"
 	},
 	off: {
 		ja: "切",
 		"ja-Hira": "きり",
 		en: "off",
+		'zh-cn':"关闭"
 	},
 	video_on_flipped: {
 		ja: "左右反転",
 		"ja-Hira": "さゆうはんてん",
 		en: "on flipped",
+		'zh-cn':"反转摄像头"
 	},
 }
-const AvailableLocales = ["en", "ja", "ja-Hira"]
+const AvailableLocales = ["en", "ja", "ja-Hira",'zh-cn']
 
 class Scratch3Posenet2ScratchBlocks {
 	get PERSON_NUMBERS_MENU() {
