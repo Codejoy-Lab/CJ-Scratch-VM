@@ -17,7 +17,7 @@ const Message = {
         "zh-cn":"发送GET请求到[URL]"
     },
     getImgData:{
-        "en":"Video data",
+        "en":"Video Image",
         "zh-cn":"视频数据"
     }
 }
@@ -288,7 +288,7 @@ class CodejoyLabBlocks{
             canvas.width = width
             canvas.height = height
             canvas.getContext('2d').drawImage(this.video, 0, 0, width, height) // 绘制canvas
-            let dataURL = canvas.toDataURL('image/jpeg') // 转换为base64
+            let dataURL = canvas.toDataURL('image/png') // 转换为base64
             // dataURL = dataURL.replace('data:image/jpeg;base64,', '')
             // dataURL就是base64格式的代码 需要后台解析
             // console.log(dataURL)
