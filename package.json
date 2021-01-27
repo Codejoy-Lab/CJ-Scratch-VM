@@ -52,6 +52,7 @@
     "axios": "^0.20.0",
     "babel-polyfill": "^6.26.0",
     "btoa": "1.2.1",
+    "canvas": "^2.6.1",
     "canvas-toBlob": "1.0.0",
     "crypto-js": "^4.0.0",
     "decode-html": "2.0.0",
