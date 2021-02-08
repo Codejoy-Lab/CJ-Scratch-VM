@@ -57,6 +57,8 @@ class CodejoyLabBlocks{
                 VIDEO_STATE: this.globalVideoState
             });
         }
+
+        // this.client = new textSpeechClient(null,null);
     }
     get globalVideoTransparency() {
         const stage = this.runtime.getTargetForStage();
@@ -289,9 +291,6 @@ class CodejoyLabBlocks{
             canvas.height = height
             canvas.getContext('2d').drawImage(this.video, 0, 0, width, height) // 绘制canvas
             let dataURL = canvas.toDataURL('image/png') // 转换为base64
-            // dataURL = dataURL.replace('data:image/jpeg;base64,', '')
-            // dataURL就是base64格式的代码 需要后台解析
-            // console.log(dataURL)
             return dataURL
         }
         

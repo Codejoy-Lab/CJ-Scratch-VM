@@ -9,6 +9,8 @@ const MathUtil = require('../../util/math-util');
 const Clone = require('../../util/clone');
 const log = require('../../util/log');
 
+const textSpeechClient = require("./text2speech_client.js");
+
 /**
  * Icon svg to be displayed in the blocks category menu, encoded as a data URI.
  * @type {string}
@@ -107,6 +109,34 @@ const WELSH_ID = 'cy';
  * Class for the text2speech blocks.
  * @constructor
  */
+
+const Message = {
+    speakAndWaitBlock:{
+        'zh-cn': "用[VOICE]声音说[WORDS]",
+        en: "set voice to [VOICE] and speak [WORDS]",
+    },
+    xiaoyan:{
+        'zh-cn': "小燕",
+        en: "Xiaoyan",
+    },
+    aisjiuxu:{
+        'zh-cn': "许久",
+        en: "Jiu Xu",
+    },
+    aisxping:{
+        'zh-cn': "小萍",
+        en: "Xiaoping",
+    },
+    aisjinger:{
+        'zh-cn': "小婧",
+        en: "Xiaojing",
+    },
+    aisbabyxu:{
+        'zh-cn': "徐小宝",
+        en: "Xiaobao Xu",
+    },
+}
+
 class Scratch3Text2SpeechBlocks {
     constructor (runtime) {
         /**
@@ -114,6 +144,7 @@ class Scratch3Text2SpeechBlocks {
          * @type {Runtime}
          */
         this.runtime = runtime;
+        this.client = new textSpeechClient(null,null);
 
         /**
          * Map of soundPlayers by sound id.
@@ -141,6 +172,7 @@ class Scratch3Text2SpeechBlocks {
     /**
      * An object with info for each voice.
      */
+
     get VOICE_INFO () {
         return {
             [ALTO_ID]: {
@@ -191,6 +223,30 @@ class Scratch3Text2SpeechBlocks {
         };
     }
 
+    get VOICE() {
+		return [
+			{
+				text: Message.xiaoyan[this._locale],
+				value: "xiaoyan",
+			},
+			{
+				text: Message.aisjiuxu[this._locale],
+				value: "aisjiuxu",
+			},
+			{
+				text: Message.aisxping[this._locale],
+				value: "aisxping",
+            },
+            {
+				text: Message.aisjinger[this._locale],
+				value: "aisjinger",
+			},
+			{
+				text: Message.aisbabyxu[this._locale],
+				value: "aisbabyxu",
+			},
+        ]
+    }
     /**
      * An object with information for each language.
      *
@@ -211,6 +267,7 @@ class Scratch3Text2SpeechBlocks {
      *      A different locale code system, used by our speech synthesis service.
      *      Each extension locale has a speech synth locale.
      */
+
     get LANGUAGE_INFO () {
         return {
             [ARABIC_ID]: {
@@ -396,12 +453,29 @@ class Scratch3Text2SpeechBlocks {
         }
     }
 
+    setLocale() {
+        let now_locale = "";
+        switch (formatMessage.setup().locale) {
+            case "en":
+                now_locale = "en";
+                break;
+            case "zh-cn":
+                now_locale = "zh-cn";
+                break;
+            default:
+                now_locale = "zh-cn";
+                break;
+        }
+        return now_locale;
+    }
+
     /**
      * @returns {object} metadata for this extension and its blocks.
      */
     getInfo () {
         // Only localize the default input to the "speak" block if we are in a
         // supported language.
+        this._locale = this.setLocale()
         let defaultTextToSpeak = 'hello';
         if (this.isSupportedLanguage(this.getEditorLanguage())) {
             defaultTextToSpeak = formatMessage({
@@ -423,61 +497,35 @@ class Scratch3Text2SpeechBlocks {
             blocks: [
                 {
                     opcode: 'speakAndWait',
-                    text: formatMessage({
-                        id: 'text2speech.speakAndWaitBlock',
-                        default: 'speak [WORDS]',
-                        description: 'Speak some words.'
-                    }),
+                    text: Message.speakAndWaitBlock[this._locale],
+                    // formatMessage({
+                    //     id: 'text2speech.speakAndWaitBlock',
+                    //     default: 'set voice to [VOICE] and speak [WORDS]',
+                    //     description: 'Speak some words.'
+                    // }),
                     blockType: BlockType.COMMAND,
                     arguments: {
                         WORDS: {
                             type: ArgumentType.STRING,
                             defaultValue: defaultTextToSpeak
-                        }
-                    }
-                },
-                {
-                    opcode: 'setVoice',
-                    text: formatMessage({
-                        id: 'text2speech.setVoiceBlock',
-                        default: 'set voice to [VOICE]',
-                        description: 'Set the voice for speech synthesis.'
-                    }),
-                    blockType: BlockType.COMMAND,
-                    arguments: {
+                        },
                         VOICE: {
-                            type: ArgumentType.STRING,
-                            menu: 'voices',
-                            defaultValue: ALTO_ID
-                        }
+                                    type: ArgumentType.STRING,
+                                    menu: 'voices',
+                                    defaultValue: "xiaoyan"
+                                }
                     }
                 },
-                {
-                    opcode: 'setLanguage',
-                    text: formatMessage({
-                        id: 'text2speech.setLanguageBlock',
-                        default: 'set language to [LANGUAGE]',
-                        description: 'Set the language for speech synthesis.'
-                    }),
-                    blockType: BlockType.COMMAND,
-                    arguments: {
-                        LANGUAGE: {
-                            type: ArgumentType.STRING,
-                            menu: 'languages',
-                            defaultValue: this.getCurrentLanguage()
-                        }
-                    }
-                }
             ],
             menus: {
                 voices: {
                     acceptReporters: true,
-                    items: this.getVoiceMenu()
+                    items: this.VOICE
                 },
-                languages: {
-                    acceptReporters: true,
-                    items: this.getLanguageMenu()
-                }
+                // languages: {
+                //     acceptReporters: true,
+                //     items: this.getLanguageMenu()
+                // }
             }
         };
     }
@@ -493,81 +541,81 @@ class Scratch3Text2SpeechBlocks {
         return locale.toLowerCase();
     }
 
-    /**
-     * Get the language code currently set for the extension.
-     * @returns {string} a Scratch locale code.
-     */
-    getCurrentLanguage () {
-        const stage = this.runtime.getTargetForStage();
-        if (!stage) return this.DEFAULT_LANGUAGE;
-        // If no language has been set, set it to the editor locale (or default).
-        if (!stage.textToSpeechLanguage) {
-            this.setCurrentLanguage(this.getEditorLanguage());
-        }
-        return stage.textToSpeechLanguage;
-    }
+    // /**
+    //  * Get the language code currently set for the extension.
+    //  * @returns {string} a Scratch locale code.
+    //  */
+    // getCurrentLanguage () {
+    //     const stage = this.runtime.getTargetForStage();
+    //     if (!stage) return this.DEFAULT_LANGUAGE;
+    //     // If no language has been set, set it to the editor locale (or default).
+    //     if (!stage.textToSpeechLanguage) {
+    //         this.setCurrentLanguage(this.getEditorLanguage());
+    //     }
+    //     return stage.textToSpeechLanguage;
+    // }
 
     /**
      * Set the language code for the extension.
      * It is stored in the stage so it can be saved and loaded with the project.
      * @param {string} locale a locale code.
      */
-    setCurrentLanguage (locale) {
-        const stage = this.runtime.getTargetForStage();
-        if (!stage) return;
+    // setCurrentLanguage (locale) {
+    //     const stage = this.runtime.getTargetForStage();
+    //     if (!stage) return;
 
-        if (this.isSupportedLanguage(locale)) {
-            stage.textToSpeechLanguage = this._getExtensionLocaleForSupportedLocale(locale);
-        }
+    //     if (this.isSupportedLanguage(locale)) {
+    //         stage.textToSpeechLanguage = this._getExtensionLocaleForSupportedLocale(locale);
+    //     }
 
-        // Support language names dropped onto the menu via reporter block
-        // such as a variable containing a language name (in any language),
-        // or the translate extension's language reporter.
-        const localeForDroppedName = languageNames.nameMap[locale.toLowerCase()];
-        if (localeForDroppedName && this.isSupportedLanguage(localeForDroppedName)) {
-            stage.textToSpeechLanguage =
-                this._getExtensionLocaleForSupportedLocale(localeForDroppedName);
-        }
+    //     // Support language names dropped onto the menu via reporter block
+    //     // such as a variable containing a language name (in any language),
+    //     // or the translate extension's language reporter.
+    //     const localeForDroppedName = languageNames.nameMap[locale.toLowerCase()];
+    //     if (localeForDroppedName && this.isSupportedLanguage(localeForDroppedName)) {
+    //         stage.textToSpeechLanguage =
+    //             this._getExtensionLocaleForSupportedLocale(localeForDroppedName);
+    //     }
 
-        // If the language is null, set it to the default language.
-        // This can occur e.g. if the extension was loaded with the editor
-        // set to a language that is not in the list.
-        if (!stage.textToSpeechLanguage) {
-            stage.textToSpeechLanguage = this.DEFAULT_LANGUAGE;
-        }
-    }
+    //     // If the language is null, set it to the default language.
+    //     // This can occur e.g. if the extension was loaded with the editor
+    //     // set to a language that is not in the list.
+    //     if (!stage.textToSpeechLanguage) {
+    //         stage.textToSpeechLanguage = this.DEFAULT_LANGUAGE;
+    //     }
+    // }
 
     /**
      * Get the extension locale for a supported locale, or null.
      * @param {string} locale a locale code.
      * @returns {?string} a locale supported by the extension.
      */
-    _getExtensionLocaleForSupportedLocale (locale) {
-        for (const lang in this.LANGUAGE_INFO) {
-            if (this.LANGUAGE_INFO[lang].locales.includes(locale)) {
-                return lang;
-            }
-        }
-        log.error(`cannot find extension locale for locale ${locale}`);
-    }
+    // _getExtensionLocaleForSupportedLocale (locale) {
+    //     for (const lang in this.LANGUAGE_INFO) {
+    //         if (this.LANGUAGE_INFO[lang].locales.includes(locale)) {
+    //             return lang;
+    //         }
+    //     }
+    //     log.error(`cannot find extension locale for locale ${locale}`);
+    // }
 
     /**
      * Get the locale code used by the speech synthesis server corresponding to
      * the current language code set for the extension.
      * @returns {string} a speech synthesis locale.
      */
-    _getSpeechSynthLocale () {
-        let speechSynthLocale = this.LANGUAGE_INFO[this.DEFAULT_LANGUAGE].speechSynthLocale;
-        if (this.LANGUAGE_INFO[this.getCurrentLanguage()]) {
-            speechSynthLocale = this.LANGUAGE_INFO[this.getCurrentLanguage()].speechSynthLocale;
-        }
-        return speechSynthLocale;
-    }
+    // _getSpeechSynthLocale () {
+    //     let speechSynthLocale = this.LANGUAGE_INFO[this.DEFAULT_LANGUAGE].speechSynthLocale;
+    //     if (this.LANGUAGE_INFO[this.getCurrentLanguage()]) {
+    //         speechSynthLocale = this.LANGUAGE_INFO[this.getCurrentLanguage()].speechSynthLocale;
+    //     }
+    //     return speechSynthLocale;
+    // }
 
-    /**
-     * Get an array of the locales supported by this extension.
-     * @returns {Array} An array of locale strings.
-     */
+    // /**
+    //  * Get an array of the locales supported by this extension.
+    //  * @returns {Array} An array of locale strings.
+    //  */
     _getSupportedLocales () {
         return Object.keys(this.LANGUAGE_INFO).reduce((acc, lang) =>
             acc.concat(this.LANGUAGE_INFO[lang].locales), []);
@@ -587,12 +635,12 @@ class Scratch3Text2SpeechBlocks {
      * Get the menu of voices for the "set voice" block.
      * @return {array} the text and value for each menu item.
      */
-    getVoiceMenu () {
-        return Object.keys(this.VOICE_INFO).map(voiceId => ({
-            text: this.VOICE_INFO[voiceId].name,
-            value: voiceId
-        }));
-    }
+    // getVoiceMenu () {
+    //     return Object.keys(this.VOICE_INFO).map(voiceId => ({
+    //         text: this.VOICE_INFO[voiceId].name,
+    //         value: voiceId
+    //     }));
+    // }
 
     /**
      * Get the localized menu of languages for the "set language" block.
@@ -602,43 +650,43 @@ class Scratch3Text2SpeechBlocks {
      *   otherwise fall back to the untranslated name in LANGUAGE_INFO.
      * @return {array} the text and value for each menu item.
      */
-    getLanguageMenu () {
-        const editorLanguage = this.getEditorLanguage();
-        // Get the array of localized language names
-        const localizedNameMap = {};
-        let nameArray = languageNames.menuMap[editorLanguage];
-        if (nameArray) {
-            // Also get any localized names of spoken languages
-            let spokenNameArray = [];
-            if (languageNames.spokenLanguages) {
-                spokenNameArray = languageNames.spokenLanguages[editorLanguage];
-                nameArray = nameArray.concat(spokenNameArray);
-            }
-            // Create a map of language code to localized name
-            // The localized spoken language names have been concatenated onto
-            // the end of the name array, so the result of the forEach below is
-            // when there is both a written language name (e.g. 'Chinese
-            // (simplified)') and a spoken language name (e.g. 'Chinese
-            // (Mandarin)', we always use the spoken version.
-            nameArray.forEach(lang => {
-                localizedNameMap[lang.code] = lang.name;
-            });
-        }
+    // getLanguageMenu () {
+    //     const editorLanguage = this.getEditorLanguage();
+    //     // Get the array of localized language names
+    //     const localizedNameMap = {};
+    //     let nameArray = languageNames.menuMap[editorLanguage];
+    //     if (nameArray) {
+    //         // Also get any localized names of spoken languages
+    //         let spokenNameArray = [];
+    //         if (languageNames.spokenLanguages) {
+    //             spokenNameArray = languageNames.spokenLanguages[editorLanguage];
+    //             nameArray = nameArray.concat(spokenNameArray);
+    //         }
+    //         // Create a map of language code to localized name
+    //         // The localized spoken language names have been concatenated onto
+    //         // the end of the name array, so the result of the forEach below is
+    //         // when there is both a written language name (e.g. 'Chinese
+    //         // (simplified)') and a spoken language name (e.g. 'Chinese
+    //         // (Mandarin)', we always use the spoken version.
+    //         nameArray.forEach(lang => {
+    //             localizedNameMap[lang.code] = lang.name;
+    //         });
+    //     }
 
-        return Object.keys(this.LANGUAGE_INFO).map(key => {
-            let name = this.LANGUAGE_INFO[key].name;
-            const localizedName = localizedNameMap[key];
-            if (localizedName) {
-                name = localizedName;
-            }
-            // Uppercase the first character of the name
-            name = name.charAt(0).toUpperCase() + name.slice(1);
-            return {
-                text: name,
-                value: key
-            };
-        });
-    }
+    //     return Object.keys(this.LANGUAGE_INFO).map(key => {
+    //         let name = this.LANGUAGE_INFO[key].name;
+    //         const localizedName = localizedNameMap[key];
+    //         if (localizedName) {
+    //             name = localizedName;
+    //         }
+    //         // Uppercase the first character of the name
+    //         name = name.charAt(0).toUpperCase() + name.slice(1);
+    //         return {
+    //             text: name,
+    //             value: key
+    //         };
+    //     });
+    // }
 
     /**
      * Set the voice for speech synthesis for this sprite.
@@ -668,9 +716,9 @@ class Scratch3Text2SpeechBlocks {
      * Set the language for speech synthesis.
      * @param  {object} args Block arguments
      */
-    setLanguage (args) {
-        this.setCurrentLanguage(args.LANGUAGE);
-    }
+    // setLanguage (args) {
+    //     this.setCurrentLanguage(args.LANGUAGE);
+    // }
 
     /**
      * Stop all currently playing speech sounds.
@@ -689,79 +737,107 @@ class Scratch3Text2SpeechBlocks {
      */
     speakAndWait (args, util) {
         // Cast input to string
+        console.log(args)
         let words = Cast.toString(args.WORDS);
-        let locale = this._getSpeechSynthLocale();
+        let voice =Cast.toString(args.VOICE);
+        let _this = this
+        // let locale = this._getSpeechSynthLocale();
+        if(this.client.ws.readyState != 1){
+            this.client = new textSpeechClient(
+                ()=>{
+                    _this.client.sendRequestTo(words,voice)
+                }, // onConnect,
+                null, // onDisconnect,
+            )
+        }else{
+            this.client.sendRequestTo(words,voice)
+        }
+        
+        // const state = this._getState(util.target);
 
-        const state = this._getState(util.target);
-
-        let gender = this.VOICE_INFO[state.voiceId].gender;
-        let playbackRate = this.VOICE_INFO[state.voiceId].playbackRate;
+        // let gender = this.VOICE_INFO[state.voiceId].gender;
+        // let playbackRate = this.VOICE_INFO[state.voiceId].playbackRate;
 
         // Special case for voices where the synthesis service only provides a
         // single gender voice. In that case, always request the female voice,
         // and set special playback rates for the tenor and giant voices.
-        if (this.LANGUAGE_INFO[this.getCurrentLanguage()].singleGender) {
-            gender = 'female';
-            if (state.voiceId === TENOR_ID) {
-                playbackRate = FEMALE_TENOR_RATE;
-            }
-            if (state.voiceId === GIANT_ID) {
-                playbackRate = FEMALE_GIANT_RATE;
-            }
-        }
+        // if (this.LANGUAGE_INFO[this.getCurrentLanguage()].singleGender) {
+        //     gender = 'female';
+        //     if (state.voiceId === TENOR_ID) {
+        //         playbackRate = FEMALE_TENOR_RATE;
+        //     }
+        //     if (state.voiceId === GIANT_ID) {
+        //         playbackRate = FEMALE_GIANT_RATE;
+        //     }
+        // }
 
-        if (state.voiceId === KITTEN_ID) {
-            words = words.replace(/\S+/g, 'meow');
-            locale = this.LANGUAGE_INFO[this.DEFAULT_LANGUAGE].speechSynthLocale;
-        }
+        // if (state.voiceId === KITTEN_ID) {
+        //     words = words.replace(/\S+/g, 'meow');
+        //     locale = this.LANGUAGE_INFO[this.DEFAULT_LANGUAGE].speechSynthLocale;
+        // }
 
-        // Build up URL
-        let path = `${SERVER_HOST}/synth`;
-        path += `?locale=${locale}`;
-        path += `&gender=${gender}`;
-        path += `&text=${encodeURIComponent(words.substring(0, 128))}`;
+        // // Build up URL
+        // let path = `${SERVER_HOST}/synth`;
+        // path += `?locale=${locale}`;
+        // path += `&gender=${gender}`;
+        // path += `&text=${encodeURIComponent(words.substring(0, 128))}`;
 
-        // Perform HTTP request to get audio file
-        return new Promise(resolve => {
-            nets({
-                url: path,
-                timeout: SERVER_TIMEOUT
-            }, (err, res, body) => {
-                if (err) {
-                    log.warn(err);
-                    return resolve();
+        // console.log('audio.buffer',audio.buffer)
+        // var _this = this
+        this.client.ws.onmessage=function(evt){
+            let res = JSON.parse(evt.data)
+            // console.log('evt.data.audio',res.data)
+            audio = Buffer.from(res.data.audio, 'base64')
+            // console.log('audioBuf',audioBuf)
+            const sound = {
+                data: {
+                    buffer: audio.buffer
                 }
+            };
+            _this.runtime.audioEngine.decodeSoundPlayer(sound).then(soundPlayer => {
+                _this._soundPlayers.set(soundPlayer.id, soundPlayer);
 
-                if (res.statusCode !== 200) {
-                    log.warn(res.statusCode);
-                    return resolve();
-                }
+                // soundPlayer.setPlaybackRate(playbackRate);
 
-                // Play the sound
-                const sound = {
-                    data: {
-                        buffer: body.buffer
-                    }
-                };
-                this.runtime.audioEngine.decodeSoundPlayer(sound).then(soundPlayer => {
-                    this._soundPlayers.set(soundPlayer.id, soundPlayer);
+                // Increase the volume
+                const engine = _this.runtime.audioEngine;
+                const chain = engine.createEffectChain();
+                chain.set('volume', SPEECH_VOLUME);
+                soundPlayer.connect(chain);
 
-                    soundPlayer.setPlaybackRate(playbackRate);
-
-                    // Increase the volume
-                    const engine = this.runtime.audioEngine;
-                    const chain = engine.createEffectChain();
-                    chain.set('volume', SPEECH_VOLUME);
-                    soundPlayer.connect(chain);
-
-                    soundPlayer.play();
-                    soundPlayer.on('stop', () => {
-                        this._soundPlayers.delete(soundPlayer.id);
-                        resolve();
-                    });
+                soundPlayer.play();
+                soundPlayer.on('stop', () => {
+                    _this._soundPlayers.delete(soundPlayer.id);
+                    // resolve();
                 });
             });
-        });
+
+             _this.client.ws.close()
+            
+        }
+                
+
+        // Perform HTTP request to get audio file
+        // return new Promise(resolve => {
+        //     nets({
+        //         url: path,
+        //         timeout: SERVER_TIMEOUT
+        //     }, (err, res, body) => {
+        //         console.log('body',body.buffer)
+        //         if (err) {
+        //             log.warn(err);
+        //             return resolve();
+        //         }
+
+        //         if (res.statusCode !== 200) {
+        //             log.warn(res.statusCode);
+        //             return resolve();
+        //         }
+
+        //         // Play the sound
+                
+        //     });
+        // });
     }
 }
 module.exports = Scratch3Text2SpeechBlocks;

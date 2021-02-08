@@ -1,13 +1,20 @@
 const StringUtil = require('../util/string-util');
 const log = require('../util/log');
+const axios = require('axios')
 
 const loadVector_ = function (costume, runtime, rotationCenter, optVersion) {
     return new Promise(resolve => {
+
+
         let svgString = costume.asset.decodeText();
+        // console.log('svgString',costume.asset)
+        // console.log('svgString',costume,svgString)
         // SVG Renderer load fixes "quirks" associated with Scratch 2 projects
         if (optVersion && optVersion === 2 && !runtime.v2SvgAdapter) {
+            
             log.error('No V2 SVG adapter present; SVGs may not render correctly.');
         } else if (optVersion && optVersion === 2 && runtime.v2SvgAdapter) {
+            
             runtime.v2SvgAdapter.loadString(svgString, true /* fromVersion2 */);
             svgString = runtime.v2SvgAdapter.toString();
             // Put back into storage
@@ -16,6 +23,7 @@ const loadVector_ = function (costume, runtime, rotationCenter, optVersion) {
             costume.assetId = costume.asset.assetId;
             costume.md5 = `${costume.assetId}.${costume.dataFormat}`;
         }
+        
         // createSVGSkin does the right thing if rotationCenter isn't provided, so it's okay if it's
         // undefined here
         costume.skinId = runtime.renderer.createSVGSkin(svgString, rotationCenter);
@@ -304,7 +312,7 @@ const loadCostume = function (md5ext, costume, runtime, optVersion) {
     const md5 = idParts[0];
     const ext = idParts[1].toLowerCase();
     costume.dataFormat = ext;
-
+    // console.log("costume",costume)
     if (costume.asset) {
         // Costume comes with asset. It could be coming from camera, image upload, drag and drop, or file
         return loadCostumeFromAsset(costume, runtime, optVersion);
@@ -323,7 +331,7 @@ const loadCostume = function (md5ext, costume, runtime, optVersion) {
 
     const AssetType = runtime.storage.AssetType;
     const assetType = (ext === 'svg') ? AssetType.ImageVector : AssetType.ImageBitmap;
-
+    
     const costumePromise = runtime.storage.load(assetType, md5, ext);
     if (!costumePromise) {
         log.error(`Couldn't fetch costume asset: ${md5ext}`);

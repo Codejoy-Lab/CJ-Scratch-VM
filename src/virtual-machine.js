@@ -555,6 +555,7 @@ class VirtualMachine extends EventEmitter {
      * @return {!Promise} Promise that resolves after targets are installed.
      */
     addSprite (input) {
+        
         const errorPrefix = 'Sprite Upload Error:';
         if (typeof input === 'object' && !(input instanceof ArrayBuffer) &&
           !ArrayBuffer.isView(input)) {

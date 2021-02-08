@@ -417,7 +417,7 @@ class Scratch3Speech2TextBlocks {
                         })
                     })
                 }
-                console.log(str)
+                // console.log(str)
                 if(i.cn.st.type == 0){
                     if(!this.tempResult.includes(str)) this.tempResult += str
                     interResult = ''
@@ -459,7 +459,7 @@ class Scratch3Speech2TextBlocks {
         try {
             // Look for the text in the pattern starting at position 0.
             match = this._dmp.match_main(text, pattern, 0);
-            console.log("match",match)
+            // console.log("match",match)
         } catch (e) {
             // This can happen inf the text or pattern gets too long.  If so just substring match.
             return pattern.indexOf(text);
@@ -691,6 +691,7 @@ class Scratch3Speech2TextBlocks {
                 
             // }
         // },null)
+        this.tempResult = ''
         const websocketPromise = new Promise(this._newSocketCallback);
         Promise.all([this._audioPromise, websocketPromise]).then(
             this._setupSocketCallback)
@@ -987,6 +988,7 @@ class Scratch3Speech2TextBlocks {
     }
     cleanAll(){
         this._currentUtterance = ""
+        this.tempResult = ""
         // return this._currentUtterance;
     }
 

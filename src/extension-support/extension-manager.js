@@ -35,6 +35,7 @@ const builtinExtensions = {
     FaceAPI:()=>require('../extensions/scratch3_faceAPI'),
     cxtello:()=>require('../extensions/scratch3_tello'),
     speech2text:()=>require('../extensions/scratch3_speech2text'),
+    speech2textv2:()=>require('../extensions/scratch3_speech2text2'),
     matatabot:()=>require('../extensions/scratch3_matatabot'),
     ml2scratch:()=>require('../extensions/scratch3_ml2scratch'),
     tmpose2scratch:()=>require('../extensions/scratch3_tmpose2scratch'),
