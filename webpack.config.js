@@ -63,12 +63,23 @@ module.exports = [
     // Node-compatible
     defaultsDeep({}, base, {
         target: 'node',
+        node: {
+            __dirname: false,
+          },
         entry: {
             'scratch-vm': './src/index.js'
         },
         output: {
             libraryTarget: 'commonjs2',
             path: path.resolve('dist', 'node')
+        },
+        module: {
+            rules: [
+            {
+                test: /\.node$/,
+                loader: 'node-loader',
+            },
+            ],
         },
         externals: {
             'decode-html': true,
@@ -80,9 +91,17 @@ module.exports = [
             'nets': true,
             'scratch-parser': true,
             'socket.io-client': true,
-            'text-encoding': true
+            'text-encoding': true,
+            'canvas':{}
         }
     }),
+    // defaultsDeep({},base,{
+    //     target: 'node',
+    //     node: {
+    //         __dirname: false,
+    //     },
+        
+    // }),
     // Playground
     defaultsDeep({}, base, {
         target: 'web',

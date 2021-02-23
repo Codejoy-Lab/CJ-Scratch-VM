@@ -60,6 +60,9 @@ scratch2maqueen : () => require('../extensions/scratch3_scratch2maqueen'),
 qrcode : () => require('../extensions/scratch3_qrcode'),
 
 pasorich : () => require('../extensions/scratch3_pasorich'),
+
+facialRecognitionBlock: () =>
+require("../extensions/scratch3_facial_recognition"),
     
 };
 
