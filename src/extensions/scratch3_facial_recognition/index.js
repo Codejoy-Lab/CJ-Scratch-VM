@@ -22,6 +22,7 @@ class FacialRecognitionBlock {
 
     this.shouldClassify = false;
     this.drawLandmark = false;
+    this.faceBox = false;
     this.drawExpression = false;
     this.drawAgeAndGender = false;
 
@@ -78,6 +79,19 @@ class FacialRecognitionBlock {
         },
         // Toggle Landmark
         {
+          opcode: "togglefaceBox",
+          text: "Enable Face Detection Box [BOX_STATE]",
+          blockType: BlockType.COMMAND,
+          arguments: {
+            BOX_STATE: {
+              type: ArgumentType.STRING,
+              menu: "on_off_box",
+              defaultValue: "off",
+            },
+          },
+        },
+        // Toggle Landmark
+        {
           opcode: "toggleLandmark",
           text: "Detect Landmark [CLASSIFY_STATE]",
           blockType: BlockType.COMMAND,
@@ -117,12 +131,22 @@ class FacialRecognitionBlock {
         },
         {
           opcode: "getAgeLabel",
-          text: "Age: ",
+          text: "Age",
           blockType: BlockType.REPORTER,
         },
         {
           opcode: "getGenderLabel",
-          text: "Gender: ",
+          text: "Gender",
+          blockType: BlockType.REPORTER,
+        },
+        {
+          opcode: "getconfidenceLabel",
+          text: "Confidence",
+          blockType: BlockType.REPORTER,
+        },
+        {
+          opcode: "getExpressionLabel",
+          text: "Expression",
           blockType: BlockType.REPORTER,
         },
         // Clear Canvas
@@ -143,6 +167,16 @@ class FacialRecognitionBlock {
             value: "off",
           },
         ],
+        on_off_box:[
+          {
+            text: "On",
+            value: "on",
+          },
+          {
+            text: "Off",
+            value: "off",
+          },
+        ]
       },
     };
   }
@@ -167,9 +201,13 @@ class FacialRecognitionBlock {
             detections,
             this.displaySize
           );
+          console.log(' this.detections', this.detections)
           this.clearCanvas();
           // draw face dectection box
-          faceapi.draw.drawDetections(this.drawCanvas, resizedDetections);
+          if(this.faceBox){
+            faceapi.draw.drawDetections(this.drawCanvas, resizedDetections);
+          }
+          
           // draw face landmarks
           if (this.drawLandmark) {
             faceapi.draw.drawFaceLandmarks(this.drawCanvas, resizedDetections);
@@ -235,11 +273,37 @@ class FacialRecognitionBlock {
     this.drawExpression = state === "on";
   }
 
+  togglefaceBox(input){
+    let state = input.BOX_STATE;
+    this.faceBox = state === "on";
+  }
+
   toggleAgeAndGender(input) {
     let state = input.CLASSIFY_STATE;
     this.drawAgeAndGender = state === "on";
   }
-
+  getconfidenceLabel(){
+    if(this.detections && this.detections.length>0){
+      return this.detections[0].detection.score
+    }else{
+      return 0
+    }
+    
+  }
+  getExpressionLabel(){
+    var expression = {name:"",val:0}
+    if(this.detections && this.detections.length>0){
+      
+      for (const [key, value] of Object.entries(this.detections[0].expressions)) {
+        if(value>expression.val){
+          expression.name=key
+          expression.val=value
+        }
+      }
+        
+    }
+    return expression.name
+  }
   setCanvas() {
     this.drawCanvas = faceapi.createCanvasFromMedia(this.video);
     // log.log(this.canvas);

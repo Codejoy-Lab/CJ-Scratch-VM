@@ -1,4 +1,8 @@
-require('babel-polyfill');
+// require('babel-polyfill');
+
+if (!global._babelPolyfill) {
+	require('babel-polyfill');
+}
 //require ('@tensorflow/tfjs-node');
 const Runtime = require('../../engine/runtime');
 
@@ -11,7 +15,7 @@ const formatMessage = require('format-message');
 // const canvas = require('canvas'); 
 const faceapi = require('face-api.js');
 // const { Canvas, Image, ImageData } = canvas
-
+// console.log('global',global)
 
 const SensingAttribute = {
     /** The amount of motion. */
@@ -67,7 +71,7 @@ class faceApi {
 
     constructor(runtime) {
         
-
+        
         this.faceapiInit()
         /**
          * The runtime instantiating this block package.

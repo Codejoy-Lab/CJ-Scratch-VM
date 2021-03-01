@@ -1,9 +1,12 @@
 const ArgumentType = require("../../extension-support/argument-type")
 const BlockType = require("../../extension-support/block-type")
 const Cast = require("../../util/cast")
+if (global._babelPolyfill) {
+	global._babelPolyfill = false
+}
 const ml5 = require("ml5")
 const formatMessage = require("format-message")
-
+console.log('global',global)
 const Message = {
 	x: {
 		ja: "のx座標",

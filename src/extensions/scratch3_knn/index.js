@@ -1,4 +1,7 @@
-require('babel-polyfill');
+// require('babel-polyfill');
+if (!global._babelPolyfill) {
+	require('babel-polyfill');
+}
 const Runtime = require('../../engine/runtime');
 
 const ArgumentType = require('../../extension-support/argument-type');
