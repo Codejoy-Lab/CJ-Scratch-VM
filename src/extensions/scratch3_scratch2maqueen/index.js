@@ -12,7 +12,45 @@ const Base64Util = require('../../util/base64-util');
  */
 // eslint-disable-next-line max-len
 const blockIconURI = 'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACgAAAAoCAYAAACM/rhtAAAABGdBTUEAALGPC/xhBQAAACBjSFJNAAB6JgAAgIQAAPoAAACA6AAAdTAAAOpgAAA6mAAAF3CculE8AAAACXBIWXMAAAsTAAALEwEAmpwYAAADSGlUWHRYTUw6Y29tLmFkb2JlLnhtcAAAAAAAPHg6eG1wbWV0YSB4bWxuczp4PSJhZG9iZTpuczptZXRhLyIgeDp4bXB0az0iWE1QIENvcmUgNS40LjAiPgogICA8cmRmOlJERiB4bWxuczpyZGY9Imh0dHA6Ly93d3cudzMub3JnLzE5OTkvMDIvMjItcmRmLXN5bnRheC1ucyMiPgogICAgICA8cmRmOkRlc2NyaXB0aW9uIHJkZjphYm91dD0iIgogICAgICAgICAgICB4bWxuczp4bXA9Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC8iCiAgICAgICAgICAgIHhtbG5zOnRpZmY9Imh0dHA6Ly9ucy5hZG9iZS5jb20vdGlmZi8xLjAvIgogICAgICAgICAgICB4bWxuczpleGlmPSJodHRwOi8vbnMuYWRvYmUuY29tL2V4aWYvMS4wLyI+CiAgICAgICAgIDx4bXA6TW9kaWZ5RGF0ZT4yMDE5LTEwLTIwVDAyOjEwOjE3PC94bXA6TW9kaWZ5RGF0ZT4KICAgICAgICAgPHhtcDpDcmVhdG9yVG9vbD5QaXhlbG1hdG9yIDMuOC42PC94bXA6Q3JlYXRvclRvb2w+CiAgICAgICAgIDx0aWZmOk9yaWVudGF0aW9uPjE8L3RpZmY6T3JpZW50YXRpb24+CiAgICAgICAgIDx0aWZmOlJlc29sdXRpb25Vbml0PjI8L3RpZmY6UmVzb2x1dGlvblVuaXQ+CiAgICAgICAgIDx0aWZmOkNvbXByZXNzaW9uPjA8L3RpZmY6Q29tcHJlc3Npb24+CiAgICAgICAgIDxleGlmOlBpeGVsWERpbWVuc2lvbj4yNDA8L2V4aWY6UGl4ZWxYRGltZW5zaW9uPgogICAgICAgICA8ZXhpZjpDb2xvclNwYWNlPjE8L2V4aWY6Q29sb3JTcGFjZT4KICAgICAgICAgPGV4aWY6UGl4ZWxZRGltZW5zaW9uPjI0MDwvZXhpZjpQaXhlbFlE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';
-
+const Message={
+    leftMotorSpeed:{
+        "en":"Set left motor speed to [VALUE] (-255 - 255)",
+        'zh-cn':"设左发动机速度为 [VALUE] (-255 - 255)",
+    },
+    rightMotorSpeed:{
+        "en":"Set right motor speed to [VALUE] (-255 - 255)",
+        'zh-cn':"设右发动机速度为 [VALUE] (-255 - 255)",
+    },
+    getDistance:{
+        "en":"Distance to obstacles ahead(cm)",
+        'zh-cn':"距前方障碍物的距离（厘米）",
+    },
+    getPatrolLeft:{
+        "en":"Patrol Left",
+        'zh-cn':"向左",
+    },
+    getPatrolRight:{
+        "en":"Patrol Right",
+        'zh-cn':"向右",
+    },
+    ledLeft:{
+        "en":"Turn left LED [LED_STATE]",
+        'zh-cn':"将左灯[LED_STATE]",
+    },
+    ledRight:{
+        "en":"Turn right LED [LED_STATE]",
+        'zh-cn':"将右灯[LED_STATE]",
+    },
+    on:{
+        "en":"on",
+        'zh-cn':"打开",
+    },
+    off:{
+        "en":"off",
+        'zh-cn':"关闭",
+    },
+}
+const AvailableLocales = ["en",'zh-cn']
 /**
  * Enum for micro:bit BLE command protocol.
  * https://github.com/LLK/scratch-microbit-firmware/blob/master/protocol.md
@@ -489,19 +527,11 @@ class Scratch3Scratch2MaqueenBlocks {
     get LED_STATE_MENU () {
         return [
             {
-                text: formatMessage({
-                    id: 'scratch2maqueen.ledStateMenu.on',
-                    default: 'on',
-                    description: 'label for on element in LED state picker'
-                }),
+                text: Message.on[this._locale],
                 value: LEDState.ON
             },
             {
-                text: formatMessage({
-                    id: 'scratch2maqueen.ledStateMenu.off',
-                    default: 'off',
-                    description: 'label for off element in LED state picker'
-                }),
+                text: Message.off[this._locale],
                 value: LEDState.OFF
             }
         ];
@@ -542,7 +572,16 @@ class Scratch3Scratch2MaqueenBlocks {
     /**
      * @returns {object} metadata for this extension and its blocks.
      */
+    setLocale() {
+        let locale = formatMessage.setup().locale
+        if (AvailableLocales.includes(locale)) {
+          return locale
+        } else {
+          return "en"
+        }
+      }
     getInfo () {
+        this._locale = this.setLocale()
         this.setupTranslations();
         return {
             id: Scratch3Scratch2MaqueenBlocks.EXTENSION_ID,
@@ -554,7 +593,7 @@ class Scratch3Scratch2MaqueenBlocks {
                     opcode: 'leftMotorSpeed',
                     text: formatMessage({
                         id: 'scratch2maqueen.leftMotorSpeed',
-                        default: 'Set left motor speed to [VALUE] (-255 - 255)',
+                        default: Message.leftMotorSpeed[this._locale],//'Set left motor speed to [VALUE] (-255 - 255)',
                         description: 'set left motor speed'
                     }),
                     blockType: BlockType.COMMAND,
@@ -569,7 +608,7 @@ class Scratch3Scratch2MaqueenBlocks {
                     opcode: 'rightMotorSpeed',
                     text: formatMessage({
                         id: 'scratch2maqueen.rightMotorSpeed',
-                        default: 'Set right motor speed to [VALUE] (-255 - 255)',
+                        default: Message.rightMotorSpeed[this._locale],//'Set right motor speed to [VALUE] (-255 - 255)',
                         description: 'set right motor speed'
                     }),
                     blockType: BlockType.COMMAND,
@@ -582,38 +621,42 @@ class Scratch3Scratch2MaqueenBlocks {
                 },
                 {
                     opcode: 'getDistance',
-                    text: formatMessage({
-                        id: 'scratch2maqueen.getDistance',
-                        default: 'Distance to obstacles ahead(cm)',
-                        description: 'distance to obstacles ahead(cm)'
-                    }),
+                    text: Message.getDistance[this._locale],
+                    // formatMessage({
+                    //     id: 'scratch2maqueen.getDistance',
+                    //     default: 'Distance to obstacles ahead(cm)',
+                    //     description: 'distance to obstacles ahead(cm)'
+                    // }),
                     blockType: BlockType.REPORTER
                 },
                 {
                     opcode: 'getPatrolLeft',
-                    text: formatMessage({
-                        id: 'scratch2maqueen.getPatrolLeft',
-                        default: 'Patrol Left',
-                        description: 'value of patrol left'
-                    }),
+                    text: Message.getPatrolLeft[this._locale],
+                    // formatMessage({
+                    //     id: 'scratch2maqueen.getPatrolLeft',
+                    //     default: 'Patrol Left',
+                    //     description: 'value of patrol left'
+                    // }),
                     blockType: BlockType.REPORTER
                 },
                 {
                     opcode: 'getPatrolRight',
-                    text: formatMessage({
-                        id: 'scratch2maqueen.getPatrolRight',
-                        default: 'Patrol Right',
-                        description: 'value of patrol right'
-                    }),
+                    text: Message.getPatrolRight[this._locale],
+                    // formatMessage({
+                    //     id: 'scratch2maqueen.getPatrolRight',
+                    //     default: 'Patrol Right',
+                    //     description: 'value of patrol right'
+                    // }),
                     blockType: BlockType.REPORTER
                 },
                 {
                     opcode: 'ledLeft',
-                    text: formatMessage({
-                        id: 'scratch2maqueen.ledLeft',
-                        default: 'Turn left LED [LED_STATE]',
-                        description: 'turn left LED on/off'
-                    }),
+                    text: Message.ledLeft[this._locale],
+                    // formatMessage({
+                    //     id: 'scratch2maqueen.ledLeft',
+                    //     default: 'Turn left LED [LED_STATE]',
+                    //     description: 'turn left LED on/off'
+                    // }),
                     blockType: BlockType.COMMAND,
                     arguments: {
                         LED_STATE: {
@@ -625,11 +668,12 @@ class Scratch3Scratch2MaqueenBlocks {
                 },
                 {
                     opcode: 'ledRight',
-                    text: formatMessage({
-                        id: 'scratch2maqueen.ledRight',
-                        default: 'Turn right LED [LED_STATE]',
-                        description: 'turn right LED on/off'
-                    }),
+                    text: Message.ledRight[this._locale],
+                    // formatMessage({
+                    //     id: 'scratch2maqueen.ledRight',
+                    //     default: 'Turn right LED [LED_STATE]',
+                    //     description: 'turn right LED on/off'
+                    // }),
                     blockType: BlockType.COMMAND,
                     arguments: {
                         LED_STATE: {

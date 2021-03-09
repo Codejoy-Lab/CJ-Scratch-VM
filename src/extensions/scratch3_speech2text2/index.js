@@ -639,6 +639,9 @@ class Scratch3Speech2TextBlocksV2 {
                             let res = JSON.parse(evt.data)
                             console.log('evt.data.audio',res.data)
                             _this.result(evt.data)
+                            if(res.data.result.ls){
+                                this.client.ws.close()
+                            }
                             // _this.audio = Buffer.from(res.data.audio, 'base64')
                             // console.log('audioBuf',audioBuf)
                             

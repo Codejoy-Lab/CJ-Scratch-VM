@@ -11,55 +11,65 @@ const Message = {
   getX: {
     'ja': '[PERSON_NUMBER] 人目の [KEYPOINT] 番目の部位のx座標',
     'ja-Hira': '[PERSON_NUMBER] にんめの [KEYPOINT] ばんめのぶいのxざひょう',
-    'en': 'x of person no: [PERSON_NUMBER] , keypoint no: [KEYPOINT]'
+    'en': 'x of person no: [PERSON_NUMBER] , keypoint no: [KEYPOINT]',
+    'zh-cn':'第[PERSON_NUMBER]个人的[KEYPOINT]部位的x坐标位置'
   },
   getY: {
     'ja': '[PERSON_NUMBER] 人目の [KEYPOINT] 番目の部位のy座標',
     'ja-Hira': '[PERSON_NUMBER] にんめの [KEYPOINT] ばんめのぶいのyざひょう',
-    'en': 'y of person no: [PERSON_NUMBER] , keypoint no: [KEYPOINT]'
+    'en': 'y of person no: [PERSON_NUMBER] , keypoint no: [KEYPOINT]',
+    'zh-cn':'第[PERSON_NUMBER]个人的[KEYPOINT]部位的y坐标位置 '
   },
   peopleCount: {
     'ja': '人数',
     'ja-Hira': 'にんずう',
-    'en': 'people count'
+    'en': 'people count',
+    'zh-cn':'人数'
   },
   videoToggle: {
     'ja': 'ビデオを [VIDEO_STATE] にする',
     'ja-Hira': 'ビデオを [VIDEO_STATE] にする',
-    'en': 'turn video [VIDEO_STATE]'
+    'en': 'turn video [VIDEO_STATE]',
+    'zh-cn':'改变视频状态为[VIDEO_STATE]'
   },
   setRatio: {
     'ja': '倍率を [RATIO] にする',
     'ja-Hira': 'ばいりつを [RATIO] にする',
-    'en': 'set ratio to [RATIO]'
+    'en': 'set ratio to [RATIO]',
+    'zh-cn':'设置比率为 [RATIO]'
   },
   setInterval: {
     'ja': '認識を [INTERVAL] 秒ごとに行う',
     'ja-Hira': 'にんしきを [INTERVAL] びょうごとにおこなう',
-    'en': 'Label once every [INTERVAL] seconds'
+    'en': 'Label once every [INTERVAL] seconds',
+    'zh-cn':'每 [INTERVAL] 秒标记一次'
   },
   on: {
     'ja': '入',
     'ja-Hira': 'いり',
-    'en': 'on'
+    'en': 'on',
+    'zh-cn':'打开'
   },
   off: {
     'ja': '切',
     'ja-Hira': 'きり',
-    'en': 'off'
+    'en': 'off',
+    'zh-cn':'关闭'
   },
   video_on_flipped: {
     'ja': '左右反転',
     'ja-Hira': 'さゆうはんてん',
     'en': 'on flipped',
+    'zh-cn':'反转摄像头'
   },
   please_wait: {
     'ja': '準備に時間がかかります。少しの間、操作ができなくなりますがお待ち下さい。',
     'ja-Hira': 'じゅんびにじかんがかかります。すこしのあいだ、そうさができなくなりますがおまちください。',
-    'en': 'Setup takes a while. The browser will get stuck, but please wait.'
+    'en': 'Setup takes a while. The browser will get stuck, but please wait.',
+    'zh-cn':'设置需要一些时间，浏览器将被卡住，但请等待。'
   }
 }
-const AvailableLocales = ['en', 'ja', 'ja-Hira'];
+const AvailableLocales = ['en', 'ja', 'ja-Hira','zh-cn'];
 
 class Scratch3Facemesh2ScratchBlocks {
     get PERSON_NUMBER_MENU () {

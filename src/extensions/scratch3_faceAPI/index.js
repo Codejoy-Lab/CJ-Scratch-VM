@@ -17,6 +17,59 @@ const faceapi = require('face-api.js');
 // const { Canvas, Image, ImageData } = canvas
 // console.log('global',global)
 
+const Locales = ['en','zh-cn'];
+
+const Message = {
+    videoToggle:{
+        en: "turn video [VIDEO_STATE]",
+		'zh-cn':"改变视频状态为[VIDEO_STATE]"
+    },
+    setVideoTransparency:{
+        'zh-cn': "将视频透明度设为[TRANSPARENCY]",
+        en: "set video transparency to [TRANSPARENCY]",
+    },
+    stop:{
+        'zh-cn': "停止",
+        en: "Stop",
+    },
+    clearRef:{
+        'zh-cn': "清空",
+        en: "Clear",
+    },
+    faceDetection:{
+        'zh-cn': "开始面部识别",
+        en: "Face Detection",
+    },
+    facialFeatureDiskObtain:{
+        'zh-cn': "从磁盘加载图片 [IMAGENUM]",
+        en: "load [IMAGENUM] images from disk",
+    },
+    facialFeatureWebcamObtain:{
+        'zh-cn': "获取 [IMAGENUM] 中的图片并命名为 [NAME]",
+        en: "obtain [IMAGENUM] webcam images for [NAME]",
+    },
+    facialFeatureMatch:{
+        'zh-cn': "匹配面部识别",
+        en: "facial Feature Match",
+    },
+    multiFeatureMatch:{
+        'zh-cn': "多特征识别",
+        en: "MultiFeature Match",
+    },
+    getResult:{
+        'zh-cn': "识别结果",
+        en: "Result",
+    },
+    whenGetResult:{
+        'zh-cn': "当识别结果为 [STRING]",
+        en: "when get [STRING]",
+    },
+    getemotion:{
+        'zh-cn': "表情",
+        en: "Expression",
+    }
+}
+
 const SensingAttribute = {
     /** The amount of motion. */
     MOTION: 'motion',
@@ -340,17 +393,27 @@ class faceApi {
         ];
     }
 
+    _getViewerLanguageCode () {
+        const locale = formatMessage.setup().locale;
+        if (Locales.includes(locale)) {
+            return locale;
+        }
+        return 'en';
+    }
+
+
     /**
      * @returns {object} metadata for this extension and its blocks.
      */
     getInfo() {
+        this.locale = this._getViewerLanguageCode();
         return {
             id: 'FaceAPI',
             name: 'face api',
             blocks: [
                 {
                     opcode: 'videoToggle',
-                    text: 'turn video [VIDEO_STATE]',
+                    text: Message.videoToggle[this.locale],//'turn video [VIDEO_STATE]',
                     arguments: {
                         VIDEO_STATE: {
                             type: ArgumentType.NUMBER,
@@ -361,7 +424,7 @@ class faceApi {
                 },
                 {
                     opcode: 'setVideoTransparency',
-                    text: 'set video transparency to [TRANSPARENCY]',
+                    text: Message.setVideoTransparency[this.locale],//'set video transparency to [TRANSPARENCY]',
                     arguments: {
                         TRANSPARENCY: {
                             type: ArgumentType.NUMBER,
@@ -372,33 +435,36 @@ class faceApi {
                 {
                     opcode: 'stop',
                     blockType: BlockType.COMMAND,
-                    text: formatMessage({
-                        id: 'faceapi.STOP',
-                        default: 'STOP',
-                        description: 'terminate current operation'
-                    })
+                    text: Message.stop[this.locale],
+                    // formatMessage({
+                    //     id: 'faceapi.STOP',
+                    //     default: 'STOP',
+                    //     description: 'terminate current operation'
+                    // })
                 },
                 {
                     opcode: 'clearRef',
                     blockType: BlockType.COMMAND,
-                    text: formatMessage({
-                        id: 'faceapi.CLEAR',
-                        default: 'CLEAR',
-                        description: 'clear reference data'
-                    })
+                    text: Message.clearRef[this.locale],
+                    // formatMessage({
+                    //     id: 'faceapi.CLEAR',
+                    //     default: 'CLEAR',
+                    //     description: 'clear reference data'
+                    // })
                 },
                 {
                     opcode: 'faceDetection',
                     blockType: BlockType.COMMAND,
-                    text: formatMessage({
-                        id: 'faceapi.faceDetection',
-                        default: 'faceDetection',
-                        description: 'faceDetection is loaded'
-                    })
+                    text: Message.faceDetection[this.locale],
+                    // formatMessage({
+                    //     id: 'faceapi.faceDetection',
+                    //     default: 'faceDetection',
+                    //     description: 'faceDetection is loaded'
+                    // })
                 },
                 {
                     opcode: 'facialFeatureDiskObtain',
-                    text: 'load [IMAGENUM] images from disk',
+                    text: Message.facialFeatureDiskObtain[this.locale],//'load [IMAGENUM] images from disk',
                     arguments: {
                             IMAGENUM: {
                             type: ArgumentType.NUMBER,
@@ -408,7 +474,7 @@ class faceApi {
                 },
                 {
                     opcode: 'facialFeatureWebcamObtain',
-                    text: 'obtain [IMAGENUM] webcam images for [NAME]',
+                    text: Message.facialFeatureWebcamObtain[this.locale],//'obtain [IMAGENUM] webcam images for [NAME]',
                     arguments: {
                             IMAGENUM: {
                             type: ArgumentType.NUMBER,
@@ -423,29 +489,32 @@ class faceApi {
                 {
                     opcode: 'facialFeatureMatch',
                     blockType: BlockType.COMMAND,
-                    text: formatMessage({
-                        id: 'faceapi.facialFeatureMatch',
-                        default: 'facialFeatureMatch',
-                        description: 'recognize facial features from the reference data'
-                    })
+                    text: Message.facialFeatureMatch[this.locale],
+                    // formatMessage({
+                    //     id: 'faceapi.facialFeatureMatch',
+                    //     default: 'facialFeatureMatch',
+                    //     description: 'recognize facial features from the reference data'
+                    // })
                 },
                 {
                     opcode: 'multiFeatureMatch',
                     blockType: BlockType.COMMAND,
-                    text: formatMessage({
-                        id: 'faceapi.multiFeatureMatch',
-                        default: 'multiFeatureMatch',
-                        description: 'recognize all facial features from the reference data'
-                    })
+                    text: Message.multiFeatureMatch[this.locale],
+                    // formatMessage({
+                    //     id: 'faceapi.multiFeatureMatch',
+                    //     default: 'multiFeatureMatch',
+                    //     description: 'recognize all facial features from the reference data'
+                    // })
                 },
                 {
                     opcode: 'getResult',
                     blockType: BlockType.REPORTER,
-                    text: formatMessage({
-                        id: 'knn.getResult',
-                        default: 'Result',
-                        description: 'getResult'
-                    }),
+                    text: Message.getResult[this.locale],
+                    // formatMessage({
+                    //     id: 'knn.getResult',
+                    //     default: 'Result',
+                    //     description: 'getResult'
+                    // }),
                     arguments: {
 
                     }
@@ -453,11 +522,12 @@ class faceApi {
                 {
                     opcode: 'whenGetResult',
                     blockType: BlockType.HAT,
-                    text: formatMessage({
-                        id: 'faceapi.whenGetResult',
-                        default: 'when get [STRING]',
-                        description: 'whenGetResult'
-                    }),
+                    text: Message.whenGetResult[this.locale],
+                    // formatMessage({
+                    //     id: 'faceapi.whenGetResult',
+                    //     default: 'when get [STRING]',
+                    //     description: 'whenGetResult'
+                    // }),
                     arguments: {
                         STRING: {
                             type: ArgumentType.STRING,
@@ -467,11 +537,12 @@ class faceApi {
                 },
                 {
                     opcode: 'getemotion',
-                    text: formatMessage({
-                        id: 'faceapi.getemotion',
-                        default: 'emotion',
-                        // description: 'get the current tempo (speed) for notes, drums, and rests played'
-                    }),
+                    text:Message.getemotion[this.locale],
+                    // formatMessage({
+                    //     id: 'faceapi.getemotion',
+                    //     default: 'emotion',
+                    //     // description: 'get the current tempo (speed) for notes, drums, and rests played'
+                    // }),
                     blockType: BlockType.REPORTER
                 }
             ],

@@ -5,7 +5,24 @@ const ml5 = require('ml5');
 const formatMessage = require('format-message');
 
 var currentNote = ""
+var fre = 0
+var second = 0
 
+const Message={
+  getPitch:{
+    "en":"Pitch",
+    "zh-cn":"音高",
+  },
+  getFre:{
+    "en":"Frequency",
+    "zh-cn":"频率",
+  },
+  startDetect:{
+    "en":"Detect Pitch once every [SEC] seconds",
+    "zh-cn":"每 [SEC] 秒检测一次",
+  }
+}
+const AvailableLocales = ["en",'zh-cn']
 class PitchDetection{
     constructor(runtime) {
         this.runtime = runtime;
@@ -26,13 +43,22 @@ class PitchDetection{
     //     var m = Math.round(12 * mathlog2) + 69;
     //     return m;
     //   };
-
+    setLocale() {
+      let locale = formatMessage.setup().locale
+      if (AvailableLocales.includes(locale)) {
+        return locale
+      } else {
+        return "en"
+      }
+    }
     getPitch() {
         
+      setTimeout(()=>{
         this.pitch.getPitch(function(err, frequency) {
-            console.log("frequency",frequency)
+            // console.log("frequency",frequency)
             let scale = ['1', '1#', '2', '2#', '3', '4', '4#', '5', '5#', '6', '6#', '7'];
           if (frequency) {
+            fre = frequency
             var mathlog2 = Math.log(frequency / 440) / Math.log(2);
             var midiNum = Math.round(12 * mathlog2) + 69;
             // let midiNum = this.freqToMidi(frequency);
@@ -41,9 +67,28 @@ class PitchDetection{
             // console.log(currentNote)
             // return currentNote
           }
-        })
-        console.log("currentNote",currentNote)
+          })
+          console.log("currentNote",currentNote)
+          
+        }, second)
         return currentNote
+      }
+
+      getFre(){
+        // console.log('second',second)
+        setTimeout(()=>{
+            this.pitch.getPitch(function(err, frequency) {
+              fre = frequency
+            })
+          }, second)
+          
+          return fre
+       
+      }
+
+      startDetect(input){
+        var val = input.SEC
+        second = input.SEC*1000
       }
 
     // startPitch() {
@@ -51,6 +96,7 @@ class PitchDetection{
     //   }
 
     getInfo() {
+      this._locale = this.setLocale()
         return {
             id: 'PitchDetection',
             name: 'Pitch Detection',
@@ -63,8 +109,34 @@ class PitchDetection{
                     //     description: 'Controls display of the video preview layer'
                     // }),
                     blockType: BlockType.REPORTER,
-                    text: "Pitch"
+                    text: Message.getPitch[this._locale]//"Pitch"
+                },
+                {
+                  opcode: 'getFre',
+                  // text: formatMessage({
+                  //     id: 'videoSensing.videoToggle',
+                  //     default: 'turn video [VIDEO_STATE]',
+                  //     description: 'Controls display of the video preview layer'
+                  // }),
+                  blockType: BlockType.REPORTER,
+                  text: Message.getFre[this._locale]//"Frequency"
+              },
+              {
+                opcode: 'startDetect',
+                // text: formatMessage({
+                //     id: 'videoSensing.videoToggle',
+                //     default: 'turn video [VIDEO_STATE]',
+                //     description: 'Controls display of the video preview layer'
+                // }),
+                blockType: BlockType.COMMAND,
+                text: Message.startDetect[this._locale],//"Detect Pitch once every [SEC] seconds",
+                arguments:{
+                  SEC:{
+                    type: ArgumentType.NUMBER,
+                    defaultValue: '1'
+                  }
                 }
+            }
             ],
             menus: {
                 // ATTRIBUTE: {
@@ -92,7 +164,6 @@ class PitchDetection{
 
     modelLoaded() {
         console.log('Model Loaded');
-        // getPitch();
       }
 
     async setup() {

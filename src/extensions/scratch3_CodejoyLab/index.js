@@ -19,6 +19,34 @@ const Message = {
     getImgData:{
         "en":"Video Image",
         "zh-cn":"视频数据"
+    },
+    videoToggle: {
+		ja: "ビデオを[VIDEO_STATE]にする",
+		"ja-Hira": "ビデオを[VIDEO_STATE]にする",
+		en: "turn video [VIDEO_STATE]",
+		'zh-cn':"改变视频状态为[VIDEO_STATE]"
+	},
+	on: {
+		ja: "入",
+		"ja-Hira": "いり",
+		en: "on",
+		'zh-cn':"打开"
+	},
+	off: {
+		ja: "切",
+		"ja-Hira": "きり",
+		en: "off",
+		'zh-cn':"关闭"
+	},
+    video_on_flipped: {
+		ja: "左右反転",
+		"ja-Hira": "さゆうはんてん",
+		en: "on flipped",
+		'zh-cn':"反转摄像头"
+	},
+    setVideoTransparency:{
+        "en":"set video transparency to [TRANSPARENCY]",
+        "zh-cn":"设置背景透明度为 [TRANSPARENCY]"
     }
 }
 const VideoState = {
@@ -187,7 +215,7 @@ class CodejoyLabBlocks{
                 },
                 {
                     opcode: 'videoToggle',
-                    text: 'turn video [VIDEO_STATE]',
+                    text: Message.videoToggle[this._locale],//'turn video [VIDEO_STATE]',
                     arguments: {
                         VIDEO_STATE: {
                             type: ArgumentType.NUMBER,
@@ -198,7 +226,7 @@ class CodejoyLabBlocks{
                 },
                 {
                     opcode: 'setVideoTransparency',
-                    text: 'set video transparency to [TRANSPARENCY]',
+                    text: Message.setVideoTransparency[this._locale],
                     arguments: {
                         TRANSPARENCY: {
                             type: ArgumentType.NUMBER,
@@ -219,10 +247,29 @@ class CodejoyLabBlocks{
                 },
             ],
             menus: {
-                VIDEO_STATE: this._buildMenu(this.VIDEO_STATE_INFO)
+                VIDEO_STATE: {
+                    acceptReporters: true,
+					items: this.VIDEO_MENU,
+                }//this._buildMenu(this.VIDEO_STATE_INFO)
             }
         }
     }
+    get VIDEO_MENU() {
+		return [
+			{
+				text: Message.off[this._locale],
+				value: "off",
+			},
+			{
+				text: Message.on[this._locale],
+				value: "on",
+			},
+			{
+				text: Message.video_on_flipped[this._locale],
+				value: "on-flipped",
+			},
+		]
+	}
 
     /**
      * A scratch command block handle that configures the video state from

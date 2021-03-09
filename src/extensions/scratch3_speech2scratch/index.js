@@ -18,7 +18,7 @@ class Scratch3Speech2Scratch {
                 {
                     opcode: 'startRecognition',
                     blockType: BlockType.COMMAND,
-                    text: '音声認識開始'
+                    text: '音声识别开始'
                 },
                 {
                     opcode: 'getSpeech',

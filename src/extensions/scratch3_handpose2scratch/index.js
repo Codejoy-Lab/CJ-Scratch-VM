@@ -11,157 +11,187 @@ const Message = {
   getX: {
     'ja': '[LANDMARK] のx座標',
     'ja-Hira': '[LANDMARK] のxざひょう',
-    'en': 'x of [LANDMARK]'
+    'en': 'x of [LANDMARK]',
+    'zh-cn':'[LANDMARK] 的x坐标'
   },
   getY: {
     'ja': '[LANDMARK] のy座標',
     'ja-Hira': '[LANDMARK] のyざひょう',
-    'en': 'y of [LANDMARK]'
+    'en': 'y of [LANDMARK]',
+    'zh-cn':'[LANDMARK] 的y坐标'
   },
   videoToggle: {
     'ja': 'ビデオを [VIDEO_STATE] にする',
     'ja-Hira': 'ビデオを [VIDEO_STATE] にする',
-    'en': 'turn video [VIDEO_STATE]'
+    'en': 'turn video [VIDEO_STATE]',
+    'zh-cn':'改变视频状态为[VIDEO_STATE]'
   },
   setRatio: {
     'ja': '倍率を [RATIO] にする',
     'ja-Hira': 'ばいりつを [RATIO] にする',
-    'en': 'set ratio to [RATIO]'
+    'en': 'set ratio to [RATIO]',
+    'zh-cn':'设置比率为 [RATIO]'
   },
   setInterval: {
     'ja': '認識を [INTERVAL] 秒ごとに行う',
     'ja-Hira': 'にんしきを [INTERVAL] びょうごとにおこなう',
-    'en': 'Label once every [INTERVAL] seconds'
+    'en': 'Label once every [INTERVAL] seconds',
+    'zh-cn':'每 [INTERVAL] 秒标记一次'
   },
   on: {
     'ja': '入',
     'ja-Hira': 'いり',
-    'en': 'on'
+    'en': 'on',
+    'zh-cn':'打开'
   },
   off: {
     'ja': '切',
     'ja-Hira': 'きり',
-    'en': 'off'
+    'en': 'off',
+    'zh-cn':'关闭'
   },
   video_on_flipped: {
     'ja': '左右反転',
     'ja-Hira': 'さゆうはんてん',
-    'en': 'on flipped'
+    'en': 'on flipped',
+    'zh-cn':'反转摄像头'
   },
   please_wait: {
     'ja': '準備に時間がかかります。少しの間、操作ができなくなりますがお待ち下さい。',
     'ja-Hira': 'じゅんびにじかんがかかります。すこしのあいだ、そうさができなくなりますがおまちください。',
-    'en': 'Setup takes a while. The browser will get stuck, but please wait.'
+    'en': 'Setup takes a while. The browser will get stuck, but please wait.',
+    'zh-cn':'设置需要一些时间，浏览器将被卡住，但请等待。'
   },
   landmarks: [
     {
       'ja': '手首',
       'ja-Hira': 'てくび',
-      'en': 'wrist'
+      'en': 'wrist',
+      'zh-cn':'手腕'
     },
     {
       'ja': '親指の根元',
       'ja-Hira': 'おやゆびのねもと',
-      'en': 'the base of thumb'
+      'en': 'the base of thumb',
+      'zh-cn':'拇指根'
     },
     {
       'ja': '親指の第2関節',
       'ja-Hira': 'おやゆびのだい2かんせつ',
-      'en': 'the 2nd joint of thumb'
+      'en': 'the 2nd joint of thumb',
+      'zh-cn':'拇指第二个关节'
     },
     {
       'ja': '親指の第1関節',
       'ja-Hira': 'おやゆびのだい1かんせつ',
-      'en': 'the 1st joint of thumb'
+      'en': 'the 1st joint of thumb',
+      'zh-cn':'拇指第一个关节'
     },
     {
       'ja': '親指の先端',
       'ja-Hira': 'おやゆびのさき',
-      'en': 'thumb'
+      'en': 'thumb',
+      'zh-cn':'拇指'
     },
     {
       'ja': '人差し指の第3関節',
       'ja-Hira': 'ひとさしゆびのだい3かんせつ',
-      'en': 'the 3rd joint of index finger'
+      'en': 'the 3rd joint of index finger',
+      'zh-cn':'食指第三个关节'
     },
     {
       'ja': '人差し指の第2関節',
       'ja-Hira': 'ひとさしゆびのだい2かんせつ',
-      'en': 'the 2nd joint of index finger'
+      'en': 'the 2nd joint of index finger',
+      'zh-cn':'食指第二个关节'
     },
     {
       'ja': '人差し指の第1関節',
       'ja-Hira': 'ひとさしゆびのだい1かんせつ',
-      'en': 'the 1st joint of index finger'
+      'en': 'the 1st joint of index finger',
+      'zh-cn':'食指第一个关节'
     },
     {
       'ja': '人差し指の先端',
       'ja-Hira': 'ひとさしゆびのせんたん',
-      'en': 'index finger'
+      'en': 'index finger',
+      'zh-cn':'食指'
     },
     {
       'ja': '中指の第3関節',
       'ja-Hira': 'なかゆびのだい3かんせつ',
-      'en': 'the 3rd joint of middle finger'
+      'en': 'the 3rd joint of middle finger',
+      'zh-cn':'中指第三个关节'
     },
     {
       'ja': '中指の第2関節',
       'ja-Hira': 'なかゆびのだい2かんせつ',
-      'en': 'the 2nd joint of middle finger'
+      'en': 'the 2nd joint of middle finger',
+      'zh-cn':'中指第二个关节'
     },
     {
       'ja': '中指の第1関節',
       'ja-Hira': 'なかゆびのだい1かんせつ',
-      'en': 'the 1st joint of middle finger'
+      'en': 'the 1st joint of middle finger',
+      'zh-cn':'中指第一个关节'
     },
     {
       'ja': '中指の先端',
       'ja-Hira': 'なかゆびのせんたん',
-      'en': 'middle finger'
+      'en': 'middle finger',
+      'zh-cn':'中指'
     },
     {
       'ja': '薬指の第3関節',
       'ja-Hira': 'くすりゆびのだい3かんせつ',
-      'en': 'the 3rd joint of ring finger'
+      'en': 'the 3rd joint of ring finger',
+      'zh-cn':'无名指第三个关节'
     },
     {
       'ja': '薬指の第2関節',
       'ja-Hira': 'くすりゆびのだい2かんせつ',
-      'en': 'the 2nd joint of ring finger'
+      'en': 'the 2nd joint of ring finger',
+      'zh-cn':'无名指第二个关节'
     },
     {
       'ja': '薬指の第1関節',
       'ja-Hira': 'くすりゆびのだい1かんせつ',
-      'en': 'the 1st joint of ring finger'
+      'en': 'the 1st joint of ring finger',
+      'zh-cn':'无名指第一个关节'
     },
     {
       'ja': '薬指の先端',
       'ja-Hira': 'くすりゆびのせんたん',
-      'en': 'ring finger'
+      'en': 'ring finger',
+      'zh-cn':'无名指'
     },
     {
       'ja': '小指の第3関節',
       'ja-Hira': 'こゆびのだい3かんせつ',
-      'en': 'the 3rd joint of little finger'
+      'en': 'the 3rd joint of little finger',
+      'zh-cn':'小指第三个关节'
     },
     {
       'ja': '小指の第2関節',
       'ja-Hira': 'こゆびのだい2かんせつ',
-      'en': 'the 2nd joint of little finger'
+      'en': 'the 2nd joint of little finger',
+      'zh-cn':'小指第二个关节'
     },
     {
       'ja': '小指の第1関節',
       'ja-Hira': 'こゆびのだい1かんせつ',
-      'en': 'the 1st joint of little finger'
+      'en': 'the 1st joint of little finger',
+      'zh-cn':'小指第一个关节'
     },
     {
       'ja': '小指の先端',
       'ja-Hira': 'こゆびのせんたん',
-      'en': 'little finger'
+      'en': 'little finger',
+      'zh-cn':'小指'
     }
   ]
 }
-const AvailableLocales = ['en', 'ja', 'ja-Hira'];
+const AvailableLocales = ['en', 'ja', 'ja-Hira','zh-cn'];
 
 class Scratch3Handpose2ScratchBlocks {
     get LANDMARK_MENU () {

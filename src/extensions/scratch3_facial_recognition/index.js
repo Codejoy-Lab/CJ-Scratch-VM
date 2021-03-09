@@ -1,6 +1,7 @@
 const ArgumentType = require("../../extension-support/argument-type");
 const BlockType = require("../../extension-support/block-type");
 const log = require("../../util/log");
+const formatMessage = require('format-message');
 const canvas = require("canvas");
 const faceapi = require("face-api.js");
 
@@ -11,6 +12,50 @@ const faceapi = require("face-api.js");
 //import * as faceapi from "face-api.js";
 
 const { Canvas, Image, ImageData } = canvas;
+const Locales = ['en','zh-cn'];
+
+const Message = {
+  toggleClassify:{
+    'en':"Enable Classify [CLASSIFY_STATE]",
+    'zh-cn':"开启分类 [CLASSIFY_STATE]"
+  },
+  togglefaceBox:{
+    'en':"Enable Face Detection Box [BOX_STATE]",
+    'zh-cn':"开启面部识别框 [BOX_STATE]"
+  },
+  toggleLandmark:{
+    'en':"Detect Landmark [CLASSIFY_STATE]",
+    'zh-cn':"检测特征[CLASSIFY_STATE]"
+  },
+  toggleExpression:{
+    'en':"Detect Expression [CLASSIFY_STATE]",
+    'zh-cn':"检测表情 [CLASSIFY_STATE]"
+  },
+  toggleAgeAndGender:{
+    'en':"Detect Age and Gender [CLASSIFY_STATE]",
+    'zh-cn':"检测年龄和性别 [CLASSIFY_STATE]"
+  },
+  getAgeLabel:{
+    'en':"Age",
+    'zh-cn':"年龄"
+  },
+  getGenderLabel:{
+    'en':"Gender",
+    'zh-cn':"性别"
+  },
+  getconfidenceLabel:{
+    'en':"Confidence",
+    'zh-cn':"置信度"
+  },
+  getExpressionLabel:{
+    'en':"Expression",
+    'zh-cn':"表情"
+  },
+  clearCanvas:{
+    'en':"Clear Canvas",
+    'zh-cn':"清空舞台"
+  }
+}
 
 class FacialRecognitionBlock {
   constructor(runtime) {
@@ -58,8 +103,16 @@ class FacialRecognitionBlock {
 
     this.detections = null;
   }
+  _getViewerLanguageCode () {
+    const locale = formatMessage.setup().locale;
+    if (Locales.includes(locale)) {
+        return locale;
+    }
+    return 'en';
+}
 
   getInfo() {
+    this.locale = this._getViewerLanguageCode();
     return {
       id: "facialRecognitionBlock",
       name: "Facial Recognition Block",
@@ -67,7 +120,7 @@ class FacialRecognitionBlock {
         // Toggle classify
         {
           opcode: "toggleClassify",
-          text: "Enable Classify [CLASSIFY_STATE]",
+          text: Message.toggleClassify[this.locale],//"Enable Classify [CLASSIFY_STATE]",
           blockType: BlockType.COMMAND,
           arguments: {
             CLASSIFY_STATE: {
@@ -80,7 +133,7 @@ class FacialRecognitionBlock {
         // Toggle Landmark
         {
           opcode: "togglefaceBox",
-          text: "Enable Face Detection Box [BOX_STATE]",
+          text: Message.togglefaceBox[this.locale],//"Enable Face Detection Box [BOX_STATE]",
           blockType: BlockType.COMMAND,
           arguments: {
             BOX_STATE: {
@@ -93,7 +146,7 @@ class FacialRecognitionBlock {
         // Toggle Landmark
         {
           opcode: "toggleLandmark",
-          text: "Detect Landmark [CLASSIFY_STATE]",
+          text: Message.toggleLandmark[this.locale],//"Detect Landmark [CLASSIFY_STATE]",
           blockType: BlockType.COMMAND,
           arguments: {
             CLASSIFY_STATE: {
@@ -106,7 +159,7 @@ class FacialRecognitionBlock {
         // Toggle Expression
         {
           opcode: "toggleExpression",
-          text: "Detect Expression [CLASSIFY_STATE]",
+          text:  Message.toggleExpression[this.locale],//"Detect Expression [CLASSIFY_STATE]",
           blockType: BlockType.COMMAND,
           arguments: {
             CLASSIFY_STATE: {
@@ -119,7 +172,7 @@ class FacialRecognitionBlock {
         // Toggle Age and Gender
         {
           opcode: "toggleAgeAndGender",
-          text: "Detect Age and Gender [CLASSIFY_STATE]",
+          text: Message.toggleAgeAndGender[this.locale],//"Detect Age and Gender [CLASSIFY_STATE]",
           blockType: BlockType.COMMAND,
           arguments: {
             CLASSIFY_STATE: {
@@ -131,28 +184,28 @@ class FacialRecognitionBlock {
         },
         {
           opcode: "getAgeLabel",
-          text: "Age",
+          text: Message.getAgeLabel[this.locale],//"Age",
           blockType: BlockType.REPORTER,
         },
         {
           opcode: "getGenderLabel",
-          text: "Gender",
+          text: Message.getGenderLabel[this.locale],//"Gender",
           blockType: BlockType.REPORTER,
         },
         {
           opcode: "getconfidenceLabel",
-          text: "Confidence",
+          text: Message.getconfidenceLabel[this.locale],//"Confidence",
           blockType: BlockType.REPORTER,
         },
         {
           opcode: "getExpressionLabel",
-          text: "Expression",
+          text: Message.getExpressionLabel[this.locale],//"Expression",
           blockType: BlockType.REPORTER,
         },
         // Clear Canvas
         {
           opcode: "clearCanvas",
-          text: "Clear Canvas",
+          text: Message.clearCanvas[this.locale],//"Clear Canvas",
           blockType: BlockType.COMMAND,
         },
       ],

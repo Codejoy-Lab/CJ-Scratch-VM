@@ -164,6 +164,102 @@ const PinMode = {
  */
 const G = 1024;
 
+const AvailableLocales = ['ja', 'ja-Hira', 'en','zh-cn'];
+
+const Message = {
+    isPinConnected : {
+        'en': '[PIN] pin connected?',
+        'zh-cn':'引脚[PIN]是否连接?'
+    },
+    getLightLevel:{
+        'en': 'light intensity',
+        'zh-cn':'光强度'
+    },
+    getTemperature:{
+        'en': 'temperature',
+        'zh-cn':'温度'
+    },
+    getCompassHeading:{
+        'en': 'angle with the North',
+        'zh-cn':'北角'
+    },
+    getPitch:{
+        'en': 'pitch',
+        'zh-cn':'音高'
+    },
+    getRoll:{
+        'en': 'roll',
+        'zh-cn':'卷'
+    },
+    getMagneticForce:{
+        'en': 'magnetic force',
+        'zh-cn':'磁力'
+    },
+    getAcceleration:{
+        'en': 'acceleration [AXIS]',
+        'zh-cn':'加速度 [AXIS]'
+    },
+    getPowerVoltage:{
+        'en': 'voltage of power',
+        'zh-cn':'电源电压'
+    },
+    getAnalogValue:{
+        'en': 'analog value of pin [PIN]',
+        'zh-cn':'引脚[PIN]模拟值'
+    },
+    getDigitalValue:{
+        'en': 'digital value of pin [PIN]',
+        'zh-cn':'引脚[PIN]数字值'
+    },
+    setPinMode:{
+        'en': 'set pin [PIN] to input [MODE]',
+        'zh-cn':'输入[MODE]来设置引脚[PIN]'
+    },
+    setOutput:{
+        'en': 'set [PIN] Digital [LEVEL]',
+        'zh-cn':'设置 [PIN] 数字 [LEVEL]'
+    },
+    setPWM:{
+        'en': 'set [PIN] Digital [LEVEL]',
+        'zh-cn':'设置 [PIN] PWM [LEVEL]'
+    },
+    setServo:{
+        'en': 'set [PIN] Servo [ANGLE]',
+        'zh-cn':'设置 [PIN] 伺服 [ANGLE]'
+    },
+    setPinEventType:{
+        'en': 'catch event [EVENT_TYPE] on [PIN]',
+        'zh-cn':'在 [PIN]中捕捉事件 [EVENT_TYPE]'
+    },
+    whenPinEvent:{
+        'en': 'when catch [EVENT] at pin [PIN]',
+        'zh-cn':'当在 [PIN]中捕捉到事件 [EVENT_TYPE]'
+    },
+    getPinEventTimestamp:{
+        'en': 'timestamp of [EVENT] at [PIN]',
+        'zh-cn':'引脚[PIN]的[EVENT]的时间戳'
+    },
+    getSharedData:{
+        'en': 'shared data [INDEX]',
+        'zh-cn':'共享的数据 [INDEX]'
+    },
+    setSharedData2:{
+        'en': 'shared data [INDEX] to [VALUE]',
+        'zh-cn':'共享数据 [INDEX] 到 [VALUE]'
+    },
+    whenConnectionChanged:{
+        'en': 'when micro:bit [STATE]',
+        'zh-cn':'当 micro:bit [STATE]'
+    },
+    connected:{
+        'en': 'connected',
+        'zh-cn':'连接'
+    },
+    disconnected:{
+        'en': 'disconnected',
+        'zh-cn':'断开连接'
+    }
+}
 /**
  * Manage communication with a MicroBit peripheral over a Scrath Link client socket.
  */
@@ -1535,7 +1631,7 @@ class MbitMoreBlocks {
             {
                 text: formatMessage({
                     id: 'mbitMore.connectionStateMenu.connected',
-                    default: 'connected',
+                    default: Message.connected[this._locale],
                     description: 'label for connected'
                 }),
                 value: 'connected'
@@ -1543,7 +1639,7 @@ class MbitMoreBlocks {
             {
                 text: formatMessage({
                     id: 'mbitMore.connectionStateMenu.disconnected',
-                    default: 'disconnected',
+                    default: Message.disconnected[this._locale],//'disconnected',
                     description: 'label for disconnected'
                 }),
                 value: 'disconnected'
@@ -1576,12 +1672,21 @@ class MbitMoreBlocks {
         this.lastEvents = {};
 
     }
+    setLocale() {
+        let locale = formatMessage.setup().locale;
+        if (AvailableLocales.includes(locale)) {
+          return locale;
+        } else {
+          return 'en';
+        }
+      }
 
     /**
      * @returns {object} metadata for this extension and its blocks.
      */
     getInfo () {
         this.setupTranslations();
+        this._locale = this.setLocale()
         return {
             id: MbitMoreBlocks.EXTENSION_ID,
             name: MbitMoreBlocks.EXTENSION_NAME,
@@ -1758,7 +1863,7 @@ class MbitMoreBlocks {
                     opcode: 'isPinConnected',
                     text: formatMessage({
                         id: 'mbitMore.isPinConnected',
-                        default: '[PIN] pin connected?',
+                        default:  Message.isPinConnected[this._locale],//'[PIN] pin connected?',
                         description: 'is the selected pin connected to Earth/Ground?'
                     }),
                     blockType: BlockType.BOOLEAN,
@@ -1775,7 +1880,7 @@ class MbitMoreBlocks {
                     opcode: 'getLightLevel',
                     text: formatMessage({
                         id: 'mbitMore.lightLevel',
-                        default: 'light intensity',
+                        default: Message.getLightLevel[this._locale],//'light intensity',
                         description: 'how much the amount of light falling on the LEDs on micro:bit'
                     }),
                     blockType: BlockType.REPORTER
@@ -1784,7 +1889,7 @@ class MbitMoreBlocks {
                     opcode: 'getTemperature',
                     text: formatMessage({
                         id: 'mbitMore.temperature',
-                        default: 'temperature',
+                        default: Message.getTemperature[this._locale],//'temperature',
                         description: 'temperature (celsius) on the surface of CPU of micro:bit'
                     }),
                     blockType: BlockType.REPORTER
@@ -1793,7 +1898,7 @@ class MbitMoreBlocks {
                     opcode: 'getCompassHeading',
                     text: formatMessage({
                         id: 'mbitMore.compassHeading',
-                        default: 'angle with the North',
+                        default: Message.getCompassHeading[this._locale],//'angle with the North',
                         description: 'angle from the North to the micro:bit heading direction'
                     }),
                     blockType: BlockType.REPORTER
@@ -1802,7 +1907,7 @@ class MbitMoreBlocks {
                     opcode: 'getPitch',
                     text: formatMessage({
                         id: 'mbitMore.pitch',
-                        default: 'pitch',
+                        default: Message.getPitch[this._locale],//'pitch',
                         description: 'nose up movement of the micro:bit from level'
                     }),
                     blockType: BlockType.REPORTER
@@ -1811,7 +1916,7 @@ class MbitMoreBlocks {
                     opcode: 'getRoll',
                     text: formatMessage({
                         id: 'mbitMore.roll',
-                        default: 'roll',
+                        default: Message.getRoll[this._locale],//'roll',
                         description: 'clockwise circular movement of the micro:bit from level'
                     }),
                     blockType: BlockType.REPORTER
@@ -1820,7 +1925,7 @@ class MbitMoreBlocks {
                     opcode: 'getMagneticForce',
                     text: formatMessage({
                         id: 'mbitMore.magneticForce',
-                        default: 'magnetic force',
+                        default:  Message.getMagneticForce[this._locale],//'magnetic force',
                         description: 'value of magnetic force (micro tesla)'
                     }),
                     blockType: BlockType.REPORTER,
@@ -1840,7 +1945,7 @@ class MbitMoreBlocks {
                     opcode: 'getAcceleration',
                     text: formatMessage({
                         id: 'mbitMore.acceleration',
-                        default: 'acceleration [AXIS]',
+                        default: Message.getAcceleration[this._locale],//'acceleration [AXIS]',
                         description: 'value of acceleration on the axis (milli-g)'
                     }),
                     blockType: BlockType.REPORTER,
@@ -1856,7 +1961,7 @@ class MbitMoreBlocks {
                     opcode: 'getPowerVoltage',
                     text: formatMessage({
                         id: 'mbitMore.powerVoltage',
-                        default: 'voltage of power',
+                        default: Message.getPowerVoltage[this._locale],//'voltage of power',
                         description: 'voltage value of power supply in volt'
                     }),
                     blockType: BlockType.REPORTER,
@@ -1867,7 +1972,7 @@ class MbitMoreBlocks {
                     opcode: 'getAnalogValue',
                     text: formatMessage({
                         id: 'mbitMore.analogValue',
-                        default: 'analog value of pin [PIN]',
+                        default: Message.getAnalogValue[this._locale],//'analog value of pin [PIN]',
                         description: 'analog input value of the pin'
                     }),
                     blockType: BlockType.REPORTER,
@@ -1883,7 +1988,7 @@ class MbitMoreBlocks {
                     opcode: 'getDigitalValue',
                     text: formatMessage({
                         id: 'mbitMore.digitalValue',
-                        default: 'digital value of pin [PIN]',
+                        default:  Message.getDigitalValue[this._locale],//'digital value of pin [PIN]',
                         description: 'digital input value of the pin'
                     }),
                     blockType: BlockType.REPORTER,
@@ -1899,7 +2004,7 @@ class MbitMoreBlocks {
                     opcode: 'setPinMode',
                     text: formatMessage({
                         id: 'mbitMore.setPinMode',
-                        default: 'set pin [PIN] to input [MODE]',
+                        default: Message.setPinMode[this._locale],//'set pin [PIN] to input [MODE]',
                         description: 'set a pin into the mode'
                     }),
                     blockType: BlockType.COMMAND,
@@ -1921,7 +2026,7 @@ class MbitMoreBlocks {
                     opcode: 'setOutput',
                     text: formatMessage({
                         id: 'mbitMore.setOutput',
-                        default: 'set [PIN] Digital [LEVEL]',
+                        default: Message.setOutput[this._locale],//'set [PIN] Digital [LEVEL]',
                         description: 'set pin to Digtal Output mode and the level(0 or 1)'
                     }),
                     blockType: BlockType.COMMAND,
@@ -1942,7 +2047,7 @@ class MbitMoreBlocks {
                     opcode: 'setPWM',
                     text: formatMessage({
                         id: 'mbitMore.setPWM',
-                        default: 'set [PIN] PWM [LEVEL]',
+                        default: Message.setPWM[this._locale],//'set [PIN] PWM [LEVEL]',
                         description: 'set pin to PWM mode and the level(0 to 1023)'
                     }),
                     blockType: BlockType.COMMAND,
@@ -1962,7 +2067,7 @@ class MbitMoreBlocks {
                     opcode: 'setServo',
                     text: formatMessage({
                         id: 'mbitMore.setServo',
-                        default: 'set [PIN] Servo [ANGLE]',
+                        default: Message.setServo[this._locale],//'set [PIN] Servo [ANGLE]',
                         description: 'set pin to Servo mode and the angle(0 to 180)'
                     }),
                     blockType: BlockType.COMMAND,
@@ -1991,7 +2096,7 @@ class MbitMoreBlocks {
                     opcode: 'setPinEventType',
                     text: formatMessage({
                         id: 'mbitMore.setPinEventType',
-                        default: 'catch event [EVENT_TYPE] on [PIN]',
+                        default: Message.setPinEventType[this._locale],//'catch event [EVENT_TYPE] on [PIN]',
                         description: 'listen the event on the pin'
                     }),
                     blockType: BlockType.COMMAND,
@@ -2012,7 +2117,7 @@ class MbitMoreBlocks {
                     opcode: 'whenPinEvent',
                     text: formatMessage({
                         id: 'mbitMore.whenPinEvent',
-                        default: 'when catch [EVENT] at pin [PIN]',
+                        default:  Message.whenPinEvent[this._locale],//'when catch [EVENT] at pin [PIN]',
                         description: 'when catch the event at the pin'
 
                     }),
@@ -2034,7 +2139,7 @@ class MbitMoreBlocks {
                     opcode: 'getPinEventTimestamp',
                     text: formatMessage({
                         id: 'mbitMore.getPinEventTimestamp',
-                        default: 'timestamp of [EVENT] at [PIN]',
+                        default: Message.getPinEventTimestamp[this._locale],//'timestamp of [EVENT] at [PIN]',
                         description: 'value of the timestamp of the event'
                     }),
                     blockType: BlockType.REPORTER,
@@ -2056,7 +2161,7 @@ class MbitMoreBlocks {
                     opcode: 'getSharedData',
                     text: formatMessage({
                         id: 'mbitMore.getSharedData',
-                        default: 'shared data [INDEX]',
+                        default: Message.getSharedData[this._locale],//'shared data [INDEX]',
                         description: 'value of the shared data'
                     }),
                     blockType: BlockType.REPORTER,
@@ -2072,7 +2177,7 @@ class MbitMoreBlocks {
                     opcode: 'setSharedData',
                     text: formatMessage({
                         id: 'mbitMore.setSharedData',
-                        default: 'shared data [INDEX] to [VALUE]',
+                        default: Message.setSharedData2[this._locale],//'shared data [INDEX] to [VALUE]',
                         description: 'set value into the shared data'
                     }),
                     blockType: BlockType.COMMAND,
@@ -2093,7 +2198,7 @@ class MbitMoreBlocks {
                     opcode: 'whenConnectionChanged',
                     text: formatMessage({
                         id: 'mbitMore.whenConnectionChanged',
-                        default: 'when micro:bit [STATE]',
+                        default: Message.whenConnectionChanged[this._locale],//'when micro:bit [STATE]',
                         description: 'when a micro:bit connection state changed'
                     }),
                     blockType: BlockType.HAT,

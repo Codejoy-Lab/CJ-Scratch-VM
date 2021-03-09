@@ -1,5 +1,5 @@
 const ArgumentType = require('../../extension-support/argument-type');
-const Cast = require('../../util/cast');
+// const Cast = require('../../util/cast');
 const BlockType = require('../../extension-support/block-type');
 const formatMessage = require('format-message');
 const log = require('../../util/log');
@@ -277,6 +277,7 @@ class Scratch3Speech2TextBlocks {
      * @private
      */
     _closeWebsocket () {
+        console.log("close Socket")
         if (this._socket && this._socket.readyState === this._socket.OPEN) {
             this._socket.close();
             console.log("close Socket")
@@ -527,8 +528,21 @@ class Scratch3Speech2TextBlocks {
             // if((this.isStop&&data && data.cn && data.cn && data.cn.st.type =="0")||(result.action==='error')){
             if((this.isStop&&data && data.ls)||(result.action==='error')){
                 
-                if(result.code==='10205') this._currentUtterance = "Internet Error"
-                setTimeout(function(){
+                // if(result.code!='0'){
+                //     this._currentUtterance = "Internet Error"
+                //     _this._closeWebsocket ()
+                //     console.log('Close Websocket')
+                //     // console.log("_this.handlerInterval",_this.handlerInterval)
+                //     intervalList.forEach(interval =>{
+                //         clearInterval(interval)
+                //         // intervalList.pop(interval)
+                //     })
+                //     _this.handlerInterval = null
+                //     _this._resetListening();
+                //     _this.isStop = false
+                //     _this.tempResult = ''
+                // } 
+                // setTimeout(function(){
                     _this._closeWebsocket ()
                     console.log('Close Websocket')
                     // console.log("_this.handlerInterval",_this.handlerInterval)
@@ -540,7 +554,7 @@ class Scratch3Speech2TextBlocks {
                     _this._resetListening();
                     _this.isStop = false
                     _this.tempResult = ''
-                },5000)
+                // },5000)
                 
             }
             
@@ -601,6 +615,7 @@ class Scratch3Speech2TextBlocks {
         this._initializeMicrophone();
         this._initScriptNode();
         this._newWebsocket();
+        
     }
 
     /**
@@ -761,43 +776,48 @@ class Scratch3Speech2TextBlocks {
                     // this._socket.send(new Int8Array(audioData));
     
                     if (_this._socket.readyState === WebSocket.CLOSED ||
-                        _this._socket.readyState === WebSocket.CLOSING) {
+                        _this._socket.readyState === WebSocket.CLOSING || 
+                        _this._socket.readyState === WebSocket.CONNECTING) {
                         log.error(`Not sending data because not in ready state. State: ${_this._socket.readyState}`);
                         _this._resetListening ()
+                        _this._closeWebsocket ()
                         // clearInterval(_this.handlerInterval)
                         intervalList.forEach(interval =>{
                             clearInterval(interval)
                             // intervalList.pop(interval)
                         })
                         _this.handlerInterval = null
-                        return
+                        _this.listenAndWait()
+                        // return
+                    }else{
+                        var audioData = buffer.splice(0, 1280)
+                        if(audioData.length > 0){
+                            console.log("send")
+                            _this._socket.send(new Int8Array(audioData));
+                        }
                     }
-        
-                    var audioData = buffer.splice(0, 1280)
-                    if(audioData.length > 0){
-                        console.log("send")
-                        _this._socket.send(new Int8Array(audioData));
-                    }
-                }
-                else if(this.isStop){
-                    // this.isStop = false
-                    let _this = this
-                    setTimeout(function(){ 
-                        console.log("发送结束标识")
-                        _this._socket.send("{\"end\": true}"); 
-                    }, 5000)
                     
-                    intervalList.forEach(interval =>{
-                        clearInterval(interval)
-                        // intervalList.pop(interval)
-                    })
                     
-                    // return
                 }
+                // else if(this.isStop){
+                //     // this.isStop = false
+                //     let _this = this
+                //     setTimeout(function(){ 
+                //         console.log("发送结束标识")
+                //         _this._socket.send("{\"end\": true}"); 
+                //     }, 5000)
+                    
+                //     intervalList.forEach(interval =>{
+                //         clearInterval(interval)
+                //         intervalList.pop(interval)
+                //     })
+                    
+                //     // return
+                // }
             }, 40)
             
             if(!intervalList.includes(this.handlerInterval)) {
-                console.log(this.handlerInterval)
+                // console.log(this.handlerInterval)
                 intervalList.push(this.handlerInterval)
             }
     }

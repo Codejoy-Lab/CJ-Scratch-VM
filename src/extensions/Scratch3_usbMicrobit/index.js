@@ -83,7 +83,38 @@ var IconParam = {
     YES: "yes",
     NO: "no",
 };
-
+const whenButtonIsPressed={
+    en: "When Button [BUTTON_PARAM] Is Pressed",
+    "zh-cn": "当按钮 [BUTTON_PARAM] 被按下",
+}
+const buttonIsPressed={
+    en: "Button [BUTTON_PARAM] Is Pressed?",
+    "zh-cn": "按钮 [BUTTON_PARAM] 是否被按下?",
+}
+const say={
+    en: "say [TEXT]",
+    "zh-cn": "说 [TEXT]",
+}
+const displaySymbol={
+    en: "display [MATRIX]",
+    "zh-cn": "显示 [MATRIX]",
+}
+const showIcon={
+    en: "show icon [ICON_PARAM]",
+    "zh-cn": "显示图标 [ICON_PARAM]",
+}
+const clearScreen={
+    en: "clear screen",
+    "zh-cn": "清空屏幕",
+}
+const get_gesture={
+    en: "gesture is[gesture]?",
+    "zh-cn": "手势是 [gesture]吗?",
+}
+const get_accelerometer={
+    en: "Accelerometer [ACCELEROMETER_PARAM]",
+    "zh-cn": "加速器 [ACCELEROMETER_PARAM]",
+}
 class Client {
     onAdapterPluginMessage(msg) {
         this.node_id = msg.message.payload.node_id;
@@ -414,11 +445,12 @@ class Scratch3UsbMicrobitBlocks {
                 {
                     opcode: "whenButtonIsPressed",
                     blockType: BlockType.HAT,
-                    text: formatMessage({
-                        id: "usbMicrobit.whenbuttonispressed",
-                        default: "When Button [BUTTON_PARAM] Is Pressed",
-                        description: "pass hello by socket",
-                    }),
+                    text: whenButtonIsPressed[the_locale],
+                    // formatMessage({
+                    //     id: "usbMicrobit.whenbuttonispressed",
+                    //     default: "When Button [BUTTON_PARAM] Is Pressed",
+                    //     description: "pass hello by socket",
+                    // }),
                     arguments: {
                         BUTTON_PARAM: {
                             type: ArgumentType.STRING,
@@ -431,11 +463,12 @@ class Scratch3UsbMicrobitBlocks {
                     opcode: "buttonIsPressed",
                     blockType: BlockType.BOOLEAN,
                     // blockType: BlockType.REPORTER,
-                    text: formatMessage({
-                        id: "usbMicrobit.buttonispressed",
-                        default: "Button [BUTTON_PARAM] Is Pressed?",
-                        description: "pass hello by socket",
-                    }),
+                    text: buttonIsPressed[the_locale],
+                    // formatMessage({
+                    //     id: "usbMicrobit.buttonispressed",
+                    //     default: "Button [BUTTON_PARAM] Is Pressed?",
+                    //     description: "pass hello by socket",
+                    // }),
                     arguments: {
                         BUTTON_PARAM: {
                             type: ArgumentType.STRING,
@@ -448,11 +481,12 @@ class Scratch3UsbMicrobitBlocks {
                 {
                     opcode: "say",
                     blockType: BlockType.COMMAND,
-                    text: formatMessage({
-                        id: "usbMicrobit.say",
-                        default: "say [TEXT]",
-                        description: "pass hello by socket",
-                    }),
+                    text: say[the_locale],
+                    // formatMessage({
+                    //     id: "usbMicrobit.say",
+                    //     default: "say [TEXT]",
+                    //     description: "pass hello by socket",
+                    // }),
                     arguments: {
                         TEXT: {
                             type: ArgumentType.STRING,
@@ -463,12 +497,13 @@ class Scratch3UsbMicrobitBlocks {
 
                 {
                     opcode: "displaySymbol",
-                    text: formatMessage({
-                        id: "usbMicrobit.displaySymbol",
-                        default: "display [MATRIX]",
-                        description:
-                            "display a pattern on the micro:bit display",
-                    }),
+                    text: displaySymbol[the_locale],
+                    // formatMessage({
+                    //     id: "usbMicrobit.displaySymbol",
+                    //     default: "display [MATRIX]",
+                    //     description:
+                    //         "display a pattern on the micro:bit display",
+                    // }),
                     blockType: BlockType.COMMAND,
                     arguments: {
                         MATRIX: {
@@ -480,11 +515,12 @@ class Scratch3UsbMicrobitBlocks {
                 {
                     opcode: "showIcon",
                     blockType: BlockType.COMMAND,
-                    text: formatMessage({
-                        id: "usbMicrobit.showIcon",
-                        default: "showIcon [ICON_PARAM]",
-                        description: "change the icon of microbit",
-                    }),
+                    text: showIcon[the_locale],
+                    // formatMessage({
+                    //     id: "usbMicrobit.showIcon",
+                    //     default: "showIcon [ICON_PARAM]",
+                    //     description: "change the icon of microbit",
+                    // }),
                     arguments: {
                         ICON_PARAM: {
                             type: ArgumentType.STRING,
@@ -497,11 +533,12 @@ class Scratch3UsbMicrobitBlocks {
                     opcode: "clearScreen",
                     blockType: BlockType.COMMAND,
                     // blockType: BlockType.REPORTER,
-                    text: formatMessage({
-                        id: "usbMicrobit.clearScreen",
-                        default: "clear screen",
-                        description: "clear screen",
-                    }),
+                    text: clearScreen[the_locale],
+                    // formatMessage({
+                    //     id: "usbMicrobit.clearScreen",
+                    //     default: "clear screen",
+                    //     description: "clear screen",
+                    // }),
                     arguments: {},
                 },
                 "---",
@@ -510,11 +547,12 @@ class Scratch3UsbMicrobitBlocks {
                     // blockType: BlockType.BOOLEAN,
                     blockType: BlockType.BOOLEAN,
                     // blockType: BlockType.COMMAND,
-                    text: formatMessage({
-                        id: "usbMicrobit.get_gesture",
-                        default: "gesture is[gesture]?",
-                        description: "gesture is?",
-                    }),
+                    text: get_gesture[the_locale],
+                    // formatMessage({
+                    //     id: "usbMicrobit.get_gesture",
+                    //     default: "gesture is[gesture]?",
+                    //     description: "gesture is?",
+                    // }),
                     arguments: {
                         gesture: {
                             type: ArgumentType.STRING,
@@ -528,11 +566,12 @@ class Scratch3UsbMicrobitBlocks {
                     // blockType: BlockType.BOOLEAN,
                     blockType: BlockType.REPORTER,
                     // blockType: BlockType.COMMAND,
-                    text: formatMessage({
-                        id: "usbMicrobit.get_accelerometer",
-                        default: "Accelerometer [ACCELEROMETER_PARAM]",
-                        description: "pass hello by socket",
-                    }),
+                    text: get_accelerometer[the_locale],
+                    // formatMessage({
+                    //     id: "usbMicrobit.get_accelerometer",
+                    //     default: "Accelerometer [ACCELEROMETER_PARAM]",
+                    //     description: "pass hello by socket",
+                    // }),
                     arguments: {
                         ACCELEROMETER_PARAM: {
                             type: ArgumentType.STRING,
